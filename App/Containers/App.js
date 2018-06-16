@@ -1,14 +1,14 @@
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
 import React, { Component } from 'react'
-import { Root } from "native-base"
+import { Root, View } from "native-base"
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
-import createStore from '../Redux'
+import store from '../Redux/Store'
 
-// create our store
-const store = createStore()
 
+XMLHttpRequest = GLOBAL.originalXMLHttpRequest ?
+    GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
 /**
  * Provides an entry point into our application.  Both index.ios.js and index.android.js
  * call this component first.
@@ -24,6 +24,7 @@ class App extends Component {
       <Provider store={store}>
         <Root>
           <RootContainer />
+          <View/>
         </Root>
       </Provider>
     )
