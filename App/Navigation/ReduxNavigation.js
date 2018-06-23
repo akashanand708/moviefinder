@@ -27,12 +27,8 @@ class ReduxNavigation extends React.Component {
     if (Platform.OS === 'ios') return
     BackHandler.removeEventListener('hardwareBackPress')
   }
-  componentDidMount() {
-    console.log("ACTIONS.......", this.props.fetchMovieActions);
-    this.props.fetchMovieActions.fetchPopularMovies();
-  }
+
   render() {
-    console.log("State.......", this.props.state);
     return <AppNavigation navigation={addNavigationHelpers({ dispatch: this.props.dispatch, state: this.props.nav, addListener: createReduxBoundAddListener('root') })} />
   }
 }

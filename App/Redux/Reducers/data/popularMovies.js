@@ -1,31 +1,39 @@
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';
-import { ONBOARDING } from '../../../ActionTypes/popularMoviesActionTypes';
+import { POPULAR_MOVIES } from '../../../ActionTypes/popularMoviesActionTypes';
 
 const popularMoviesReducer = handleActions({
-    [ONBOARDING.PENDING]: (state, action) => {
+    [POPULAR_MOVIES.PENDING]: (state, action) => {
         return {
             ...state,
-            folderAwaitingData: true,
+            popularMoviesFetching: true,
         };
     },
-    [ONBOARDING.SUCCESS]: (state, action) => {
+    [POPULAR_MOVIES.SUCCESS]: (state, action) => {
+        // let results = _.keyBy(action.payload.results, 'id');
+        let results = action.payload.results;
         return {
             ...state,
-            folderAwaitingData: false,
-            folderList: action.payload,
+            page: state.page + action.payload.page,
+            popularMoviesList: [...state.popularMoviesList, ...results],
+            totalPages: action.payload.total_pages,
+            totalResults: action.payload.total_results,
+            popularMoviesFetching: false,
         };
     },
-    [ONBOARDING.ERROR]: (state, action) => {
+    [POPULAR_MOVIES.ERROR]: (state, action) => {
         return {
             ...state,
-            folderAwaitingData: false,
+            popularMoviesFetching: false,
         };
     }
 },
     {
-        //Initial value
-        folderAwaitingData: false,
+        page: 0,
+        popularMoviesList: [],
+        totalPages: 0,
+        totalResults: 0,
+        popularMoviesFetching: false,
 
     });
 

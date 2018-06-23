@@ -4,5 +4,5 @@ const asyncActionType = (type) => ({
     ERROR: `${type}_ERROR`,
 });
 
-//BF ONBOARDING
-export const ONBOARDING = asyncActionType('ONBOARDING');
+
+export const POPULAR_MOVIES = asyncActionType('POPULAR_MOVIES');
