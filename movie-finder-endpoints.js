@@ -6,6 +6,6 @@ import {Platform} from 'react-native'
 
 const API_KEY = '5697c2d8d03861578344d7c40e737193';
 
-export const fetchPopularMovies = function() {
-  return api.http_get(`/popular?api_key=${API_KEY}&language=en-US&page=1`);
+export const fetchPopularMovies = function(pageNo) {
+  return api.http_get(`/popular?api_key=${API_KEY}&language=en-US&page=${pageNo}`);
 };

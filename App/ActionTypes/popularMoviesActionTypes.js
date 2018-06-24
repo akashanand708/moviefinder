@@ -6,3 +6,4 @@ const asyncActionType = (type) => ({
 
 
 export const POPULAR_MOVIES = asyncActionType('POPULAR_MOVIES');
+export const RESET_POPULAR_MOVIES = 'RESET_POPULAR_MOVIES';

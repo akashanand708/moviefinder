@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';
-import { POPULAR_MOVIES } from '../../../ActionTypes/popularMoviesActionTypes';
+import { POPULAR_MOVIES, RESET_POPULAR_MOVIES } from '../../../ActionTypes/popularMoviesActionTypes';
 
 const popularMoviesReducer = handleActions({
     [POPULAR_MOVIES.PENDING]: (state, action) => {
@@ -14,7 +14,7 @@ const popularMoviesReducer = handleActions({
         let results = action.payload.results;
         return {
             ...state,
-            page: state.page + action.payload.page,
+            page: action.payload.page,
             popularMoviesList: [...state.popularMoviesList, ...results],
             totalPages: action.payload.total_pages,
             totalResults: action.payload.total_results,
@@ -24,6 +24,16 @@ const popularMoviesReducer = handleActions({
     [POPULAR_MOVIES.ERROR]: (state, action) => {
         return {
             ...state,
+            popularMoviesFetching: false,
+        };
+    },
+    [RESET_POPULAR_MOVIES]: (state, action) => {
+        return {
+            ...state,
+            page: 0,
+            popularMoviesList: [],
+            totalPages: 0,
+            totalResults: 0,
             popularMoviesFetching: false,
         };
     }

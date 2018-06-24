@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, ScrollView, Text, Image, NetInfo, TouchableOpacity, Animated } from 'react-native'
 import MovieItemStyle from './MovieItemStyle'
-import images from '../DevScreens/DevTheme/Images'
+import images from '../../DevScreens/DevTheme/Images'
 
 const POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const POSTER_ON_ERROR = '';
@@ -41,35 +41,43 @@ class MovieItem extends Component {
     imageLoadingError = () => {
         this.setState({ imageLoaded: false, imageError: true, imageLoading: false }, this.startErrorAnimation());
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.movieItem.title !== nextProps.movieItem.title) {
+            return true;
+        }
+        return false;
+    }
     render() {
         let { movieItem } = this.props;
         let { imageError, opacity, errorImageUrl, errorOpacity, imageLoaded, imageLoading } = this.state;
         let movieItemPosterUrl = { uri: `${POSTER_BASE_URL}/${movieItem.poster_path}` };
-        console.log("Image url...", movieItemPosterUrl);
+        // console.log("Image url...", movieItemPosterUrl);
+        console.log('Render item....', movieItem.id);
         return (
             <View style={MovieItemStyle.itemContainer}>
                 {
                     !imageError &&
-                        <Animated.Image
-                            source={movieItemPosterUrl}
-                            style={[
-                                {
-                                    opacity: opacity,
-                                    transform: [
-                                        {
-                                            scale: opacity.interpolate({
-                                                inputRange: [0, 1],
-                                                outputRange: [0.85, 1],
-                                            })
-                                        },
-                                    ],
-                                },
-                                MovieItemStyle.image
-                            ]}
-                            onLoadStart={this.imageLoadingStart}
-                            onLoad={this.imageLoadingComplete}
-                            onError={this.imageLoadingError}
-                        />
+                    <Animated.Image
+                        source={movieItemPosterUrl}
+                        style={[
+                            {
+                                opacity: opacity,
+                                transform: [
+                                    {
+                                        scale: opacity.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: [0.85, 1],
+                                        })
+                                    },
+                                ],
+                            },
+                            MovieItemStyle.image
+                        ]}
+                        onLoadStart={this.imageLoadingStart}
+                        onLoad={this.imageLoadingComplete}
+                        onError={this.imageLoadingError}
+                    />
                 }
                 {
                     imageError &&
