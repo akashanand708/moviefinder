@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { popularMoviesReducer } from '../data/popularMovies';
+import { moviesReducer } from '../data/movies';
 
 const uiReducers = combineReducers({
     //More data reducers, if needed.

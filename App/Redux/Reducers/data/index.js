@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import { popularMoviesReducer } from './popularMovies';
+import { moviesReducer } from './movies';
 
 const dataReducers = combineReducers({
     //More data reducers, if needed.
-    popularMovies: popularMoviesReducer
+    movies: moviesReducer
 });
 export {
     dataReducers

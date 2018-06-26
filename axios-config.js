@@ -14,6 +14,7 @@ const authHeaders = [
 
 const API_ENDPOINT = 'https://api.themoviedb.org/3/movie'
 
+
 /**
  * Instantiate axios instance with API_ENDPOINT
  */

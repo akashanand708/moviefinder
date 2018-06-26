@@ -1,18 +1,17 @@
 import * as fetchMovieApis from '../../movie-finder-endpoints';
-import { POPULAR_MOVIES, RESET_POPULAR_MOVIES } from '../ActionTypes/popularMoviesActionTypes';
+import { MOVIES, RESET_MOVIES } from '../ActionTypes/moviesActionTypes';
 
-export const fetchPopularMovies = (pageNo) => {
-    console.log('FETCH POPULAR MOVIES ACTIONS.........');
+export const fetchMovies = (pageNo, movieType) => {
     return (dispatch) => {
-        dispatch({ type: POPULAR_MOVIES.PENDING })
-        return fetchMovieApis.fetchPopularMovies(pageNo)
+        dispatch({ type: MOVIES.PENDING })
+        return fetchMovieApis.fetchMovies(pageNo, movieType)
             .then((response) => {
-                console.log('Popular movies.....', response);
-                dispatch({ type: POPULAR_MOVIES.SUCCESS, payload: response.data });
+                console.log(`${movieType} movies.....`, response);
+                dispatch({ type: MOVIES.SUCCESS, payload: response.data });
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch({ type: POPULAR_MOVIES.ERROR })
+                dispatch({ type: MOVIES.ERROR })
                 return error;
             })
     }
@@ -20,6 +19,6 @@ export const fetchPopularMovies = (pageNo) => {
 
 export const resetPopularMoviesState = (pageNo) => {
     return (dispatch) => {
-        dispatch({ type: RESET_POPULAR_MOVIES });
+        dispatch({ type: RESET_MOVIES });
     }
 }

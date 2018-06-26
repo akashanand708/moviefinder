@@ -53,7 +53,7 @@ class MovieItem extends Component {
         let { imageError, opacity, errorImageUrl, errorOpacity, imageLoaded, imageLoading } = this.state;
         let movieItemPosterUrl = { uri: `${POSTER_BASE_URL}/${movieItem.poster_path}` };
         // console.log("Image url...", movieItemPosterUrl);
-        console.log('Render item....', movieItem.id);
+        // console.log('Render item....', movieItem.id);
         return (
             <View style={MovieItemStyle.itemContainer}>
                 {

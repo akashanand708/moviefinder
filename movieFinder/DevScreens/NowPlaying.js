@@ -3,6 +3,8 @@ import React from 'react'
 import { View, ScrollView, Text, Image, NetInfo, TouchableOpacity } from 'react-native'
 import { Images } from './DevTheme'
 import styles from './Styles/DeviceInfoScreenStyles'
+import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
+import Constants from '../../App/Constants/Constants';
 
 
 export default class NowPlaying extends React.Component {
@@ -18,17 +20,11 @@ export default class NowPlaying extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <ScrollView style={styles.container}>
-          <View style={{ alignItems: 'center', paddingTop: 60 }}>
-            <Image source={Images.deviceInfo} style={styles.logo} />
-            <Text style={styles.titleText}>Now Playing Movies</Text>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionText} >
-              Now Playing Movies
-            </Text>
-          </View>
-        </ScrollView>
+        <View>
+          <RenderMovieItem
+            movieType={Constants.NOW_PLAYING_MOVIES}
+          />
+        </View>
       </View>
     )
   }

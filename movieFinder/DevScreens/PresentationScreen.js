@@ -30,11 +30,11 @@ class PresentationScreen extends React.Component {
     this.props.navigation.navigate('NowPlaying')
   }
 
-  openTopRated= () => {
+  openTopRated = () => {
     this.props.navigation.navigate('TopRated')
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
@@ -47,15 +47,11 @@ class PresentationScreen extends React.Component {
             Movie Finder
           </Text>
           <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openPopularMovies} style={styles.componentButton} image={Images.components} text='Most Popular' />
-            <ButtonBox onPress={this.openPopularMovies} style={styles.usageButton} image={Images.usageExamples} text='Most Popular' />
-          </View>
-          <View style={styles.buttonsContainer}>
             <ButtonBox onPress={this.openUpcomingMovies} style={styles.apiButton} image={Images.api} text='Upcoming' />
-            <ButtonBox onPress={this.openLatestMovies} image={Images.theme} text='Latest' />
+            <ButtonBox onPress={this.openNowPlaying} style={styles.deviceButton} image={Images.deviceInfo} text='Now Playing' />
           </View>
           <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openNowPlaying} style={styles.deviceButton} image={Images.deviceInfo} text='Now Playing' />
+            <ButtonBox onPress={this.openPopularMovies} style={styles.componentButton} image={Images.components} text='Most Popular' />
             <ButtonBox onPress={this.openTopRated} style={styles.usageButton} image={Images.faq} text='Top Rated' />
           </View>
         </ScrollView>
@@ -68,28 +64,28 @@ class PresentationScreen extends React.Component {
 }
 
 export default StackNavigator({
-  PresentationScreen: {screen: PresentationScreen},
-  PopularMovies: {screen: PopularMovies},
-  UpcomingMovies: {screen: UpcomingMovies},
-  LatestMovies: {screen: LatestMovies},
-  NowPlaying: {screen: NowPlaying},
-  TopRated: {screen: TopRated}
+  PresentationScreen: { screen: PresentationScreen },
+  PopularMovies: { screen: PopularMovies },
+  UpcomingMovies: { screen: UpcomingMovies },
+  LatestMovies: { screen: LatestMovies },
+  NowPlaying: { screen: NowPlaying },
+  TopRated: { screen: TopRated }
 }, {
-  cardStyle: {
-    opacity: 1,
-    backgroundColor: '#3e243f'
-  },
-  initialRouteName: 'PresentationScreen',
-  headerMode: 'none',
-  // Keeping this here for future when we can make
-  navigationOptions: {
-    header: {
-      left: (
-        <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{marginHorizontal: 10}} /></TouchableOpacity>
-      ),
-      style: {
-        backgroundColor: '#3e243f'
+    cardStyle: {
+      opacity: 1,
+      backgroundColor: '#3e243f'
+    },
+    initialRouteName: 'PresentationScreen',
+    headerMode: 'none',
+    // Keeping this here for future when we can make
+    navigationOptions: {
+      header: {
+        left: (
+          <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{ marginHorizontal: 10 }} /></TouchableOpacity>
+        ),
+        style: {
+          backgroundColor: '#3e243f'
+        }
       }
     }
-  }
-})
+  })

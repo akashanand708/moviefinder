@@ -3,6 +3,8 @@ import React from 'react'
 import { View, ScrollView, Text, Image, NetInfo, TouchableOpacity } from 'react-native'
 import { Images } from './DevTheme'
 import styles from './Styles/DeviceInfoScreenStyles'
+import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
+import Constants from '../../App/Constants/Constants';
 
 export default class TopRated extends React.Component {
   render() {
@@ -17,17 +19,11 @@ export default class TopRated extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <ScrollView style={styles.container}>
-          <View style={{ alignItems: 'center', paddingTop: 60 }}>
-            <Image source={Images.deviceInfo} style={styles.logo} />
-            <Text style={styles.titleText}>Top Rated Movies</Text>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionText} >
-              Top Rated Movies
-            </Text>
-          </View>
-        </ScrollView>
+        <View>
+          <RenderMovieItem
+            movieType={Constants.TOP_RATED_MOVIES}
+          />
+        </View>
       </View>
     )
   }
