@@ -24,7 +24,7 @@ class PopularMovies extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <View>
+        <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.POPULAR_MOVIES}
             navigation={this.props.navigation}

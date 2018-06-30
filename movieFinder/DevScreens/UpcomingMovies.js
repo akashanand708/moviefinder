@@ -19,7 +19,7 @@ export default class UpcomingMovies extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <View>
+        <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.UPCOMING_MOVIES}
             navigation={this.props.navigation}

@@ -44,6 +44,9 @@ const ApplicationStyles = {
       ...Fonts.style.h2,
       fontSize: 14,
       color: Colors.text
+    },
+    movieListContainer:{
+      marginTop: 75
     }
   },
   darkLabelContainer: {

@@ -19,7 +19,7 @@ export default class TopRated extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <View>
+        <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.TOP_RATED_MOVIES}
             navigation={this.props.navigation}

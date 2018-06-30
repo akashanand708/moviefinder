@@ -19,7 +19,7 @@ export default class LatestMovies extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <View>
+        <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.LATEST_MOVIES}
             navigation={this.props.navigation}

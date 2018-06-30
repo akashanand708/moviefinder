@@ -20,7 +20,7 @@ export default class NowPlaying extends React.Component {
         }}>
           <Image source={Images.backButton} />
         </TouchableOpacity>
-        <View>
+        <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.NOW_PLAYING_MOVIES}
             navigation={this.props.navigation}
