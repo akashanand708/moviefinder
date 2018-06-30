@@ -12,6 +12,7 @@ import TopRated from './TopRated'
 
 // Styles
 import styles from './Styles/PresentationScreenStyles'
+import MovieDetail from '../CommonComponent/MovieItem/MovieDetail';
 
 class PresentationScreen extends React.Component {
   openPopularMovies = () => {
@@ -63,13 +64,18 @@ class PresentationScreen extends React.Component {
   }
 }
 
+// const PopularMoviesStack = StackNavigator({
+
+// })
+
 export default StackNavigator({
   PresentationScreen: { screen: PresentationScreen },
   PopularMovies: { screen: PopularMovies },
   UpcomingMovies: { screen: UpcomingMovies },
   LatestMovies: { screen: LatestMovies },
   NowPlaying: { screen: NowPlaying },
-  TopRated: { screen: TopRated }
+  TopRated: { screen: TopRated },
+  MovieDetail: { screen: MovieDetail }
 }, {
     cardStyle: {
       opacity: 1,

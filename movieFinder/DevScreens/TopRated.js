@@ -22,6 +22,7 @@ export default class TopRated extends React.Component {
         <View>
           <RenderMovieItem
             movieType={Constants.TOP_RATED_MOVIES}
+            navigation={this.props.navigation}
           />
         </View>
       </View>

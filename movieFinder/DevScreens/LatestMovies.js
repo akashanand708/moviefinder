@@ -22,6 +22,7 @@ export default class LatestMovies extends React.Component {
         <View>
           <RenderMovieItem
             movieType={Constants.LATEST_MOVIES}
+            navigation={this.props.navigation}
           />
         </View>
       </View>

@@ -22,6 +22,7 @@ export default class UpcomingMovies extends React.Component {
         <View>
           <RenderMovieItem
             movieType={Constants.UPCOMING_MOVIES}
+            navigation={this.props.navigation}
           />
         </View>
       </View>

@@ -1,12 +1,11 @@
 // An All Components Screen is a great way to dev and quick-test components
 import React from 'react'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import GridView from 'react-native-super-grid'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import MovieItem from './MovieItem';
-import _ from 'lodash';
 
 class RenderMovieItem extends React.Component {
     constructor(props) {
@@ -20,7 +19,6 @@ class RenderMovieItem extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log("UNMOUNT.......");
         this.props.actions.resetPopularMoviesState();
     }
     fetchMovies = () => {
@@ -29,8 +27,6 @@ class RenderMovieItem extends React.Component {
         return this.props.actions.fetchMovies(pageNo, movieType);
     }
     handleEnd = () => {
-        console.log('End raeched...');
-        // if (!this.onEndReachedCalledDuringMomentum) {
         let { totalPages } = this.props;
         let nextPage = this.state.pageNo + 1;
         if (nextPage <= totalPages) {
@@ -41,7 +37,6 @@ class RenderMovieItem extends React.Component {
                     })
             })
         }
-        // }
     }
     _keyExtractor = (item, index) => item.id;
 
@@ -55,7 +50,6 @@ class RenderMovieItem extends React.Component {
     };
     render() {
         let { moviesList, moviesFetching } = this.props;
-        console.log("VIDEO MOVIES",_.filter(moviesList, [ 'video', true ]))
         return (
             <GridView
                 itemDimension={150}
@@ -64,15 +58,12 @@ class RenderMovieItem extends React.Component {
                 keyExtractor={this._keyExtractor}
                 ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
                 initialNumToRender={1}
-                // handleEndReached={() => this.handleEnd()}
-                // handleEndReachedThreshold={0}
                 onEndReached={() => this.handleEnd()}
                 onEndReachedThreshold={0.8}
-                //shouldItemUpdate={this._shouldItemUpdate}
                 renderItem={item => (
                     <MovieItem
                         movieItem={item}
-                    //navigation={navigation}
+                        navigation={this.props.navigation}
                     />
                 )}
             />
@@ -93,5 +84,4 @@ const mapStateToProps = (state) => {
         totalPages: state.data.movies.totalPages
     };
 };
-
 export default connect(mapStateToProps, mapDispatch)(RenderMovieItem);

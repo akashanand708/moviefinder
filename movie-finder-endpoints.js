@@ -28,3 +28,11 @@ export const fetchMovies = function (pageNo, movieType) {
       break;
   }
 };
+
+/**
+ * Fetch movie detail
+ * @param {*} movieId 
+ */
+export const fetchMovieDetail = function (movieId) {
+      return api.http_get(`/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=videos`);
+  }

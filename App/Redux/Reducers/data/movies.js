@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import _ from 'lodash';
 import { MOVIES, RESET_MOVIES } from '../../../ActionTypes/moviesActionTypes';
 
 const moviesReducer = handleActions({

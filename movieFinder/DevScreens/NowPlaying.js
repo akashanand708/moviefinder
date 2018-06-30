@@ -23,6 +23,7 @@ export default class NowPlaying extends React.Component {
         <View>
           <RenderMovieItem
             movieType={Constants.NOW_PLAYING_MOVIES}
+            navigation={this.props.navigation}
           />
         </View>
       </View>

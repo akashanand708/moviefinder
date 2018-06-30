@@ -13,7 +13,6 @@ class PopularMovies extends React.Component {
     }
   }
 
-
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -28,6 +27,7 @@ class PopularMovies extends React.Component {
         <View>
           <RenderMovieItem
             movieType={Constants.POPULAR_MOVIES}
+            navigation={this.props.navigation}
           />
         </View>
       </View >
