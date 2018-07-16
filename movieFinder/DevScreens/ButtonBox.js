@@ -1,6 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, Text, Image } from 'react-native'
 import PropTypes from 'prop-types'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from './Styles/ButtonBoxStyles'
 
 export default class ButtonBox extends React.Component {
@@ -11,10 +12,10 @@ export default class ButtonBox extends React.Component {
     text: PropTypes.string
   }
 
-  render () {
+  render() {
     return (
       <TouchableOpacity style={[styles.container, this.props.style]} onPress={this.props.onPress}>
-        <Image resizeMode='contain' source={this.props.image} style={styles.image} />
+        <Icon name={this.props.iconName} size={30} style={this.props.iconStyle} />
         <Text style={styles.label}>{this.props.text}</Text>
       </TouchableOpacity>
     )

@@ -13,5 +13,57 @@ export default StyleSheet.create({
     resizeMode: 'cover',
     borderRadius: 2,
     margin: Metrics.baseMargin
+  },
+  detailColor:{
+    color: Colors.text
+  },
+  detailMargin:{
+    marginTop: Metrics.doubleBaseMargin
+  },
+  description:{
+    padding: 10
+  },
+  title:{
+
+  },
+  titleText:{
+
+  },
+  titleDetail:{
+    fontWeight: 'bold',
+    fontSize: 25
+  },
+  overview:{
+
+  },
+  overviewText:{
+
+  },
+  overviewDetail:{
+
+  },
+  releaseDate:{
+
+  },
+  releaseDateText:{
+
+  },
+  releaseDateDetail:{
+
+  },
+  status:{
+
+  },
+  statusDetail:{
+
+  },
+  trailer:{
+
+  },
+  trailerText:{
+    
+  },
+  trailerDetail:{
+    
   }
 })

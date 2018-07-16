@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts } from '../DevTheme/'
+import { Colors, Metrics, Fonts } from '../DevTheme'
 
 export default StyleSheet.create({
   container: {
@@ -17,6 +17,7 @@ export default StyleSheet.create({
   label: {
     ...Fonts.style.h2,
     fontSize: 14,
-    color: Colors.text
+    color: Colors.text,
+    marginTop: Metrics.smallMargin
   }
 })

@@ -1,6 +1,6 @@
 // leave off @2x/@3x
 const images = {
-  igniteClear: require('../Images/ignite-logo-transparent.png'),
+  //igniteClear: require('../Images/movie-trailer.jpg'),
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/BG.png'),
   api: require('../Images/Icons/icon-api-testing.png'),
@@ -16,6 +16,7 @@ const images = {
   closeButton: require('../Images/Icons/close-button.png'),
   loadingImage: require('../Images/loading_image.png'),
   errorImage: require('../Images/error_image.png'),
+  movieTrailer: require('../Images/Movie/movie-trailers.jpg'),
 }
 
 export default images

@@ -2,9 +2,11 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
 import { Images } from './DevTheme'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from './Styles/DeviceInfoScreenStyles'
 import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
 import Constants from '../../App/Constants/Constants';
+import { Colors } from '../../App/Themes';
 
 class PopularMovies extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class PopularMovies extends React.Component {
           paddingHorizontal: 5,
           zIndex: 10
         }}>
-          <Image source={Images.backButton} />
+          <Icon name="arrow-circle-left" size={30} style={{color: Colors.backArrow}}/>
         </TouchableOpacity>
         <View style={styles.movieListContainer}>
           <RenderMovieItem

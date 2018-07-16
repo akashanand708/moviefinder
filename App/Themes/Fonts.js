@@ -49,7 +49,7 @@ const style = {
   },
   description: {
     fontFamily: type.base,
-    fontSize: size.medium
+    fontSize: size.regular
   }
 }
 

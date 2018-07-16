@@ -12,7 +12,10 @@ const colors = {
   eggplant: '#251a34',
   border: '#483F53',
   text: '#E0D7E5',
-  loaderBackgroundColor: 'rgba(52, 52, 52, 0.8)'
+  loaderBackgroundColor: 'rgba(52, 52, 52, 0.8)',
+  backArrow: '#FFFFFF',
+  backArrowBackground: '#000000',
+  iconColor: '#f03506'
 }
 
 export default colors

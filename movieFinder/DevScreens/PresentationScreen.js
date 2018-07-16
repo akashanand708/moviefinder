@@ -1,8 +1,9 @@
 import React from 'react'
-import { ScrollView, Text, Image, View, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, Image, View, TouchableOpacity, NetInfo } from 'react-native'
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
-import { StackNavigator } from 'react-navigation'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { StackNavigator, NavigationActions } from 'react-navigation'
 // Screens
 import PopularMovies from './PopularMovies'
 import UpcomingMovies from './UpcomingMovies'
@@ -13,8 +14,58 @@ import TopRated from './TopRated'
 // Styles
 import styles from './Styles/PresentationScreenStyles'
 import MovieDetail from '../CommonComponent/MovieItem/MovieDetail';
+import NetworkError from './NetworkError';
 
 class PresentationScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      connectionInfo: ''
+
+    }
+    // this.handleFirstConnectivityChange = this.handleFirstConnectivityChange.bind(this);
+  }
+  handleFirstConnectivityChange = (connectionInfo) => {
+    console.log("CONNECTION INFO....", connectionInfo);
+    this.setState({
+      connectionInfo: connectionInfo.type
+    })
+    console.log('First change, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
+    if (['none', 'unknown'].includes(connectionInfo.type)) {
+      this.props.navigation.navigate('NetworkError');
+    } else {
+      this.props
+        .navigation
+        .dispatch(NavigationActions.reset(
+          {
+            index: 0,
+            actions: [
+              NavigationActions.navigate({ routeName: 'PresentationScreen' })
+            ]
+          }));
+      // this.props.navigation.navigate('PresentationScreen');
+    }
+  }
+
+  componentDidMount() {
+    NetInfo.getConnectionInfo().then((connectionInfo) => {
+      this.setState({
+        connectionInfo: connectionInfo.type
+      })
+      console.log('Initial, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
+    });
+
+    NetInfo.addEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange
+    );
+  }
+  componentWillUnmount() {
+    NetInfo.removeEventListener(
+      'connectionChange',
+      this.handleFirstConnectivityChange
+    );
+  }
   openPopularMovies = () => {
     this.props.navigation.navigate('PopularMovies')
   }
@@ -41,24 +92,20 @@ class PresentationScreen extends React.Component {
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
           <View style={styles.centered}>
-            <Image source={Images.igniteClear} style={styles.logo} />
-          </View>
-
-          <Text style={styles.sectionText}>
-            Movie Finder
-          </Text>
-          <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openUpcomingMovies} style={styles.apiButton} image={Images.api} text='Upcoming' />
-            <ButtonBox onPress={this.openNowPlaying} style={styles.deviceButton} image={Images.deviceInfo} text='Now Playing' />
+            {/* <Image source={Images.movieTrailer} style={styles.logo} /> */}
+            <Icon name='film' size={70} style={styles.icon} />
+            <View style={styles.headerMain}>
+              <Text style={styles.labelName}>Movie Trailers</Text>
+              <Text style={styles.tagName}>At your fingertips</Text>
+            </View>
           </View>
           <View style={styles.buttonsContainer}>
-            <ButtonBox onPress={this.openPopularMovies} style={styles.componentButton} image={Images.components} text='Most Popular' />
-            <ButtonBox onPress={this.openTopRated} style={styles.usageButton} image={Images.faq} text='Top Rated' />
+            <ButtonBox onPress={this.openUpcomingMovies} style={styles.upcomingButton} iconStyle={styles.icon} iconName="film" text='Upcoming' />
+            <ButtonBox onPress={this.openNowPlaying} style={styles.nowPlayingButton} iconStyle={styles.icon} iconName="film" text='Now Playing' />
+            <ButtonBox onPress={this.openPopularMovies} style={styles.mostPopularButton} iconStyle={styles.icon} iconName="film" text='Most Popular' />
+            <ButtonBox onPress={this.openTopRated} style={styles.topRatedButton} iconStyle={styles.icon} iconName="film" text='Top Rated' />
           </View>
         </ScrollView>
-        <View style={styles.banner}>
-          <Text style={styles.bannerLabel}>Made with ❤️ by Infinite Red</Text>
-        </View>
       </View>
     )
   }
@@ -75,7 +122,8 @@ export default StackNavigator({
   LatestMovies: { screen: LatestMovies },
   NowPlaying: { screen: NowPlaying },
   TopRated: { screen: TopRated },
-  MovieDetail: { screen: MovieDetail }
+  MovieDetail: { screen: MovieDetail },
+  NetworkError: { screen: NetworkError }
 }, {
     cardStyle: {
       opacity: 1,
@@ -86,9 +134,9 @@ export default StackNavigator({
     // Keeping this here for future when we can make
     navigationOptions: {
       header: {
-        left: (
-          <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{ marginHorizontal: 10 }} /></TouchableOpacity>
-        ),
+        // left: (
+        //   <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{ marginHorizontal: 10 }} /></TouchableOpacity>
+        // ),
         style: {
           backgroundColor: '#3e243f'
         }

@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native'
-import { Metrics, Colors, Fonts, ApplicationStyles } from '../DevTheme/'
+import { Metrics, Colors, Fonts, ApplicationStyles } from '../DevTheme'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
-    marginBottom: 36,
+    //marginBottom: 36,
     paddingTop: Metrics.section
   },
   logo: {
@@ -15,31 +15,30 @@ export default StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: 'row',
-    flex: 1
+    flex: 1,
+    flexWrap: 'wrap',
+    height: Metrics.screenHeight * (2 / 3)
   },
   centered: {
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    height: Metrics.screenHeight / 3
   },
-  componentButton: {
-    borderColor: Colors.border,
-    borderTopWidth: 1,
-    borderRightWidth: 1,
-    borderBottomWidth: 1
-  },
-  apiButton: {
+  upcomingButton: {
     borderColor: Colors.border,
     borderRightWidth: 1,
     borderBottomWidth: 1
   },
-  usageButton: {
+  nowPlayingButton: {
     borderColor: Colors.border,
-    borderTopWidth: 1,
     borderBottomWidth: 1
   },
-  deviceButton: {
+  mostPopularButton: {
     borderColor: Colors.border,
     borderRightWidth: 1,
-    borderTopWidth: 1
+  },
+  topRatedButton: {
+    borderColor: Colors.border,
   },
   sectionText: {
     textAlign: 'center',
@@ -65,5 +64,20 @@ export default StyleSheet.create({
     ...Fonts.style.h5,
     fontSize: 12,
     color: Colors.snow
+  },
+  headerMain:{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  labelName: {
+    fontSize: Fonts.size.h2,
+    color: Colors.text
+  },
+  tagName: {
+    color: Colors.text
+  },
+  icon: {
+    color: Colors.iconColor
   }
 })

@@ -46,7 +46,7 @@ const ApplicationStyles = {
       color: Colors.text
     },
     movieListContainer:{
-      marginTop: 75
+      //marginTop: 75
     }
   },
   darkLabelContainer: {

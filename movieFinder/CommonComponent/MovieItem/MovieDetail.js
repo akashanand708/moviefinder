@@ -1,90 +1,99 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, TouchableOpacity, Text, ScrollView, RefreshControl } from 'react-native'
-import { Tab, Tabs, Icon } from 'native-base';
-import MovieDetailStyle from './MovieDetailStyle'
+import { View, Image, TouchableOpacity, Text, ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
+import { Tab, Tabs, Label } from 'native-base';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Styles from './MovieDetailStyle'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Images } from '../../../App/Themes'
+import { Images, Fonts } from '../../../App/Themes'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import Poster from './Poster';
+import RenderTrailerItem from './RenderTrailerItem';
+import { Colors } from '../../DevScreens/DevTheme';
 class MovieDetail extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            // movieDetail: {}
-            wait: false,
-        }
-    }
     componentDidMount() {
         let { movieId } = this.props.navigation.state.params;
         this.props.actions.fetchMovieDetail(movieId);
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if (this.props.movieDetail !== nextProps.movieDetail) {
-    //         this.setState({ movieDetail: nextProps.movieDetail });
-    //     }
-    // }
     componentWillUnmount() {
         this.props.actions.resetMovieDetailState();
     }
 
     render() {
         let { movieDetail, movieDetailFetching } = this.props;
-        let { wait } = this.state;
         console.log("MOVIE DETAILS....", movieDetail);
+        let releaseDate = new Date(movieDetail.release_date);
+        let releaseYear = releaseDate.getFullYear();
         return (
-            <View style={MovieDetailStyle.mainContainer}>
-                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
-                    position: 'absolute',
-                    paddingTop: 30,
-                    paddingHorizontal: 5,
-                    zIndex: 10
-                }}>
-                    <Image source={Images.backButton} />
-                </TouchableOpacity>
-                <View style={[MovieDetailStyle.movieListContainer, MovieDetailStyle.detail]}>
-                    <Poster
-                        posterUrl={movieDetail.backdrop_path}
-                        posterStyle={MovieDetailStyle.image}
-                    />
+            <View style={Styles.mainContainer}>
+                {
+                    !movieDetailFetching &&
+                    <View>
+                        <View style={{
+                            position: 'absolute',
+                            paddingTop: 30,
+                            paddingHorizontal: 5,
+                            zIndex: 10
+                        }}>
+                            <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
+                                marginLeft: 10
+                            }}>
+                                {/* <Image source={Images.backButton} />  */}
+                                <Icon name="arrow-circle-left" size={30} style={{color: Colors.backArrow}}/>
+                            </TouchableOpacity>
+                        </View>
 
-                    <Tabs locked={true}
-                    //onChangeTab={({ ref }) => this.onTabChange(ref.props.heading.props.name)}
-                    //page={currentTabIndex}
-                    >
-                        <Tab heading={<View name={0} ><Text>Details</Text></View>}>
-                            <View style={{ width: '100%', height: '100%' }}>
-                                <ScrollView
-                                    refreshControl={
-                                        <RefreshControl
-                                        // refreshing={wait}
-                                        // onRefresh={this._onRefresh}
-                                        />
-                                    }
-                                    style={{ width: '100%' }}>
-                                    Details
-                                </ScrollView>
+                        {/* <ScrollView contentContainerStyle={[Styles.movieListContainer, Styles.detail]}> */}
+                        <ScrollView>
+                            <Poster
+                                posterUrl={movieDetail.backdrop_path}
+                                posterStyle={Styles.image}
+                            />
+                            <View style={Styles.description}>
+                                <View style={[Styles.title]}>
+                                    <Text style={[Styles.detailColor, Styles.titleDetail]}>
+                                        {`${movieDetail.original_title} (${releaseYear})`}
+                                    </Text>
+                                </View>
+                                <View style={[Styles.detailMargin, Styles.overview]}>
+                                    <Text style={[Styles.detailColor, Fonts.style.h4, Styles.overviewText]}>
+                                        Overview:
+                            </Text>
+                                    <Text style={[Styles.detailColor, Fonts.style.description, Styles.overviewDetail]}>
+                                        {movieDetail.overview}
+                                    </Text>
+                                </View>
+                                <View style={[Styles.detailMargin, Styles.releaseDate]}>
+                                    <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
+                                        Relese date:
+                            </Text>
+                                    <Text style={[Styles.detailColor, Styles.releaseDateDetail]}>
+                                        {movieDetail.release_date}
+                                    </Text>
+                                </View>
+                                <View style={[Styles.detailMargin, Styles.status]}>
+                                    <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
+                                        Status:
+                            </Text>
+                                    <Text style={[Styles.detailColor, Styles.statusDetail]}>
+                                        {movieDetail.status}
+                                    </Text>
+                                </View>
+                                <View style={[Styles.detailMargin, Styles.trailer]}>
+                                    <Text style={[Styles.detailColor, Fonts.style.h4, Styles.trailerText]}>
+                                        Trailer:
+                            </Text>
+                                    <RenderTrailerItem
+                                        trailerList={(movieDetail.videos && movieDetail.videos.results) || []}
+                                    />
+                                </View>
                             </View>
-                        </Tab>
-                        <Tab heading={<View name={1} ><Text>Trailers</Text></View>}>
-                            <View style={{ width: '100%', height: '100%' }}>
-                                <ScrollView
-                                    refreshControl={
-                                        <RefreshControl
-                                        // refreshing={wait}
-                                        // onRefresh={this._onRefresh}
-                                        />
-                                    }
-                                    style={{ width: '100%' }}>
-                                    Trailers
-                                </ScrollView>
-                            </View>
-                        </Tab>
-                    </Tabs>
-                </View>
+                        </ScrollView>
+                    </View>
+                }
+                <ActivityIndicator animating={movieDetailFetching} size="large" />
             </View >
         )
     }

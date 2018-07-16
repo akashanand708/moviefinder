@@ -4,5 +4,6 @@ export default {
     UPCOMING_MOVIES: 'UPCOMING_MOVIES',
     NOW_PLAYING_MOVIES: 'NOW_PLAYING_MOVIES',
     LATEST_MOVIES: 'LATEST_MOVIES',
-    POSTER_BASE_URL: 'https://image.tmdb.org/t/p/w500'
+    POSTER_BASE_URL: 'https://image.tmdb.org/t/p/w500',
+    YOUTUBE_BASE_URL: 'https://www.youtube.com'
 }
