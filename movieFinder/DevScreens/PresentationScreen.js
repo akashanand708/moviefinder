@@ -19,23 +19,17 @@ import NetworkError from './NetworkError';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
+import { CustomToast } from '../CommonComponent/CommonToast/CommonToast';
 
 class PresentationScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      connectionInfo: ''
-
-    }
-    // this.handleFirstConnectivityChange = this.handleFirstConnectivityChange.bind(this);
-  }
   handleFirstConnectivityChange = (connectionInfo) => {
-    console.log("CONNECTION INFO....", connectionInfo);
     this.props.actions.updateNetworkInfo(connectionInfo.type);
-    this.setState({
-      connectionInfo: connectionInfo.type
-    })
-    console.log('First change, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
+    if(['none','unknown'].includes(connectionInfo.type)){
+      CustomToast.showToast("No connection");
+    }else{
+      CustomToast.showToast("Back online",'success');
+    }
+    
     // if (['none', 'unknown'].includes(connectionInfo.type)) {
     //   this.props.navigation.navigate('NetworkError');
     // } else {
@@ -59,10 +53,7 @@ class PresentationScreen extends React.Component {
 
   componentDidMount() {
     NetInfo.getConnectionInfo().then((connectionInfo) => {
-      this.setState({
-        connectionInfo: connectionInfo.type
-      })
-      console.log('Initial, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
+      this.props.actions.updateNetworkInfo(connectionInfo.type);
     });
 
     NetInfo.addEventListener(
