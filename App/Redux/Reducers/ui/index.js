@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import { moviesReducer } from '../data/movies';
+import { networkInfoReducer } from './networkInfo';
 
 const uiReducers = combineReducers({
-    //More data reducers, if needed.
-    //popularMovies: popularMoviesReducer
+    networkInfo: networkInfoReducer
 });
 
 export {

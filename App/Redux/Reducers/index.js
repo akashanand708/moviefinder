@@ -4,7 +4,7 @@ import { navigationReducer } from './navigationReducer';
 import { dataReducers } from './data';
 
 const reducers = {
-    //ui: uiReducers,
+    ui: uiReducers,
     data: dataReducers,
     nav: navigationReducer,
 }

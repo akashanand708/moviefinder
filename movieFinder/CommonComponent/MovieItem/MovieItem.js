@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native'
 import MovieItemStyle from './MovieItemStyle'
 import Constants from '../../../App/Constants/Constants';
 import Poster from './Poster';
+import { connect } from 'react-redux'
 
 class MovieItem extends Component {
     shouldComponentUpdate(nextProps, nextState) {
@@ -13,11 +14,16 @@ class MovieItem extends Component {
         return false;
     }
     navigateToMovieDetails = (movieId) => {
-        this.props.navigation.navigate({
-            key: 'MovieDetail',
-            routeName: 'MovieDetail',
-            params: { movieId: movieId }
-        })
+        let { connectionType } = this.props;
+        if (['none', 'unknown'].includes(connectionType)) {
+            this.props.navigation.navigate('NetworkError');
+        } else {
+            this.props.navigation.navigate({
+                key: 'MovieDetail',
+                routeName: 'MovieDetail',
+                params: { movieId: movieId }
+            })
+        }
     }
     render() {
         let { movieItem } = this.props;
@@ -34,4 +40,12 @@ class MovieItem extends Component {
 MovieItem.propTypes = {
     movieItem: PropTypes.object
 }
-export default MovieItem
+
+
+const mapStateToProps = (state) => {
+    return {
+        connectionType: state.ui.networkInfo.connectionType
+    };
+};
+
+export default connect(mapStateToProps, null)(MovieItem);

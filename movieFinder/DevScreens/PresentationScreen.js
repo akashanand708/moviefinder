@@ -16,6 +16,10 @@ import styles from './Styles/PresentationScreenStyles'
 import MovieDetail from '../CommonComponent/MovieItem/MovieDetail';
 import NetworkError from './NetworkError';
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
+
 class PresentationScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -27,28 +31,30 @@ class PresentationScreen extends React.Component {
   }
   handleFirstConnectivityChange = (connectionInfo) => {
     console.log("CONNECTION INFO....", connectionInfo);
+    this.props.actions.updateNetworkInfo(connectionInfo.type);
     this.setState({
       connectionInfo: connectionInfo.type
     })
     console.log('First change, type: ' + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType);
-    if (['none', 'unknown'].includes(connectionInfo.type)) {
-      this.props.navigation.navigate('NetworkError');
-    } else {
-      this.props.navigation.goBack();
-      this.props
-        .navigation
-        .dispatch({ type: NavigationActions.BACK });
-      // this.props
-      //   .navigation
-      //   .dispatch(NavigationActions.reset(
-      //     {
-      //       index: 0,
-      //       actions: [
-      //         NavigationActions.navigate()
-      //       ]
-      //     }));
-      // this.props.navigation.navigate('PresentationScreen');
-    }
+    // if (['none', 'unknown'].includes(connectionInfo.type)) {
+    //   this.props.navigation.navigate('NetworkError');
+    // } else {
+    //   this.props.navigation.goBack();
+    //   this.props
+    //     .navigation
+    //     .dispatch({ type: NavigationActions.BACK });
+
+    //   // this.props
+    //   //   .navigation
+    //   //   .dispatch(NavigationActions.reset(
+    //   //     {
+    //   //       index: 0,
+    //   //       actions: [
+    //   //         NavigationActions.navigate()
+    //   //       ]
+    //   //     }));
+    //   // this.props.navigation.navigate('PresentationScreen');
+    // }
   }
 
   componentDidMount() {
@@ -71,25 +77,33 @@ class PresentationScreen extends React.Component {
     );
   }
   openPopularMovies = () => {
-    this.props.navigation.navigate({ routeName: 'PopularMovies' })
+    this.navigate('PopularMovies');
   }
 
   openUpcomingMovies = () => {
-    this.props.navigation.navigate({ routeName: 'UpcomingMovies' })
+    this.navigate('UpcomingMovies');
   }
 
   openLatestMovies = () => {
-    this.props.navigation.navigate({ routeName: 'LatestMovies' })
+    this.navigate('LatestMovies');
   }
 
   openNowPlaying = () => {
-    this.props.navigation.navigate({ routeName: 'NowPlaying' })
+    this.navigate('NowPlaying');
   }
 
   openTopRated = () => {
-    this.props.navigation.navigate({ routeName: 'TopRated' })
+    this.navigate('TopRated');
   }
 
+  navigate = (routeName) => {
+    let { connectionType } = this.props;
+    if (['none', 'unknown'].includes(connectionType)) {
+      this.props.navigation.navigate('NetworkError');
+    } else {
+      this.props.navigation.navigate({ routeName: routeName })
+    }
+  }
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -115,8 +129,21 @@ class PresentationScreen extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    connectionType: state.ui.networkInfo.connectionType
+  };
+};
+const mapDispatch = (dispatch) => {
+  return {
+    actions: bindActionCreators(fetchMoviesActions, dispatch),
+  };
+};
+
+const PresentationScreenUI = connect(mapStateToProps, mapDispatch)(PresentationScreen);
+
 export default StackNavigator({
-  PresentationScreen: { screen: PresentationScreen },
+  PresentationScreen: { screen: PresentationScreenUI },
   PopularMovies: { screen: PopularMovies },
   UpcomingMovies: { screen: UpcomingMovies },
   LatestMovies: { screen: LatestMovies },

@@ -9,3 +9,4 @@ export const MOVIES = asyncActionType('MOVIES');
 export const RESET_MOVIES = 'RESET_MOVIES';
 export const MOVIE_DETAIL = asyncActionType('MOVIE_DETAIL');
 export const RESET_MOVIE_DETAIL = 'RESET_MOVIE_DETAIL';
+export const UPDATE_NETWORK_INFO = 'UPDATE_NETWORK_INFO';

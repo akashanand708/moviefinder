@@ -1,12 +1,18 @@
 import { NavigationActions } from 'react-navigation'
 import * as fetchMovieApis from '../../movie-finder-endpoints';
-import { MOVIES, RESET_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL } from '../ActionTypes/moviesActionTypes';
+import { MOVIES, RESET_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 
 
 export const backAction = () => {
     return (dispatch) => {
         dispatch({ type: NavigationActions.BACK });
+    }
+}
+
+export const updateNetworkInfo = (connectionType) => {
+    return (dispatch) => {
+        dispatch({ type: UPDATE_NETWORK_INFO, payload: connectionType });
     }
 }
 
