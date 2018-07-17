@@ -34,15 +34,19 @@ class PresentationScreen extends React.Component {
     if (['none', 'unknown'].includes(connectionInfo.type)) {
       this.props.navigation.navigate('NetworkError');
     } else {
+      this.props.navigation.goBack();
       this.props
         .navigation
-        .dispatch(NavigationActions.reset(
-          {
-            index: 0,
-            actions: [
-              NavigationActions.navigate({ routeName: 'PresentationScreen' })
-            ]
-          }));
+        .dispatch({ type: NavigationActions.BACK });
+      // this.props
+      //   .navigation
+      //   .dispatch(NavigationActions.reset(
+      //     {
+      //       index: 0,
+      //       actions: [
+      //         NavigationActions.navigate()
+      //       ]
+      //     }));
       // this.props.navigation.navigate('PresentationScreen');
     }
   }
@@ -67,23 +71,23 @@ class PresentationScreen extends React.Component {
     );
   }
   openPopularMovies = () => {
-    this.props.navigation.navigate('PopularMovies')
+    this.props.navigation.navigate({ routeName: 'PopularMovies' })
   }
 
   openUpcomingMovies = () => {
-    this.props.navigation.navigate('UpcomingMovies')
+    this.props.navigation.navigate({ routeName: 'UpcomingMovies' })
   }
 
   openLatestMovies = () => {
-    this.props.navigation.navigate('LatestMovies')
+    this.props.navigation.navigate({ routeName: 'LatestMovies' })
   }
 
   openNowPlaying = () => {
-    this.props.navigation.navigate('NowPlaying')
+    this.props.navigation.navigate({ routeName: 'NowPlaying' })
   }
 
   openTopRated = () => {
-    this.props.navigation.navigate('TopRated')
+    this.props.navigation.navigate({ routeName: 'TopRated' })
   }
 
   render() {
@@ -110,10 +114,6 @@ class PresentationScreen extends React.Component {
     )
   }
 }
-
-// const PopularMoviesStack = StackNavigator({
-
-// })
 
 export default StackNavigator({
   PresentationScreen: { screen: PresentationScreen },

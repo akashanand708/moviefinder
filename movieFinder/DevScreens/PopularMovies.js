@@ -7,24 +7,26 @@ import styles from './Styles/DeviceInfoScreenStyles'
 import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
 import Constants from '../../App/Constants/Constants';
 import { Colors } from '../../App/Themes';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
 
 class PopularMovies extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
+  goBack = () => {
+    this.props.navigation.goBack();
+    this.props.actions.backAction();
   }
 
   render() {
     return (
       <View style={styles.mainContainer}>
-        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
+        <TouchableOpacity onPress={this.goBack} style={{
           position: 'absolute',
           paddingTop: 30,
           paddingHorizontal: 5,
           zIndex: 10
         }}>
-          <Icon name="arrow-circle-left" size={30} style={{color: Colors.backArrow}}/>
+          <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
         </TouchableOpacity>
         <View style={styles.movieListContainer}>
           <RenderMovieItem
@@ -37,4 +39,11 @@ class PopularMovies extends React.Component {
   }
 }
 
-export default PopularMovies;
+
+const mapDispatch = (dispatch) => {
+  return {
+    actions: bindActionCreators(fetchMoviesActions, dispatch),
+  };
+};
+
+export default connect(null, mapDispatch)(PopularMovies);

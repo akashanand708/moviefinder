@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import AppNavigation from './AppNavigation'
 import * as fetchMovieActions from '../Actions/fetchMovieActions'
+import LaunchScreen from '../Containers/LaunchScreen';
 
 class ReduxNavigation extends React.Component {
   componentWillMount() {
@@ -29,7 +30,7 @@ class ReduxNavigation extends React.Component {
   }
 
   render() {
-    return <AppNavigation navigation={addNavigationHelpers({ dispatch: this.props.dispatch, state: this.props.nav, addListener: createReduxBoundAddListener('root') })} />
+    return <LaunchScreen navigation={addNavigationHelpers({ dispatch: this.props.dispatch, state: this.props.nav, addListener: createReduxBoundAddListener('root') })} />
   }
 }
 

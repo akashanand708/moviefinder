@@ -20,10 +20,12 @@ class MovieDetail extends Component {
     componentWillUnmount() {
         this.props.actions.resetMovieDetailState();
     }
-
+    goBack = () => {
+        this.props.navigation.goBack();
+        this.props.actions.backAction();
+    }
     render() {
         let { movieDetail, movieDetailFetching } = this.props;
-        console.log("MOVIE DETAILS....", movieDetail);
         let releaseDate = new Date(movieDetail.release_date);
         let releaseYear = releaseDate.getFullYear();
         return (
@@ -37,11 +39,11 @@ class MovieDetail extends Component {
                             paddingHorizontal: 5,
                             zIndex: 10
                         }}>
-                            <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
+                            <TouchableOpacity onPress={this.goBack} style={{
                                 marginLeft: 10
                             }}>
                                 {/* <Image source={Images.backButton} />  */}
-                                <Icon name="arrow-circle-left" size={30} style={{color: Colors.backArrow}}/>
+                                <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
                             </TouchableOpacity>
                         </View>
 
