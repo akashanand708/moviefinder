@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">_W82jdg5DFwUBqQ7WDKFT6fsldOkad00311d-31e3-4726-8eb6-d7e6901776d6</string>
     <string name="app_name">MovieFinder</string>
 </resources>

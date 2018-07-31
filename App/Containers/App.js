@@ -5,7 +5,9 @@ import { Root, View } from "native-base"
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import store from '../Redux/Store'
+import codePush from "react-native-code-push";
 
+let codePushOptions = {checkFrequency: codePush.CheckFrequency.ON_APP_START};
 
 XMLHttpRequest = GLOBAL.originalXMLHttpRequest ?
     GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
@@ -32,6 +34,7 @@ class App extends Component {
 }
 
 // allow reactotron overlay for fast design in dev mode
-export default DebugConfig.useReactotron
-  ? console.tron.overlay(App)
-  : App
+// export default DebugConfig.useReactotron
+//   ? console.tron.overlay(App)
+//   : codePush(codePushOptions)(App)
+export default codePush(codePushOptions)(App);

@@ -14,7 +14,7 @@ import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
 class PopularMovies extends React.Component {
   goBack = () => {
     this.props.navigation.goBack();
-    this.props.actions.backAction();
+    //this.props.actions.backAction();
   }
 
   render() {

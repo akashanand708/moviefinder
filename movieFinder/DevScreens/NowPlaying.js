@@ -15,7 +15,7 @@ class NowPlaying extends React.Component {
 
   goBack = () => {
     this.props.navigation.goBack();
-    this.props.actions.backAction();
+    //this.props.actions.backAction();
   }
   render() {
     return (

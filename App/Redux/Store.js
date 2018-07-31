@@ -20,7 +20,7 @@ const navigationMiddleware = createReactNavigationReduxMiddleware(
 middleware.push(navigationMiddleware)
 
 /* ------------- Analytics Middleware ------------- */
-middleware.push(ScreenTracking)
+//middleware.push(ScreenTracking)
 
 /* ------------- Thunk Middleware ------------- */
 middleware.push(thunk)

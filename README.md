@@ -65,3 +65,19 @@ The `.env` file is ignored by git keeping those secrets out of your repo.
 2. Add your config variables
 3. Follow instructions at [https://github.com/luggit/react-native-config#setup](https://github.com/luggit/react-native-config#setup)
 4. Done!
+
+### Android apk build process.
+1. At project root label run the following command 
+react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug
+
+2. cd android
+
+3. ./gradlew assembleRelease
+
+apk file will present a this location /Users/dhruva/PERSONEL/PROJECT/GitHub/MovieFinder/android/app/build/outputs/apk/app-debug.apk
+
+### Clean android project
+./gradlew clean
+
+### Clean xcode project
+xcodebuild clean

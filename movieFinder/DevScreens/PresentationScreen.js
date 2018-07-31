@@ -20,6 +20,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
 import { CustomToast } from '../CommonComponent/CommonToast/CommonToast';
+import Constants from '../../App/Constants/Constants';
 
 class PresentationScreen extends React.Component {
   handleFirstConnectivityChange = (connectionInfo) => {
@@ -29,26 +30,6 @@ class PresentationScreen extends React.Component {
     }else{
       CustomToast.showToast("Back online",'success');
     }
-    
-    // if (['none', 'unknown'].includes(connectionInfo.type)) {
-    //   this.props.navigation.navigate('NetworkError');
-    // } else {
-    //   this.props.navigation.goBack();
-    //   this.props
-    //     .navigation
-    //     .dispatch({ type: NavigationActions.BACK });
-
-    //   // this.props
-    //   //   .navigation
-    //   //   .dispatch(NavigationActions.reset(
-    //   //     {
-    //   //       index: 0,
-    //   //       actions: [
-    //   //         NavigationActions.navigate()
-    //   //       ]
-    //   //     }));
-    //   // this.props.navigation.navigate('PresentationScreen');
-    // }
   }
 
   componentDidMount() {
@@ -60,6 +41,7 @@ class PresentationScreen extends React.Component {
       'connectionChange',
       this.handleFirstConnectivityChange
     );
+    // TODO this.props.actions.fetchMoviesForJson(1,Constants.POPULAR_MOVIES);
   }
   componentWillUnmount() {
     NetInfo.removeEventListener(
