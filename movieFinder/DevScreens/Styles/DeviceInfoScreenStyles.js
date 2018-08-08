@@ -57,5 +57,20 @@ export default StyleSheet.create({
   rowInfo: {
     fontSize: Fonts.size.regular,
     margin: Metrics.baseMargin
+  },
+  errorMian:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  errorImage:{
+
+  },
+  errorText:{
+
+  },
+  errorIcon:{
+    width: 200,
+    height: 200
   }
 })

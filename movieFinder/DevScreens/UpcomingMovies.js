@@ -6,7 +6,7 @@ import { Images } from './DevTheme'
 import styles from './Styles/DeviceInfoScreenStyles'
 import Constants from '../../App/Constants/Constants';
 import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
-import { Colors } from '../../App/Themes';
+import { Colors } from '../DevScreens/DevTheme';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'

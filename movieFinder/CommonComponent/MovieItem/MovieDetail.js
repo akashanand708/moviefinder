@@ -52,6 +52,7 @@ class MovieDetail extends Component {
                             <Poster
                                 posterUrl={movieDetail.backdrop_path}
                                 posterStyle={Styles.image}
+                                posterType="detail"
                             />
                             <View style={Styles.description}>
                                 <View style={[Styles.title]}>
@@ -62,7 +63,7 @@ class MovieDetail extends Component {
                                 <View style={[Styles.detailMargin, Styles.overview]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.overviewText]}>
                                         Overview:
-                            </Text>
+                                    </Text>
                                     <Text style={[Styles.detailColor, Fonts.style.description, Styles.overviewDetail]}>
                                         {movieDetail.overview}
                                     </Text>
@@ -70,7 +71,7 @@ class MovieDetail extends Component {
                                 <View style={[Styles.detailMargin, Styles.releaseDate]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
                                         Relese date:
-                            </Text>
+                                    </Text>
                                     <Text style={[Styles.detailColor, Styles.releaseDateDetail]}>
                                         {movieDetail.release_date}
                                     </Text>
@@ -78,7 +79,7 @@ class MovieDetail extends Component {
                                 <View style={[Styles.detailMargin, Styles.status]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
                                         Status:
-                            </Text>
+                                    </Text>
                                     <Text style={[Styles.detailColor, Styles.statusDetail]}>
                                         {movieDetail.status}
                                     </Text>
@@ -86,7 +87,7 @@ class MovieDetail extends Component {
                                 <View style={[Styles.detailMargin, Styles.trailer]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.trailerText]}>
                                         Trailer:
-                            </Text>
+                                    </Text>
                                     <RenderTrailerItem
                                         trailerList={(movieDetail.videos && movieDetail.videos.results) || []}
                                     />

@@ -6,7 +6,7 @@ import { Images } from './DevTheme'
 import styles from './Styles/DeviceInfoScreenStyles'
 import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
 import Constants from '../../App/Constants/Constants';
-import { Colors } from '../../App/Themes';
+import { Colors } from '../DevScreens/DevTheme';
 
 
 export default class NetworkError extends React.Component {
@@ -22,8 +22,16 @@ export default class NetworkError extends React.Component {
         }}>
           <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
         </TouchableOpacity>
-        <View style={styles.movieListContainer}>
-          <Text>NetworkError</Text>
+        <View style={styles.errorMian}>
+          <View style={styles.errorImage}>
+            <Image source={Images.networkErrorImage} style={styles.errorIcon} />
+          </View>
+          <View style={styles.errorText}>
+            <Text style={styles.subtitle}>Can't load searched results</Text>
+          </View>
+          {/*TODO <View style={styles.errorText}>
+            <Text style={styles.subtitle}>TRY AGAIN</Text>
+          </View> */}
         </View>
       </View>
     )

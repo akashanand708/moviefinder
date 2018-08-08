@@ -70,6 +70,7 @@ class PresentationScreen extends React.Component {
   }
 
   navigate = (routeName) => {
+    // this.props.navigation.navigate('NetworkError');
     let { connectionType } = this.props;
     if (['none', 'unknown'].includes(connectionType)) {
       this.props.navigation.navigate('NetworkError');
