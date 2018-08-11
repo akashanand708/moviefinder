@@ -16,18 +16,21 @@ class UpcomingMovies extends React.Component {
     this.props.navigation.goBack();
     this.props.actions.backAction();
   }
+  static navigationOptions = {
+    headerTitle: 'Upcoming'
+  };
   render() {
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <TouchableOpacity onPress={this.goBack} style={{
+        {/* <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' /> */}
+        {/* <TouchableOpacity onPress={this.goBack} style={{
           position: 'absolute',
           paddingTop: 30,
           paddingHorizontal: 5,
           zIndex: 10
         }}>
           <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.UPCOMING_MOVIES}

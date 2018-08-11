@@ -29,15 +29,21 @@ class MovieDetail extends Component {
         let releaseDate = new Date(movieDetail.release_date);
         let releaseYear = releaseDate.getFullYear();
         let votePercentage = movieDetail.vote_average;
-        if (votePercentage) {
+        console.log("VOTE PERCENTAGE.....", votePercentage);
+        if (votePercentage !== undefined && votePercentage > 0) {
             votePercentage = votePercentage * 10;
+        }
+
+        let trailerVideoLength = 0;
+        if (movieDetail.videos && movieDetail.videos.results.length > 0) {
+            trailerVideoLength = movieDetail.videos.results.length;
         }
         return (
             <View style={Styles.mainContainer}>
                 {
-                    !movieDetailFetching &&
+                    movieDetail && !movieDetailFetching &&
                     <View>
-                        <View style={{
+                        {/* <View style={{
                             position: 'absolute',
                             paddingTop: 30,
                             paddingHorizontal: 5,
@@ -48,7 +54,7 @@ class MovieDetail extends Component {
                             }}>
                                 <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
 
                         <ScrollView>
                             <Poster
@@ -82,7 +88,7 @@ class MovieDetail extends Component {
                                     </View>
                                     <View style={{}}>
                                         {
-                                            votePercentage &&
+                                            votePercentage !== undefined && votePercentage > 0 &&
                                             <View style={Styles.userScores}>
                                                 <AnimatedCircularProgress
                                                     size={50}
@@ -120,9 +126,18 @@ class MovieDetail extends Component {
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.trailerText]}>
                                         Trailer:
                                     </Text>
-                                    <RenderTrailerItem
-                                        trailerList={(movieDetail.videos && movieDetail.videos.results) || []}
-                                    />
+                                    {
+                                        trailerVideoLength === 0 &&
+                                        <Text style={[Styles.detailColor, Styles.trailerText]}>
+                                            Not available
+                                        </Text>
+                                    }
+                                    {
+                                        trailerVideoLength > 0 &&
+                                        <RenderTrailerItem
+                                            trailerList={(movieDetail.videos && movieDetail.videos.results) || []}
+                                        />
+                                    }
                                 </View>
                             </View>
                         </ScrollView>

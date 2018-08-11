@@ -17,17 +17,20 @@ class PopularMovies extends React.Component {
     this.props.actions.backAction();
   }
 
+  static navigationOptions = {
+    headerTitle: 'Most Popular'
+  };
   render() {
     return (
       <View style={styles.mainContainer}>
-        <TouchableOpacity onPress={this.goBack} style={{
+        {/* <TouchableOpacity onPress={this.goBack} style={{
           position: 'absolute',
           paddingTop: 30,
           paddingHorizontal: 5,
           zIndex: 10
         }}>
           <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.movieListContainer}>
           <RenderMovieItem
             movieType={Constants.POPULAR_MOVIES}

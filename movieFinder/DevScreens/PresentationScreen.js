@@ -21,14 +21,15 @@ import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
 import { CustomToast } from '../CommonComponent/CommonToast/CommonToast';
 import Constants from '../../App/Constants/Constants';
+import { Colors } from '../../App/Themes';
 
 class PresentationScreen extends React.Component {
   handleFirstConnectivityChange = (connectionInfo) => {
     this.props.actions.updateNetworkInfo(connectionInfo.type);
-    if(['none','unknown'].includes(connectionInfo.type)){
+    if (['none', 'unknown'].includes(connectionInfo.type)) {
       CustomToast.showToast("No connection");
-    }else{
-      CustomToast.showToast("Back online",'success');
+    } else {
+      CustomToast.showToast("Back online", 'success');
     }
   }
 
@@ -78,6 +79,9 @@ class PresentationScreen extends React.Component {
       this.props.navigation.navigate({ routeName: routeName })
     }
   }
+  static navigationOptions = {
+    header: null
+  };
   render() {
     return (
       <View style={styles.mainContainer}>
@@ -96,6 +100,7 @@ class PresentationScreen extends React.Component {
             <ButtonBox onPress={this.openNowPlaying} style={styles.nowPlayingButton} iconStyle={styles.icon} iconName="film" text='Now Playing' />
             <ButtonBox onPress={this.openPopularMovies} style={styles.mostPopularButton} iconStyle={styles.icon} iconName="film" text='Most Popular' />
             <ButtonBox onPress={this.openTopRated} style={styles.topRatedButton} iconStyle={styles.icon} iconName="film" text='Top Rated' />
+            {/* <ButtonBox onPress={this.openLatestMovies} style={styles.topRatedButton} iconStyle={styles.icon} iconName="film" text='Latest' /> */}
           </View>
         </ScrollView>
       </View>
@@ -131,16 +136,8 @@ export default StackNavigator({
       backgroundColor: '#3e243f'
     },
     initialRouteName: 'PresentationScreen',
-    headerMode: 'none',
-    // Keeping this here for future when we can make
-    navigationOptions: {
-      header: {
-        // left: (
-        //   <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{ marginHorizontal: 10 }} /></TouchableOpacity>
-        // ),
-        style: {
-          backgroundColor: '#3e243f'
-        }
-      }
-    }
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: Colors.bloodOrange,
+      headerStyle: { backgroundColor: Colors.eggplant },
+    })
   })
