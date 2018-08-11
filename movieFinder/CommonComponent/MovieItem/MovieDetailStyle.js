@@ -9,10 +9,10 @@ export default StyleSheet.create({
   },
   image: {
     width: Metrics.screenWidth,
-    height: Metrics.screenWidth / 2 + 50,
+    height: Metrics.screenWidth / 2,
     resizeMode: 'cover',
     borderRadius: 2,
-    margin: Metrics.baseMargin
+    //margin: Metrics.baseMargin
   },
   detailColor: {
     color: Colors.text

@@ -89,7 +89,7 @@ class Poster extends Component {
         }
         console.log("poster Image loading....", imageLoading)
         return (
-            <View style={Styles.itemContainer}>
+            <View style={[Styles.itemContainer, (posterType === 'detail') ? { margin: 0 } : { margin: 5 }]}>
                 {/* <Shimmer autoRun={true} style={posterStyle} visible={imageLoading}> */}
                 {
                     !imageError &&
