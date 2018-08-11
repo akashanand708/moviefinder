@@ -381,6 +381,34 @@
 			remoteGlobalIDString = F886647B1F4ADB500036D01B;
 			remoteInfo = "CodePush-tvOS";
 		};
+		FC96DBDA211F2A9E0062CCF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68A0BFC5C0364E6FB7C72595 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = RNSVG;
+		};
+		FC96DBDC211F2A9E0062CCF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68A0BFC5C0364E6FB7C72595 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
+			remoteInfo = "RNSVG-tvOS";
+		};
+		FC96DBE3211F2A9F0062CCF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81648DE32D744EA2B83195F9 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = BVLinearGradient;
+		};
+		FC96DBE5211F2A9F0062CCF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81648DE32D744EA2B83195F9 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
 		FCC81FF62108C67B0050D6DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABEAC2E379F7486E8F4A4B7F /* RNFS.xcodeproj */;
@@ -394,34 +422,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6456441F1EB8DA9100672408;
 			remoteInfo = "RNFS-tvOS";
-		};
-		FCFDCC7F211B344F000D7B64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48F7B53F63144900BCC7129E /* CodePush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = CodePush;
-		};
-		FCFDCC81211B344F000D7B64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 48F7B53F63144900BCC7129E /* CodePush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F886647B1F4ADB500036D01B;
-			remoteInfo = "CodePush-tvOS";
-		};
-		FCFDCCC4211B4CCF000D7B64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81648DE32D744EA2B83195F9 /* BVLinearGradient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = BVLinearGradient;
-		};
-		FCFDCCC6211B4CCF000D7B64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81648DE32D744EA2B83195F9 /* BVLinearGradient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64AA15081EF7F30100718508;
-			remoteInfo = "BVLinearGradient-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -451,7 +451,6 @@
 		2D02E47B1E0B4A5D006451C7 /* MovieFinder-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MovieFinder-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* MovieFinder-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MovieFinder-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2FB4845E50984BDEAA8E284A /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
 		345160ECD42E44518199F87B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		38E46D21F954453794BF977A /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		3C2166F8A74C41FD9B683591 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -527,7 +526,6 @@
 				0494016D4C744A9A830CC789 /* libCodePush.a in Frameworks */,
 				350B920887B44B7F87400CAF /* libz.tbd in Frameworks */,
 				B18CE9ADF4D54633823CF19A /* libBVLinearGradient.a in Frameworks */,
-				F5C0FBA95F95418A8EFB22D3 /* libRNSVG.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +809,8 @@
 				D5361BAE394744C5977AADFA /* libRNVectorIcons.a */,
 				41FF5A659A20450B9E953DC0 /* libRNFS.a */,
 				38E46D21F954453794BF977A /* libCodePush.a */,
+				B56047F2D93A4EE99D72F609 /* libBVLinearGradient.a */,
+				EB59523812A9457385454DAC /* libRNSVG-tvOS.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -848,29 +848,29 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FC96DBAA211F2A9D0062CCF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC96DBDB211F2A9E0062CCF6 /* libRNSVG.a */,
+				FC96DBDD211F2A9E0062CCF6 /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC96DBDF211F2A9E0062CCF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FC96DBE4211F2A9F0062CCF6 /* libBVLinearGradient.a */,
+				FC96DBE6211F2A9F0062CCF6 /* libBVLinearGradient.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FCC81FF22108C67B0050D6DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				FCC81FF72108C67B0050D6DA /* libRNFS.a */,
 				FCC81FF92108C67B0050D6DA /* libRNFS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FCFDCC7B211B344F000D7B64 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FCFDCC80211B344F000D7B64 /* libCodePush.a */,
-				FCFDCC82211B344F000D7B64 /* libCodePush.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FCFDCCC0211B4CCF000D7B64 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FCFDCCC5211B4CCF000D7B64 /* libBVLinearGradient.a */,
-				FCFDCCC7211B4CCF000D7B64 /* libBVLinearGradient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -987,6 +987,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = FC96DBDF211F2A9E0062CCF6 /* Products */;
+					ProjectRef = 81648DE32D744EA2B83195F9 /* BVLinearGradient.xcodeproj */;
+				},
+				{
 					ProductGroup = FC96D9FD211F26EF0062CCF6 /* Products */;
 					ProjectRef = 48F7B53F63144900BCC7129E /* CodePush.xcodeproj */;
 				},
@@ -1051,7 +1055,7 @@
 					ProjectRef = ABEAC2E379F7486E8F4A4B7F /* RNFS.xcodeproj */;
 				},
 				{
-					ProductGroup = FC96D9BB211EFA250062CCF6 /* Products */;
+					ProductGroup = FC96DBAA211F2A9D0062CCF6 /* Products */;
 					ProjectRef = 68A0BFC5C0364E6FB7C72595 /* RNSVG.xcodeproj */;
 				},
 				{
@@ -1364,6 +1368,34 @@
 			remoteRef = FC96DA03211F26EF0062CCF6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		FC96DBDB211F2A9E0062CCF6 /* libRNSVG.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSVG.a;
+			remoteRef = FC96DBDA211F2A9E0062CCF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FC96DBDD211F2A9E0062CCF6 /* libRNSVG-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNSVG-tvOS.a";
+			remoteRef = FC96DBDC211F2A9E0062CCF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FC96DBE4211F2A9F0062CCF6 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = FC96DBE3211F2A9F0062CCF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FC96DBE6211F2A9F0062CCF6 /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = FC96DBE5211F2A9F0062CCF6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		FCC81FF72108C67B0050D6DA /* libRNFS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1376,34 +1408,6 @@
 			fileType = archive.ar;
 			path = libRNFS.a;
 			remoteRef = FCC81FF82108C67B0050D6DA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FCFDCC80211B344F000D7B64 /* libCodePush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCodePush.a;
-			remoteRef = FCFDCC7F211B344F000D7B64 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FCFDCC82211B344F000D7B64 /* libCodePush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCodePush.a;
-			remoteRef = FCFDCC81211B344F000D7B64 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FCFDCCC5211B4CCF000D7B64 /* libBVLinearGradient.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBVLinearGradient.a;
-			remoteRef = FCFDCCC4211B4CCF000D7B64 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FCFDCCC7211B4CCF000D7B64 /* libBVLinearGradient.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBVLinearGradient.a;
-			remoteRef = FCFDCCC6211B4CCF000D7B64 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
