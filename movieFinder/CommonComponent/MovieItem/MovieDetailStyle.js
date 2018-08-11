@@ -9,61 +9,72 @@ export default StyleSheet.create({
   },
   image: {
     width: Metrics.screenWidth,
-    height: Metrics.screenWidth/2,
+    height: Metrics.screenWidth / 2 + 50,
     resizeMode: 'cover',
     borderRadius: 2,
     margin: Metrics.baseMargin
   },
-  detailColor:{
+  detailColor: {
     color: Colors.text
   },
-  detailMargin:{
+  detailMargin: {
     marginTop: Metrics.doubleBaseMargin
   },
-  description:{
+  description: {
     padding: 10
   },
-  title:{
+  title: {
 
   },
-  titleText:{
+  titleText: {
 
   },
-  titleDetail:{
+  titleDetail: {
     fontWeight: 'bold',
     fontSize: 25
   },
-  overview:{
+  overview: {
 
   },
-  overviewText:{
+  overviewText: {
 
   },
-  overviewDetail:{
+  overviewDetail: {
 
   },
-  releaseDate:{
+  releaseDate: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  releaseDateText: {
 
   },
-  releaseDateText:{
+  releaseDateDetail: {
 
   },
-  releaseDateDetail:{
+  userScores:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  userScoresText:{
+    padding: 5
+  },
+  status: {
 
   },
-  status:{
+  statusDetail: {
 
   },
-  statusDetail:{
+  trailer: {
 
   },
-  trailer:{
+  trailerText: {
 
   },
-  trailerText:{
-    
-  },
-  trailerDetail:{
-    
+  trailerDetail: {
+
   }
 })

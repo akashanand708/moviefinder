@@ -1,5 +1,5 @@
 import React from 'react'
-import { BackHandler, Platform } from 'react-native'
+import { BackHandler, Platform, Alert } from 'react-native'
 import { addNavigationHelpers } from 'react-navigation'
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
@@ -19,7 +19,19 @@ class ReduxNavigation extends React.Component {
         return false
       }
       // if (shouldCloseApp(nav)) return false
-      dispatch({ type: 'Navigation/BACK' })
+      Alert.alert(
+        'Confirm Exit...',
+        'Are you sure you want to exit?',
+        [
+          { text: 'No', onPress: () => console.log('Cancel Pressed') },
+          { text: 'Yes', onPress: () => BackHandler.exitApp() },
+        ],
+        { cancelable: false }
+      )
+      // dispatch({ type: 'Navigation/BACK' })
+      if (dispatch !== undefined) {
+        dispatch({ type: 'Navigation/BACK' })
+      }
       return true
     })
   }

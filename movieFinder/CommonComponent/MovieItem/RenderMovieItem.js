@@ -64,6 +64,7 @@ class RenderMovieItem extends React.Component {
                 initialNumToRender={1}
                 onEndReached={() => this.handleEnd()}
                 onEndReachedThreshold={0.8}
+                //fixed={true}
                 renderItem={({ item }) => (
                     <MovieItem
                         movieItem={item}

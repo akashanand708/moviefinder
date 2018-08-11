@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styles from './Styles/DeviceInfoScreenStyles'
 import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
 import Constants from '../../App/Constants/Constants';
-import { Colors } from '../../App/Themes';
+import { Colors } from '../DevScreens/DevTheme';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
@@ -14,7 +14,7 @@ import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
 class PopularMovies extends React.Component {
   goBack = () => {
     this.props.navigation.goBack();
-    //this.props.actions.backAction();
+    this.props.actions.backAction();
   }
 
   render() {

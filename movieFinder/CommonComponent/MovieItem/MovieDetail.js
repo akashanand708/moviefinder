@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, TouchableOpacity, Text, ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
-import { Tab, Tabs, Label } from 'native-base';
+import { View, TouchableOpacity, Text, ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Styles from './MovieDetailStyle'
 import { connect } from 'react-redux'
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { bindActionCreators } from 'redux'
-import { Images, Fonts } from '../../../App/Themes'
+import { Fonts } from '../../../App/Themes'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import Poster from './Poster';
 import RenderTrailerItem from './RenderTrailerItem';
@@ -28,6 +28,10 @@ class MovieDetail extends Component {
         let { movieDetail, movieDetailFetching } = this.props;
         let releaseDate = new Date(movieDetail.release_date);
         let releaseYear = releaseDate.getFullYear();
+        let votePercentage = movieDetail.vote_average;
+        if (votePercentage) {
+            votePercentage = votePercentage * 10;
+        }
         return (
             <View style={Styles.mainContainer}>
                 {
@@ -42,16 +46,15 @@ class MovieDetail extends Component {
                             <TouchableOpacity onPress={this.goBack} style={{
                                 marginLeft: 10
                             }}>
-                                {/* <Image source={Images.backButton} />  */}
                                 <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
                             </TouchableOpacity>
                         </View>
 
-                        {/* <ScrollView contentContainerStyle={[Styles.movieListContainer, Styles.detail]}> */}
                         <ScrollView>
                             <Poster
                                 posterUrl={movieDetail.backdrop_path}
                                 posterStyle={Styles.image}
+                                posterType="detail"
                             />
                             <View style={Styles.description}>
                                 <View style={[Styles.title]}>
@@ -59,26 +62,56 @@ class MovieDetail extends Component {
                                         {`${movieDetail.original_title} (${releaseYear})`}
                                     </Text>
                                 </View>
+
                                 <View style={[Styles.detailMargin, Styles.overview]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.overviewText]}>
                                         Overview:
-                            </Text>
+                                    </Text>
                                     <Text style={[Styles.detailColor, Fonts.style.description, Styles.overviewDetail]}>
                                         {movieDetail.overview}
                                     </Text>
                                 </View>
                                 <View style={[Styles.detailMargin, Styles.releaseDate]}>
-                                    <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
-                                        Relese date:
-                            </Text>
-                                    <Text style={[Styles.detailColor, Styles.releaseDateDetail]}>
-                                        {movieDetail.release_date}
-                                    </Text>
+                                    <View style={{}}>
+                                        <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
+                                            Relese date:
+                                        </Text>
+                                        <Text style={[Styles.detailColor, Styles.releaseDateDetail]}>
+                                            {movieDetail.release_date}
+                                        </Text>
+                                    </View>
+                                    <View style={{}}>
+                                        {
+                                            votePercentage &&
+                                            <View style={Styles.userScores}>
+                                                <AnimatedCircularProgress
+                                                    size={50}
+                                                    width={5}
+                                                    fill={votePercentage}
+                                                    tintColor="#00e0ff"
+                                                    rotation={0}
+                                                    onAnimationComplete={() => console.log('onAnimationComplete')}
+                                                    backgroundColor="#3d5875"
+                                                >
+                                                    {
+                                                        (fill) => (
+                                                            <Text style={{ color: Colors.snow }}>
+                                                                {`${votePercentage}%`}
+                                                            </Text>
+                                                        )
+                                                    }
+                                                </AnimatedCircularProgress>
+                                                <Text style={[Styles.detailColor, Fonts.style.h6, Styles.userScoresText]}>
+                                                    User score
+                                                </Text>
+                                            </View>
+                                        }
+                                    </View>
                                 </View>
                                 <View style={[Styles.detailMargin, Styles.status]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
                                         Status:
-                            </Text>
+                                    </Text>
                                     <Text style={[Styles.detailColor, Styles.statusDetail]}>
                                         {movieDetail.status}
                                     </Text>
@@ -86,7 +119,7 @@ class MovieDetail extends Component {
                                 <View style={[Styles.detailMargin, Styles.trailer]}>
                                     <Text style={[Styles.detailColor, Fonts.style.h4, Styles.trailerText]}>
                                         Trailer:
-                            </Text>
+                                    </Text>
                                     <RenderTrailerItem
                                         trailerList={(movieDetail.videos && movieDetail.videos.results) || []}
                                     />

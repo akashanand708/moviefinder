@@ -15,8 +15,10 @@ const images = {
   backButton: require('../Images/Icons/back-button.png'),
   closeButton: require('../Images/Icons/close-button.png'),
   loadingImage: require('../Images/loading_image.png'),
-  errorImage: require('../Images/error_image.png'),
+  errorImage: require('../Images/Movie/poster-item.png'),
+  errorPosterDetailImage: require('../Images/Movie/poster-detail.png'),
   movieTrailer: require('../Images/Movie/movie-trailers.jpg'),
+  networkErrorImage: require('../Images/Movie/network-error.png')
 }
 
 export default images
