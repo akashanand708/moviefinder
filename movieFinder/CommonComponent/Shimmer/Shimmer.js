@@ -31,7 +31,7 @@ class Shimmer extends Component {
         super(props);
 
         this.state = {
-            visible: false,
+            visible: true,
             beginShimmerPosition: new Animated.Value(-1),
         };
     }
@@ -48,7 +48,7 @@ class Shimmer extends Component {
         const { visible } = this.props;
         console.log("VISIBLE...", visible)
         shimmerAnimated.start(() => {
-            if (visible) {
+            if (!visible) {
                 this.loopAnimated();
             }
         })
@@ -73,6 +73,7 @@ class Shimmer extends Component {
             inputRange: [-1, 1],
             outputRange: [beginPostioner, endPosition],
         });
+        console.log("RENDER SIMMER");
         return (
             <View style={!visible
                 ? [{ height, width }, styles.container, style]
@@ -119,7 +120,7 @@ Shimmer.defaultProps = {
     colorShimmer: ['#ebebeb', '#c5c5c5', '#ebebeb'],
     reverse: false,
     autoRun: false,
-    visible: false,
+    visible: true,
     backgroundColorBehindBorder: 'white',
     hasBorder: false,
 };
