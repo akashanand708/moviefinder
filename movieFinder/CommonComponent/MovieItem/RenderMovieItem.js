@@ -1,10 +1,11 @@
 import React from 'react'
-import { ActivityIndicator, Text } from 'react-native'
+import { ActivityIndicator, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import MovieItem from './MovieItem';
+import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
 
 class RenderMovieItem extends React.Component {
     constructor(props) {
@@ -50,31 +51,36 @@ class RenderMovieItem extends React.Component {
     render() {
         let { moviesList, moviesFetching } = this.props;
         return (
-            <SuperGridSectionList
-                itemDimension={150}
-                sections={[
-                    {
-                        title: '',
-                        data: moviesList
-                    }
-                ]}
-                spacing={2}
-                keyExtractor={this._keyExtractor}
-                ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
-                initialNumToRender={1}
-                onEndReached={() => this.handleEnd()}
-                onEndReachedThreshold={0.8}
-                //fixed={true}
-                renderItem={({ item }) => (
-                    <MovieItem
-                        movieItem={item}
-                        navigation={this.props.navigation}
-                    />
-                )}
-                renderSectionHeader={({ section }) => (
-                    <Text style={{ color: 'green' }}>{section.title}</Text>
-                )}
-            />
+            <View>
+                <AdvertisementBanner
+                    authUnitID="ca-app-pub-7021272264047080/8588748681"
+                />
+                <SuperGridSectionList
+                    itemDimension={150}
+                    sections={[
+                        {
+                            title: '',
+                            data: moviesList
+                        }
+                    ]}
+                    spacing={2}
+                    keyExtractor={this._keyExtractor}
+                    ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
+                    initialNumToRender={1}
+                    onEndReached={() => this.handleEnd()}
+                    onEndReachedThreshold={0.8}
+                    //fixed={true}
+                    renderItem={({ item }) => (
+                        <MovieItem
+                            movieItem={item}
+                            navigation={this.props.navigation}
+                        />
+                    )}
+                    renderSectionHeader={({ section }) => (
+                        <Text style={{ color: 'green' }}>{section.title}</Text>
+                    )}
+                />
+            </View>
 
         )
     }

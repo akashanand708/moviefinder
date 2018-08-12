@@ -17,16 +17,18 @@ export default class AdvertisementBanner extends Component {
         console.log(e);
     }
     render() {
+        console.log("Render ADD.....");
+        let { authUnitID } = this.props;
         return (
             <View>
                 <AdMobBanner
                     adSize="fullBanner"
-                    adUnitID="ca-app-pub-7021272264047080/8588748681"
-                    // adUnitID="ca-app-pub-3940256099942544/6300978111"
+                    adUnitID={authUnitID}
+                    // example to test adUnitID="ca-app-pub-3940256099942544/6300978111"
                     onAdFailedToLoad={this.bannerErrorHandler}
                     ref={el => (this._basicExample = el)}
                     testDevices={[AdMobBanner.simulatorId]}
-                    //style={style.adContainer}
+                //style={style.adContainer}
                 />
             </View>
         )

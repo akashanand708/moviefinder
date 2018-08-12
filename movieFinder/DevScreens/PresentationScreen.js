@@ -105,7 +105,6 @@ class PresentationScreen extends React.Component {
             {/* <ButtonBox onPress={this.openLatestMovies} style={styles.topRatedButton} iconStyle={styles.icon} iconName="film" text='Latest' /> */}
           </View>
         </ScrollView>
-        <AdvertisementBanner />
       </View>
     )
   }
