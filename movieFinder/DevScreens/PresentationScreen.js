@@ -22,6 +22,7 @@ import * as fetchMoviesActions from '../../App/Actions/fetchMovieActions'
 import { CustomToast } from '../CommonComponent/CommonToast/CommonToast';
 import Constants from '../../App/Constants/Constants';
 import { Colors } from '../../App/Themes';
+import AdvertisementBanner from '../CommonComponent/AdvertisementBanner/AdvertisementBanner';
 
 class PresentationScreen extends React.Component {
   handleFirstConnectivityChange = (connectionInfo) => {
@@ -103,6 +104,7 @@ class PresentationScreen extends React.Component {
             {/* <ButtonBox onPress={this.openLatestMovies} style={styles.topRatedButton} iconStyle={styles.icon} iconName="film" text='Latest' /> */}
           </View>
         </ScrollView>
+        <AdvertisementBanner />
       </View>
     )
   }

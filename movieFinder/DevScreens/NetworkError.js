@@ -13,7 +13,7 @@ export default class NetworkError extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        {/* <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{
           position: 'absolute',
           paddingTop: 30,
@@ -21,7 +21,7 @@ export default class NetworkError extends React.Component {
           zIndex: 10
         }}>
           <Icon name="arrow-circle-left" size={30} style={{ color: Colors.backArrow }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.errorMian}>
           <View style={styles.errorImage}>
             <Image source={Images.networkErrorImage} style={styles.errorIcon} />
