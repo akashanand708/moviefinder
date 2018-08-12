@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Text, Image, View, TouchableOpacity, NetInfo } from 'react-native'
+import { ScrollView, Text, Image, View, StatusBar, NetInfo } from 'react-native'
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -86,6 +86,7 @@ class PresentationScreen extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
+        <StatusBar barStyle="light-content" backgroundColor={Colors.eggplantDark} hidden={false} />
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
           <View style={styles.centered}>
