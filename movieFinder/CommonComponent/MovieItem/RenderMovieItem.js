@@ -52,9 +52,9 @@ class RenderMovieItem extends React.Component {
         let { moviesList, moviesFetching } = this.props;
         return (
             <View>
-                <AdvertisementBanner
+                {/* <AdvertisementBanner
                     authUnitID="ca-app-pub-7021272264047080/8588748681"
-                />
+                /> */}
                 <SuperGridSectionList
                     itemDimension={150}
                     sections={[
