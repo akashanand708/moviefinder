@@ -102,8 +102,8 @@ android {
         applicationId "com.moviefinder"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -153,7 +153,8 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-admob')
+    compile project(':react-native-youtube')
+    // compile project(':react-native-admob')
     compile project(':react-native-svg')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-code-push')

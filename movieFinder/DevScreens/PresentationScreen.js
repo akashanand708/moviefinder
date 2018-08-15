@@ -23,6 +23,7 @@ import { CustomToast } from '../CommonComponent/CommonToast/CommonToast';
 import Constants from '../../App/Constants/Constants';
 import { Colors } from '../../App/Themes';
 import AdvertisementBanner from '../CommonComponent/AdvertisementBanner/AdvertisementBanner';
+import YoutubeVideo from '../CommonComponent/MovieItem/YoutubeVideo';
 
 class PresentationScreen extends React.Component {
   handleFirstConnectivityChange = (connectionInfo) => {
@@ -131,7 +132,8 @@ export default StackNavigator({
   NowPlaying: { screen: NowPlaying },
   TopRated: { screen: TopRated },
   MovieDetail: { screen: MovieDetail },
-  NetworkError: { screen: NetworkError }
+  NetworkError: { screen: NetworkError },
+  YoutubeVideo: { screen: YoutubeVideo }
 }, {
     cardStyle: {
       opacity: 1,

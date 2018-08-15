@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View } from 'react-native';
-import WebView from 'react-native-android-fullscreen-webview-video'
+import { View, Image, TouchableOpacity } from 'react-native';
 import Styles from './RenderTrailerItemStyle';
 import Constants from '../../../App/Constants/Constants';
-import Shimmer from '../Shimmer/Shimmer';
 
 class TrailerItem extends Component {
     constructor(props) {
@@ -14,49 +12,31 @@ class TrailerItem extends Component {
         };
         this.trailerInterval = null;
     }
-    // componentWillMount() {
-    //     let { trailerItem } = this.props;
-    //     console.log("TRAILER WILL MOUNT....", trailerItem.key)
-    //     setTimeout(() => {
-    //         this.setState({
-    //             videoLoading: false
-    //         })
-    //     }, 3000)
-    // }
-
-    videoLoadComplete = () => {
-        console.log('LOADING COMPLETE.....');
-        //this.setState({ videoLoading: false })
-        //debugger;
-        // this.setState({ videoLoading: false })
-        // if (this.trailerInterval !== null)
-        //     clearInterval(this.trailerInterval);
-        // this.trailerInterval = setTimeout(() => {
-        //     this.setState({ videoLoading: true })
-        // }, 1000)
+    openYouTubeVideo = (trailerItem) => {
+        this.props.navigation.navigate({
+            key: 'YoutubeVideo',
+            routeName: 'YoutubeVideo',
+            params: { videoId: trailerItem.key, trailerName: trailerItem.name }
+        })
     }
     render() {
         let { trailerItem } = this.props;
         console.log("ITEM...", trailerItem);
-        let videoUrl = `${Constants.YOUTUBE_BASE_URL}/embed/${trailerItem.key}`;
-        console.log("VIDEOURL...", videoUrl);
-        let { videoLoading } = this.state;
-        console.log("Trailer item videoLoading...", videoLoading);
+        let youtubeThumbnailUrl = `${Constants.YOUTUBE_THUMBNAIL_BASE_URL}/${trailerItem.key}/hqdefault.jpg`
         return (
-            // <Shimmer autoRun={true} style={Styles.trailer} visible={videoLoading}>
             <View>
                 {
+                    <TouchableOpacity
+                        onPress={() => this.openYouTubeVideo(trailerItem)}
+                    >
+                        <Image
+                            style={Styles.trailer}
+                            source={{ uri: youtubeThumbnailUrl }}
+                        />
+                    </TouchableOpacity>
 
-                    <WebView
-                        style={Styles.trailer}
-                        scalesPageToFit={false}
-                        startInLoadingState={true}
-                        //onLoad={this.videoLoadComplete}
-                        source={{ uri: videoUrl }}
-                    />
                 }
             </View>
-            // </Shimmer>
         )
     }
 }

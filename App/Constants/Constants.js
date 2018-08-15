@@ -5,5 +5,6 @@ export default {
     NOW_PLAYING_MOVIES: 'NOW_PLAYING_MOVIES',
     LATEST_MOVIES: 'LATEST_MOVIES',
     POSTER_BASE_URL: 'https://image.tmdb.org/t/p/w500',
-    YOUTUBE_BASE_URL: 'https://www.youtube.com'
+    YOUTUBE_BASE_URL: 'https://www.youtube.com',
+    YOUTUBE_THUMBNAIL_BASE_URL: 'https://img.youtube.com/vi'
 }

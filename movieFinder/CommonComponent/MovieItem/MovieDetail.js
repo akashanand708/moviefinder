@@ -24,6 +24,12 @@ class MovieDetail extends Component {
         this.props.navigation.goBack();
         this.props.actions.backAction();
     }
+
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.getParam('movieName', ''),
+        };
+    };
     render() {
         let { movieDetail, movieDetailFetching } = this.props;
         let releaseDate = new Date(movieDetail.release_date);
@@ -136,6 +142,7 @@ class MovieDetail extends Component {
                                         trailerVideoLength > 0 &&
                                         <RenderTrailerItem
                                             trailerList={(movieDetail.videos && movieDetail.videos.results) || []}
+                                            navigation={this.props.navigation}
                                         />
                                     }
                                 </View>

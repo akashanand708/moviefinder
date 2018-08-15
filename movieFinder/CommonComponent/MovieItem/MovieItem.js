@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
 import MovieItemStyle from './MovieItemStyle'
-import Constants from '../../../App/Constants/Constants';
 import Poster from './Poster';
 import { connect } from 'react-redux'
 
@@ -13,7 +12,7 @@ class MovieItem extends Component {
         }
         return false;
     }
-    navigateToMovieDetails = (movieId) => {
+    navigateToMovieDetails = (movieItem) => {
         let { connectionType } = this.props;
         if (['none', 'unknown'].includes(connectionType)) {
             this.props.navigation.navigate('NetworkError');
@@ -21,14 +20,14 @@ class MovieItem extends Component {
             this.props.navigation.navigate({
                 key: 'MovieDetail',
                 routeName: 'MovieDetail',
-                params: { movieId: movieId }
+                params: { movieId: movieItem.id, movieName: movieItem.original_title }
             })
         }
     }
     render() {
         let { movieItem } = this.props;
         return (
-            <TouchableOpacity onPress={() => this.navigateToMovieDetails(movieItem.id)}>
+            <TouchableOpacity onPress={() => this.navigateToMovieDetails(movieItem)}>
                 <Poster
                     posterUrl={movieItem.poster_path}
                     posterStyle={MovieItemStyle.image}

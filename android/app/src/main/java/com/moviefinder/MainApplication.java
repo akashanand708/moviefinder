@@ -3,7 +3,8 @@ package com.moviefinder;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.sbugert.rnadmob.RNAdMobPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+// import com.sbugert.rnadmob.RNAdMobPackage;
 import com.horcrux.svg.SvgPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -38,7 +39,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNAdMobPackage(),
+            new ReactNativeYouTube(),
+            //new RNAdMobPackage(),
             new SvgPackage(),
             new LinearGradientPackage(),
             new CodePush("_W82jdg5DFwUBqQ7WDKFT6fsldOkad00311d-31e3-4726-8eb6-d7e6901776d6", MainApplication.this, BuildConfig.DEBUG),
