@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-// import {
-//     AdMobBanner,
-//     AdMobRewarded,
-//     AdMobInterstitial,
-//     PublisherBanner,
-// } from 'react-native-admob';
+import {
+    AdMobBanner,
+    AdMobRewarded,
+    AdMobInterstitial,
+    PublisherBanner,
+} from 'react-native-admob';
 import style from './AdvertisementBannerStyle'
 
 export default class AdvertisementBanner extends Component {
@@ -21,14 +21,15 @@ export default class AdvertisementBanner extends Component {
         let { authUnitID } = this.props;
         return (
             <View>
-                {/* <AdMobBanner
+                <AdMobBanner
                     adSize="fullBanner"
                     adUnitID={authUnitID}
                     // example to test adUnitID="ca-app-pub-3940256099942544/6300978111"
                     onAdFailedToLoad={this.bannerErrorHandler}
                     ref={el => (this._basicExample = el)}
                     testDevices={[AdMobBanner.simulatorId]}
-                /> */}
+                //style={style.adContainer}
+                />
             </View>
         )
     }

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import MovieItem from './MovieItem';
-// import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
+import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
 
 class RenderMovieItem extends React.Component {
     constructor(props) {
@@ -52,9 +52,9 @@ class RenderMovieItem extends React.Component {
         let { moviesList, moviesFetching } = this.props;
         return (
             <View>
-                {/* TODO <AdvertisementBanner
+                <AdvertisementBanner
                     authUnitID="ca-app-pub-7021272264047080/8588748681"
-                /> */}
+                />
                 <SuperGridSectionList
                     itemDimension={150}
                     sections={[
