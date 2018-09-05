@@ -86,7 +86,7 @@ class MovieDetail extends Component {
                                 <View style={[Styles.detailMargin, Styles.releaseDate]}>
                                     <View style={{}}>
                                         <Text style={[Styles.detailColor, Fonts.style.h4, Styles.releaseDateText]}>
-                                            Relese date:
+                                            Release date:
                                         </Text>
                                         <Text style={[Styles.detailColor, Styles.releaseDateDetail]}>
                                             {movieDetail.release_date}
