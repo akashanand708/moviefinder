@@ -41,17 +41,18 @@
     "react-native-config": "0.10.0",
     "react-native-device-info": "0.11.0",
     "react-native-fs": "2.10.14",
-    "react-native-linear-gradient": "2.4.0",
+    "react-native-linear-gradient": "^2.4.0",
     "react-native-super-grid": "2.4.0",
     "react-native-svg": "6.5.2",
     "react-native-vector-icons": "4.3.0",
     "react-native-youtube": "1.1.0",
-    "react-navigation": "1.5.0",
+    "react-navigation": "2.12.1",
     "react-navigation-redux-helpers": "1.0.4",
     "react-redux": "5.0.6",
     "redux": "3.7.2",
     "redux-actions": "2.4.0",
     "redux-thunk": "2.3.0",
+    "remote-redux-devtools-sp": "^0.5.13",
     "seamless-immutable": "7.1.2"
   },
   "devDependencies": {
@@ -80,7 +81,6 @@
     "reactotron-react-native": "2.0.0-alpha.3",
     "reactotron-redux": "2.0.0-alpha.3",
     "reactotron-redux-saga": "2.0.0-alpha.3",
-    "remote-redux-devtools": "0.5.12",
     "remotedev-rn-debugger": "0.8.3",
     "snazzy": "7.1.1",
     "standard": "10.0.2"

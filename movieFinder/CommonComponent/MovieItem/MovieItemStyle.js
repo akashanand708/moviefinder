@@ -7,13 +7,17 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    margin: 10
+    margin: 10,
+  },
+  dimension:{
+    width: Metrics.screenWidth,
   },
   image: {
-    width: Metrics.screenWidth / 2 - 10,
-    height: Metrics.screenWidth / 2 + 60,
+    width: 100,
+    height: 150,
     resizeMode: 'contain',
+    borderRadius: 5
     //margin: Metrics.baseMargin
-    backgroundColor: Colors.banner
+    //backgroundColor: Colors.banner,
   }
 })

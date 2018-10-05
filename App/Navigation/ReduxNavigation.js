@@ -1,10 +1,10 @@
 import React from 'react'
-import { BackHandler, Platform, Alert } from 'react-native'
+import { BackHandler, Platform, Alert, View } from 'react-native'
 import { addNavigationHelpers } from 'react-navigation'
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import AppNavigation from './AppNavigation'
+// import AppNavigation from './AppNavigation'
 import * as fetchMovieActions from '../Actions/fetchMovieActions'
 import LaunchScreen from '../Containers/LaunchScreen';
 
@@ -42,7 +42,10 @@ class ReduxNavigation extends React.Component {
   }
 
   render() {
-    return <LaunchScreen navigation={addNavigationHelpers({ dispatch: this.props.dispatch, state: this.props.nav, addListener: createReduxBoundAddListener('root') })} />
+    // return <LaunchScreen navigation={addNavigationHelpers({ dispatch: this.props.dispatch, state: this.props.nav, addListener: createReduxBoundAddListener('root') })} />
+    return (
+        <LaunchScreen />
+    )
   }
 }
 

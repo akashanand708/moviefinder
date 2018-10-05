@@ -11,6 +11,16 @@ const ApplicationStyles = {
       flex: 1,
       backgroundColor: Colors.transparent
     },
+    mainHorizontalContainer: {
+      //flex: 1,
+      flexDirection:'column',
+      justifyContent:'flex-start',
+      //alignItems:'center',
+      backgroundColor: Colors.transparent
+    },
+    linearGradient:{
+
+    },
     backgroundImage: {
       position: 'absolute',
       top: 0,

@@ -16,6 +16,7 @@ class YoutubeVideo extends Component {
     render() {
         let { videoId } = this.props.navigation.state.params;
         let { openFullScreen } = this.state;
+        console.log("RENDER TRAILER......",videoId);
         return (
             <YouTube
                 videoId={videoId}   // The YouTube video ID

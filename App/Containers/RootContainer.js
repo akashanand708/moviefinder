@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { connect } from 'react-redux'
 
@@ -7,16 +8,16 @@ import { connect } from 'react-redux'
 import styles from './Styles/RootContainerStyles'
 
 class RootContainer extends Component {
-  componentDidMount () {
+  componentDidMount() {
     //this.props.startup()
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.applicationView}>
         <StatusBar barStyle='light-content' />
         <ReduxNavigation />
-      </View>
+      </View >
     )
   }
 }

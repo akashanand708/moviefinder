@@ -1,6 +1,6 @@
 const colors = {
   transparent: 'rgba(0,0,0,0)',
-  background: '#3e243f',
+  background: '#ffffff',
   silver: '#F7F7F7',
   frost: '#D8D8D8',
   windowTint: 'rgba(0, 0, 0, 0.4)',
@@ -11,11 +11,13 @@ const colors = {
   fire: '#ff3832',
   eggplant: '#251a34',
   border: '#483F53',
-  text: '#E0D7E5',
+  text: '#000000',
+  headerText: 'rgba(0,0,0,0.6)',
+  movieHeaderText: 'rgba(0,0,0,0.8)',
   loaderBackgroundColor: 'rgba(52, 52, 52, 0.8)',
   backArrow: '#FFFFFF',
   backArrowBackground: '#000000',
-  iconColor: '#f03506'
+  iconColor: '#000000'
 }
 
 export default colors

@@ -11,7 +11,7 @@ class Poster extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            imageLoading: false,
+            imageLoading: true,
             opacity: new Animated.Value(0),
             errorOpacity: new Animated.Value(0),
             imageError: false,
@@ -90,7 +90,7 @@ class Poster extends Component {
         console.log("poster Image loading....", imageLoading)
         return (
             <View style={[Styles.itemContainer, (posterType === 'detail') ? { margin: 0 } : { margin: 5 }]}>
-                {/* <Shimmer autoRun={true} style={posterStyle} visible={imageLoading}> */}
+                {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
                 {
                     !imageError &&
                     <Animated.Image

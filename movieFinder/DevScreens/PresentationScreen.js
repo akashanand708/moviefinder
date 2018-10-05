@@ -1,15 +1,16 @@
 import React from 'react'
 import { ScrollView, Text, Image, View, StatusBar, NetInfo } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Images } from './DevTheme'
 import ButtonBox from './ButtonBox'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { StackNavigator, NavigationActions } from 'react-navigation'
+import { createBottomTabNavigator, StackNavigator, NavigationActions } from 'react-navigation'
 // Screens
-import PopularMovies from './PopularMovies'
-import UpcomingMovies from './UpcomingMovies'
-import LatestMovies from './LatestMovies'
-import NowPlaying from './NowPlaying'
-import TopRated from './TopRated'
+import PopularMovies from './Movies/PopularMovies'
+import UpcomingMovies from './Movies/UpcomingMovies'
+import LatestMovies from './Movies/LatestMovies'
+import NowPlaying from './Movies/NowPlaying'
+import TopRated from './Movies/TopRated'
 
 // Styles
 import styles from './Styles/PresentationScreenStyles'

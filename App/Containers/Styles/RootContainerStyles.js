@@ -5,6 +5,9 @@ export default StyleSheet.create({
   applicationView: {
     flex: 1
   },
+  linearGradient:{
+
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

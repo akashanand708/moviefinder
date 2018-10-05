@@ -21,7 +21,6 @@ class TrailerItem extends Component {
     }
     render() {
         let { trailerItem } = this.props;
-        console.log("ITEM...", trailerItem);
         let youtubeThumbnailUrl = `${Constants.YOUTUBE_THUMBNAIL_BASE_URL}/${trailerItem.key}/hqdefault.jpg`
         return (
             <View>
