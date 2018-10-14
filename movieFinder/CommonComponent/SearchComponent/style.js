@@ -3,9 +3,15 @@ import { Colors, Metrics, Fonts, ApplicationStyles } from '../../DevScreens/DevT
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  trailer: {
-    width: Metrics.screenWidth-10,
-    height: Metrics.screenWidth / 2,
-    marginTop: 10
+  searchButtonMain: {
+    position: 'relative'
+  },
+  searchButton: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%'
   }
+
 })

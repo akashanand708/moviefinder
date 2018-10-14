@@ -3,11 +3,12 @@ import { ActivityIndicator, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
-import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
-import MovieItem from './MovieItem';
-import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
-import style from './MovieItemStyle';
-import Constants from '../../../App/Constants/Constants';
+import * as fetchMoviesActions from '../../../../App/Actions/fetchMovieActions'
+import MovieItem from '../MovieItem';
+import AdvertisementBanner from '../../AdvertisementBanner/AdvertisementBanner';
+import style from '../MovieItemStyle';
+import Constants from '../../../../App/Constants/Constants';
+import SuperGridSectionListCustom from '../../SuperGridSectionListCustom';
 
 class RenderMovieItem extends React.Component {
     constructor(props) {
@@ -17,20 +18,29 @@ class RenderMovieItem extends React.Component {
         }
     }
     componentDidMount() {
-        this.fetchMovies();
+        let { movieType } = this.props;
+        if (movieType !== Constants.SEARCHED_MOVIES) {
+            this.fetchMovies();
+        }
     }
 
     componentWillUnmount() {
-        this.props.actions.resetPopularMoviesState();
+        //this.props.actions.resetPopularMoviesState();
     }
     fetchMovies = () => {
         let { pageNo } = this.state;
         let { movieType, horizontal } = this.props;
         return this.props.actions.fetchMovies(pageNo, movieType, horizontal);
     }
+    fetchSearchResult = () => {
+        let { pageNo } = this.state;
+        let { queryString } = this.props;
+        console.log("Render Item query string....", queryString);
+        return this.props.actions.searchMovies(queryString, pageNo);
+    }
     handleEnd = () => {
         let { movieType, totalPages, totalNowPlayingPages,
-            totalPopularPages, totalTopRatedPages, totalUpcomingPages, horizontal } = this.props;
+            totalPopularPages, totalTopRatedPages, totalUpcomingPages, horizontal, searchedTotalPages,queryString } = this.props;
         if (horizontal) {
             switch (movieType) {
                 case Constants.NOW_PLAYING_MOVIES:
@@ -48,38 +58,51 @@ class RenderMovieItem extends React.Component {
                 default:
                     break;
             }
+        } else {
+            if (movieType === Constants.SEARCHED_MOVIES) {
+                totalPages = searchedTotalPages
+            }
         }
         let nextPage = this.state.pageNo + 1;
         if (nextPage <= totalPages) {
             this.setState(state => ({ pageNo: state.pageNo + 1 }), () => {
-                this.fetchMovies()
-                    .then(() => {
-                        this.onEndReachedCalledDuringMomentum = true;
-                    })
+
+                if (movieType !== Constants.SEARCHED_MOVIES) {
+                    this.fetchMovies()
+                        .then(() => {
+                            this.onEndReachedCalledDuringMomentum = true;
+                        })
+                } else {
+                    this.fetchSearchResult()
+                        .then(() => {
+                            this.onEndReachedCalledDuringMomentum = true;
+                        })
+                }
             })
         }
     }
     _keyExtractor = (item, index) => index;
 
-    _shouldItemUpdate = (prev, next) => {
-        return prev.item !== next.item;
+    renderItem = (item) => {
+        console.log("Render Movie Items......");
+        return <MovieItem
+            movieItem={item}
+            navigation={this.props.navigation}
+        />
     }
-    isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-        const paddingToBottom = 20;
-        return layoutMeasurement.height + contentOffset.y >=
-            contentSize.height - paddingToBottom;
-    };
     render() {
-        let { moviesList, moviesFetching, horizontal, nowPlayingMoviesList, popularMoviesList,
+        let { searchedMoviesFetching, searchedMoviesList, moviesList, moviesFetching, horizontal, nowPlayingMoviesList, popularMoviesList,
             topRatedMoviesList, upcomingMoviesList,
             nowPlayingMoviesFetching, popularMoviesFetching, topRatedMoviesFetching, upcomingMoviesFetching,
             movieType } = this.props;
         console.log("nowPlayingMoviesFetching......", nowPlayingMoviesFetching);
         let staticDimension = 0,
-            gridHeight = {};
+            gridHeight = {},
+            spacing = 18;
         if (horizontal) {
             staticDimension = 110;
-            gridHeight = { height: 195 }
+            gridHeight = { height: 195 };
+            spacing = 1;
         }
         if (horizontal) {
             switch (movieType) {
@@ -102,39 +125,28 @@ class RenderMovieItem extends React.Component {
                 default:
                     break;
             }
+        } else {
+            if (movieType === Constants.SEARCHED_MOVIES) {
+                moviesList = searchedMoviesList;
+                moviesFetching = searchedMoviesFetching;
+            }
         }
+        console.log("Render Items......");
         return (
             <View>
                 {/* <AdvertisementBanner
                     authUnitID="ca-app-pub-7021272264047080/8588748681"
                 /> */}
-                <SuperGridSectionList
-                    itemDimension={100}
-                    sections={[
-                        {
-                            title: '',
-                            data: moviesList
-                        }
-                    ]}
-                    style={gridHeight}
-                    spacing={2}
-                    fixed={true}
-                    keyExtractor={this._keyExtractor}
-                    ListFooterComponent={() => { return <ActivityIndicator animating={true} size="large" /> }}
-                    initialNumToRender={1}
-                    onEndReached={() => this.handleEnd()}
-                    onEndReachedThreshold={0.8}
+                <SuperGridSectionListCustom
+                    itemList={moviesList}
+                    gridHeight={gridHeight}
+                    spacing={spacing}
                     horizontal={horizontal}
                     staticDimension={staticDimension}
-                    renderItem={({ item }) => (
-                        <MovieItem
-                            movieItem={item}
-                            navigation={this.props.navigation}
-                        />
-                    )}
-                    renderSectionHeader={({ section }) => (
-                        <Text style={{ color: 'green' }}>{section.title}</Text>
-                    )}
+                    handleEnd={this.handleEnd}
+                    renderItem={this.renderItem}
+                    navigation={this.props.navigation}
+                    moviesFetching={moviesFetching}
                 />
             </View>
 
@@ -167,7 +179,11 @@ const mapStateToProps = (state) => {
 
         moviesList: state.data.movies.moviesList,
         moviesFetching: state.data.movies.moviesFetching,
-        totalPages: state.data.movies.totalPages
+        totalPages: state.data.movies.totalPages,
+
+        searchedMoviesList: state.data.searchedMovies.searchedMoviesList,
+        searchedMoviesFetching: state.data.searchedMovies.moviesFetching,
+        searchedTotalPages: state.data.searchedMovies.totalPages,
     };
 };
 export default connect(mapStateToProps, mapDispatch)(RenderMovieItem);

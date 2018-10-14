@@ -9,16 +9,16 @@ const ApplicationStyles = {
   screen: {
     mainContainer: {
       flex: 1,
-      backgroundColor: Colors.transparent
+      backgroundColor: Colors.background
     },
     mainHorizontalContainer: {
       //flex: 1,
-      flexDirection:'column',
-      justifyContent:'flex-start',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
       //alignItems:'center',
       backgroundColor: Colors.transparent
     },
-    linearGradient:{
+    linearGradient: {
 
     },
     backgroundImage: {
@@ -55,8 +55,43 @@ const ApplicationStyles = {
       fontSize: 14,
       color: Colors.text
     },
-    movieListContainer:{
+    movieListContainer: {
       //marginTop: 75
+    },
+    addElevation: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.34,
+      shadowRadius: 6.27,
+      elevation: 10,
+      backgroundColor: Colors.background
+    },
+    commonBoxShadow: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.34,
+      shadowRadius: 6.27,
+      elevation: 10,
+    },
+    backArrow: {
+      position: 'absolute',
+      top: 45,
+      left: 10
+    },
+    playButton: {
+      position: 'absolute',
+      top: '25%',
+      left: '50%'
+    },
+    searchButton: {
+      alignSelf: "flex-end",
+      height: 35
     }
   },
   darkLabelContainer: {

@@ -1,15 +1,19 @@
+import React from 'react'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { createMaterialTopTabNavigator, StackNavigator } from 'react-navigation'
-// Screens
+import { ActivityIndicator, Text, View } from 'react-native'
 import Movies from './Movies/index'
 import People from './People/index'
 import TvShows from './TvShows/index'
 import { Colors } from './DevTheme';
 import NetworkError from './NetworkError';
 import MovieDetail from '../CommonComponent/MovieItem/MovieDetail';
-import YoutubeVideo from '../CommonComponent/MovieItem/YoutubeVideo';
+import YoutubeVideo from '../CommonComponent/MovieItem/RenderTrailer/YoutubeVideo';
 import HorizontalMovieList from './Movies/HorizontalMovieList';
 import VerticalMovieList from './Movies/VerticalMovieList';
+import Trailers from '../CommonComponent/MovieItem/Trailers';
+import MovieDetailTabNavigator from '../CommonComponent/MovieItem/MovieDetailTabNavigator/MovieDetailTabNavigator';
+import SearchComponent from '../CommonComponent/SearchComponent';
 
 const TopBarNavigator = createMaterialTopTabNavigator(
   {
@@ -21,7 +25,7 @@ const TopBarNavigator = createMaterialTopTabNavigator(
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
-        console.log("ROUTE NAME....",routeName)
+        console.log("ROUTE NAME....", routeName)
         let iconName;
         if (routeName === 'Movies') {
           // iconName = `film${focused ? '' : '-outline'}`;
@@ -39,9 +43,9 @@ const TopBarNavigator = createMaterialTopTabNavigator(
         return <Icon name={iconName} size={25} color={tintColor} />;
       }
     }),
-    tabBarPosition:'bottom',
+    tabBarPosition: 'bottom',
     lazy: true,
-    title:'Movie Finder',
+    //title: 'Movie Finder',
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',
@@ -60,11 +64,16 @@ export default StackNavigator(
     TopBarNavigator: { screen: TopBarNavigator },
     VerticalMovieList: { screen: VerticalMovieList },
     MovieDetail: { screen: MovieDetail },
-    NetworkError: { screen: NetworkError },
-    YoutubeVideo: { screen: YoutubeVideo }
+    MovieDetailTabNavigator: { screen: MovieDetailTabNavigator },
+    SearchComponent: {screen: SearchComponent},
+    Trailers: { screen: Trailers },
+    YoutubeVideo: { screen: YoutubeVideo },
+    NetworkError: { screen: NetworkError }
   }, {
+    // headerMode: 'none',
     initialRouteName: 'TopBarNavigator',
     navigationOptions: ({ navigation }) => ({
+      title:"",
       headerTintColor: Colors.headerText,
       headerStyle: { backgroundColor: Colors.silver },
     })

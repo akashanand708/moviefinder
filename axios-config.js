@@ -12,7 +12,7 @@ const authHeaders = [
 ];
 
 
-const API_ENDPOINT = 'https://api.themoviedb.org/3/movie'
+const API_ENDPOINT = 'https://api.themoviedb.org/3'
 
 
 /**

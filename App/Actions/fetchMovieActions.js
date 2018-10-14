@@ -1,7 +1,7 @@
 import { NavigationActions } from 'react-navigation'
 //import FileSaver from 'file-saver';
 import * as fetchMovieApis from '../../movie-finder-endpoints';
-import { MOVIES, RESET_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES } from '../ActionTypes/moviesActionTypes';
+import { MOVIES, SEARCHED_MOVIES,RESET_SEARCHED_MOVIES, RESET_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import RNFS from 'react-native-fs';
 import Constants from '../Constants/Constants';
@@ -16,6 +16,27 @@ export const backAction = () => {
 export const updateNetworkInfo = (connectionType) => {
     return (dispatch) => {
         dispatch({ type: UPDATE_NETWORK_INFO, payload: connectionType });
+    }
+}
+
+export const resetSearchedMovies = () => {
+    return (dispatch) => {
+        dispatch({ type: RESET_SEARCHED_MOVIES });
+    }
+}
+export const searchMovies = (queryString, pageNo) => {
+    return (dispatch) => {
+        dispatch({ type: SEARCHED_MOVIES.PENDING })
+        return fetchMovieApis.searchMovies(queryString, pageNo)
+            .then((response) => {
+                dispatch({ type: SEARCHED_MOVIES.SUCCESS, payload: response.data });
+                //dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[movieType] }));
+                return response;
+            }).catch((error) => {
+                console.log(error)
+                dispatch({ type: SEARCHED_MOVIES.ERROR })
+                return error;
+            })
     }
 }
 

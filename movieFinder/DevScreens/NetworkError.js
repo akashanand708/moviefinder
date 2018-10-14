@@ -4,7 +4,7 @@ import { View, ScrollView, Text, Image, NetInfo, TouchableOpacity } from 'react-
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Images } from './DevTheme'
 import styles from './Styles/DeviceInfoScreenStyles'
-import RenderMovieItem from '../CommonComponent/MovieItem/RenderMovieItem';
+import RenderMovieItem from '../CommonComponent/MovieItem/RenderTrailer/RenderMovieItem';
 import Constants from '../../App/Constants/Constants';
 import { Colors } from '../DevScreens/DevTheme';
 

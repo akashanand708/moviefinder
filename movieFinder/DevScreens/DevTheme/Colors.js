@@ -1,6 +1,6 @@
 const colors = {
   transparent: 'rgba(0,0,0,0)',
-  background: '#ffffff',
+  background: 'rgba(255,255,255,1)',
   silver: '#F7F7F7',
   frost: '#D8D8D8',
   windowTint: 'rgba(0, 0, 0, 0.4)',
@@ -15,9 +15,14 @@ const colors = {
   headerText: 'rgba(0,0,0,0.6)',
   movieHeaderText: 'rgba(0,0,0,0.8)',
   loaderBackgroundColor: 'rgba(52, 52, 52, 0.8)',
-  backArrow: '#FFFFFF',
   backArrowBackground: '#000000',
-  iconColor: '#000000'
+  iconColor: '#000000',
+
+  backArrow: 'rgba(0,0,0,1)',
+  playButton: 'rgba(0,0,0,0.7)',
+  buttonIcon: 'rgba(0,0,0,0.7)',
+  youtubeButton: 'rgba(255,0,0,1)',
+  borderColor:'rgba(0,0,0,0.3)',
 }
 
 export default colors

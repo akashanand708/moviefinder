@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { View, Animated, Image } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 import Styles from './PosterStyle'
 import images from '../../DevScreens/DevTheme/Images'
 import Constants from '../../../App/Constants/Constants';
@@ -89,11 +90,14 @@ class Poster extends Component {
         }
         console.log("poster Image loading....", imageLoading)
         return (
-            <View style={[Styles.itemContainer, (posterType === 'detail') ? { margin: 0 } : { margin: 5 }]}>
+            <View style={[Styles.itemContainer,
+
+            (posterType === 'detail') ? { margin: 0 } : ({ margin: 5 }, Styles.addElevation)]}>
                 {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
                 {
                     !imageError &&
                     <Animated.Image
+                        ref={r => this.image = r}
                         source={movieItemPosterUrl}
                         style={[
                             {
@@ -114,6 +118,7 @@ class Poster extends Component {
                         onLoad={this.imageLoadingComplete}
                         onError={this.imageLoadingError}
                     />
+
                 }
                 {
                     imageError &&
@@ -134,6 +139,13 @@ class Poster extends Component {
                             posterStyle
                         ]}
                     />
+                }
+                {
+                    posterType === 'detail' &&
+                    <LinearGradient ref={r => this.gradiant = r} locations={[0, 1.0]} colors=
+                        {['rgba(255,255,255,0.00)', 'rgba(255,255,255,1)']}
+                        style={Styles.linearGradient}>
+                    </LinearGradient>
                 }
                 {/* </Shimmer> */}
             </View>
