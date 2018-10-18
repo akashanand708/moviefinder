@@ -11,5 +11,10 @@ export default StyleSheet.create({
         //backgroundColor: Colors.eggplant
         marginTop: Metrics.baseMargin,
         marginBottom: Metrics.baseMargin
+    },
+    header:{
+        ...ApplicationStyles.screen.alignRowLeft,
+        height: 50,
+        paddingLeft: 10
     }
 })

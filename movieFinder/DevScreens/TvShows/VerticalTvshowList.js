@@ -9,12 +9,13 @@ import Constants from '../../../App/Constants/Constants';
 import { Colors } from '../DevTheme';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
+import * as fetchTvshowsActions from '../../../App/Actions/fetchTvActions'
 import SearchComponent from '../../CommonComponent/SearchComponent';
 import BackButton from '../../CommonComponent/BackButton';
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
+import RenderTvshowItem from '../../CommonComponent/TvshowItem/RenderTvshowItem';
 
-class VerticalMovieList extends React.Component {
+class VerticalTvshowList extends React.Component {
 
   goBack = () => {
     this.props.navigation.goBack();
@@ -27,16 +28,16 @@ class VerticalMovieList extends React.Component {
     };
   };
   render() {
-    let { movieType } = this.props.navigation.state.params;
+    let { tvshowType } = this.props.navigation.state.params;
     return (
       <View style={styles.mainContainer}>
         <SearchButton
-          searchType={Constants.MOVIE}
+          searchType={Constants.TVSHOWS}
           navigation={this.props.navigation}
         />
         <View style={styles.movieListContainer}>
-          <RenderMovieItem
-            movieType={movieType}
+          <RenderTvshowItem
+            tvshowType={tvshowType}
             navigation={this.props.navigation}
             horizontal={false}
           />
@@ -49,8 +50,8 @@ class VerticalMovieList extends React.Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(fetchMoviesActions, dispatch),
+    actions: bindActionCreators(fetchTvshowsActions, dispatch),
   };
 };
 
-export default connect(null, mapDispatch)(VerticalMovieList);
+export default connect(null, mapDispatch)(VerticalTvshowList);

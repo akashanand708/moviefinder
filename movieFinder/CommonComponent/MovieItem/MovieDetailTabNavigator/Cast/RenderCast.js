@@ -3,6 +3,7 @@ import { ActivityIndicator, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import style from './style';
 import Constants from '../../../../../App/Constants/Constants';
+import People from '../../../People/People';
 import SuperGridSectionListCustom from '../../../SuperGridSectionListCustom';
 import CastCrewItem from './CastCrewItem';
 
@@ -47,11 +48,14 @@ class RenderCast extends React.Component {
     handleEnd = () => {
 
     }
-    _keyExtractor = (item, index) => index; 
+    _keyExtractor = (item, index) => index;
 
     renderItem = (item) => {
-        return <CastCrewItem
-            CastCrewItem={item}
+        let { castCrewType } = this.props;
+        return <People
+            people={item}
+            type="cast_crew"
+            castCrewType={castCrewType}
             navigation={this.props.navigation}
         />
     }
@@ -91,6 +95,7 @@ class RenderCast extends React.Component {
                     handleEnd={this.handleEnd}
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
+                    moviesFetching={false}
                     renderItemType="CAST_CREW"
                 />
             </View>
@@ -101,7 +106,7 @@ class RenderCast extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        castCrewObject: state.data.movieDetail.movieDetail.casts
+        castCrewObject: state.data.movieDetail.movieDetail.casts || state.data.movieDetail.movieDetail.credits
     };
 };
 export default connect(mapStateToProps, null)(RenderCast);

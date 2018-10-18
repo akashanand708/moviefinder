@@ -18,6 +18,8 @@ const colors = {
   backArrowBackground: '#000000',
   iconColor: '#000000',
 
+  titleColor:'rgba(0,0,0,0.7)',
+  subTitleColor:'rgba(0,0,0,0.5)',
   backArrow: 'rgba(0,0,0,1)',
   playButton: 'rgba(0,0,0,0.7)',
   buttonIcon: 'rgba(0,0,0,0.7)',

@@ -40,7 +40,7 @@ const style = {
     fontSize: size.h5
   },
   h6: {
-    fontFamily: type.emphasis,
+    fontFamily: type.bold,
     fontSize: size.h6
   },
   normal: {
@@ -50,6 +50,28 @@ const style = {
   description: {
     fontFamily: type.base,
     fontSize: size.medium
+  },
+
+
+  titleFont:{
+    fontFamily: type.bold,
+    fontSize: size.h4
+  },
+  subtitleFont:{
+    fontFamily: type.base,
+    fontSize: size.regular
+  },
+  infoTitleFont:{
+    fontFamily: type.bold,
+    fontSize: size.regular
+  },
+  infoSubtitleFont:{
+    fontFamily: type.base,
+    fontSize: size.regular
+  },
+  tagline:{
+    fontSize: size.medium,
+    fontFamily: type.base
   }
 }
 

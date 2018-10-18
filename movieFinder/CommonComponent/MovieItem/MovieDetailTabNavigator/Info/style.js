@@ -8,8 +8,9 @@ export default StyleSheet.create({
         height:'100%',
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        //backgroundColor: Colors.eggplant
         marginTop: Metrics.baseMargin,
-        marginBottom: Metrics.baseMargin
+        marginBottom: Metrics.baseMargin,
+        paddingLeft: Metrics.basePadding,
+        paddingRight: Metrics.basePadding
     }
 })

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
-import MovieItemStyle from './MovieItemStyle'
-import Poster from './Poster';
+import TvshowItemStyle from './TvshowItemStyle'
+import Poster from '../MovieItem/Poster';
 import { connect } from 'react-redux'
 import Constants from '../../../App/Constants/Constants';
 
-class MovieItem extends Component {
+class TvshowItem extends Component {
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.movieItem.title !== nextProps.movieItem.title) {
+        if (this.props.tvshowItem.title !== nextProps.tvshowItem.title) {
             return true;
         }
         return false;
     }
-    navigateToMovieDetails = (movieItem) => {
+    navigateToMovieDetails = (tvshowItem) => {
         let { connectionType } = this.props;
         if (['none', 'unknown'].includes(connectionType)) {
             this.props.navigation.navigate('NetworkError');
@@ -21,24 +21,24 @@ class MovieItem extends Component {
             this.props.navigation.navigate({
                 key: 'MovieDetail',
                 routeName: 'MovieDetail',
-                params: { movieId: movieItem.id, movieName: movieItem.original_title, movieOrTvshow: Constants.MOVIE }
+                params: { movieId: tvshowItem.id, movieName: tvshowItem.name,movieOrTvshow:Constants.TVSHOWS }
             })
         }
     }
     render() {
-        let { movieItem } = this.props;
+        let { tvshowItem } = this.props;
         return (
-            <TouchableOpacity onPress={() => this.navigateToMovieDetails(movieItem)}>
+            <TouchableOpacity onPress={() => this.navigateToMovieDetails(tvshowItem)}>
                 <Poster
-                    posterUrl={movieItem.poster_path}
-                    posterStyle={MovieItemStyle.image}
+                    posterUrl={tvshowItem.poster_path}
+                    posterStyle={TvshowItemStyle.image}
                 />
             </TouchableOpacity>
         )
     }
 }
-MovieItem.propTypes = {
-    movieItem: PropTypes.object
+TvshowItem.propTypes = {
+    TvshowItem: PropTypes.object
 }
 
 
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(MovieItem);
+export default connect(mapStateToProps, null)(TvshowItem);

@@ -1,7 +1,7 @@
 import { NavigationActions } from 'react-navigation'
 //import FileSaver from 'file-saver';
 import * as fetchMovieApis from '../../movie-finder-endpoints';
-import { MOVIES, SEARCHED_MOVIES,RESET_SEARCHED_MOVIES, RESET_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES } from '../ActionTypes/moviesActionTypes';
+import { MOVIES, SEARCHED_MOVIES, RESET_SEARCHED_MOVIES, RESET_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import RNFS from 'react-native-fs';
 import Constants from '../Constants/Constants';
@@ -115,44 +115,6 @@ export const fetchMovies = (pageNo, movieType, horizontal) => {
     }
 }
 
-
-export const fetchMoviesForJson = (pageNo, movieType) => {
-    return (dispatch) => {
-        dispatch({ type: MOVIES.PENDING })
-        return fetchMovieApis.fetchMovies(pageNo, movieType)
-            .then((response) => {
-                let totalPageNo = response.data.total_pages;
-                let moviesObject = {
-                    popular: []
-                };
-                let movieList = [];
-                for (var i = 1; i <= totalPageNo; i++) {
-                    fetchMovieApis.fetchMovies(i, movieType)
-                        .then((resposne) => {
-                            // Array.prototype.push.apply(moviesObject.popular, resposne.data.results)
-                            Array.prototype.push.apply(movieList, resposne.data.results)
-                            RNFS.writeFile(path, JSON.stringify(movieList), 'utf8')
-                                .then((success) => {
-                                    console.log('FILE WRITTEN!');
-                                })
-                                .catch((err) => {
-                                    console.log(err.message);
-                                });
-                            console.log("MOVIE LIST...Inner ", moviesObject)
-                        })
-                        .catch((error) => {
-                            console.log("MOVIE DETAILS JSON ERROR....", error);
-                        })
-                }
-                console.log("MOVIE LIST...Outer ", moviesObject)
-            }).catch((error) => {
-                console.log(error)
-                dispatch({ type: MOVIES.ERROR })
-                return error;
-            })
-    }
-}
-
 export const resetPopularMoviesState = () => {
     return (dispatch) => {
         dispatch({ type: RESET_MOVIES });
@@ -160,10 +122,10 @@ export const resetPopularMoviesState = () => {
 }
 
 
-export const fetchMovieDetail = (movieId) => {
+export const fetchMovieDetail = (movieId, movieOrTvshow) => {
     return (dispatch) => {
         dispatch({ type: MOVIE_DETAIL.PENDING })
-        return fetchMovieApis.fetchMovieDetail(movieId)
+        return fetchMovieApis.fetchMovieDetail(movieId, movieOrTvshow)
             .then((response) => {
                 dispatch({ type: MOVIE_DETAIL.SUCCESS, payload: response.data });
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.MOVIE_DETAIL }));

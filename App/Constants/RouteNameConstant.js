@@ -5,5 +5,8 @@ export const ROUTE_NAME = {
     NOW_PLAYING_MOVIES: 'NowPlaying',
     LATEST_MOVIES: 'LatestMovies',
     MOVIE_DETAIL: 'MovieDetail',
-    NETWORK_ERROR: 'NetworkError'
+    NETWORK_ERROR: 'NetworkError',
+    POPULAR_PEOPLE:'POPULAR_PEOPLE',
+    LATEST_PEOPLE:'LATEST_PEOPLE',
+    PEOPLE_DETAIL:'PEOPLE_DETAIL'
 }

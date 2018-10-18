@@ -6,6 +6,7 @@ const { width, height } = Dimensions.get('window')
 const metrics = {
   section: 25,
   baseMargin: 10,
+  basePadding: 5,
   doubleBaseMargin: 20,
   smallMargin: 5,
   doubleSection: 50,

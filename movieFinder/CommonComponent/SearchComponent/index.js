@@ -2,6 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { Header, Left, Body, Right, Button, Icon, Item, Input, Text } from 'native-base';
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
+import * as fetchPeopleActions from '../../../App/Actions/fetchPeopleActions'
+import * as fetchTvActions from '../../../App/Actions/fetchTvActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import style from './style';
@@ -28,12 +30,12 @@ class SearchComponent extends React.Component {
 
       switch (searchType) {
         case Constants.PEOPLE:
-          this.props.actions.resetSearchedPeople();
-          this.props.actions.searchPeople(queryString, pageNo);
+          this.props.peopleActions.resetSearchedPeople();
+          this.props.peopleActions.searchPeople(queryString, pageNo);
           break;
-        case Constants.TVSHOWS:
-          this.props.actions.resetSearchedTvshows();
-          this.props.actions.searchTvshows(queryString, pageNo);
+        case Constants.TVSHOWS: 
+          this.props.tvActions.resetSearchedTvshows();
+          this.props.tvActions.searchTvshows(queryString, pageNo);
           break;
         default:
           this.props.actions.resetSearchedMovies();
@@ -53,7 +55,7 @@ class SearchComponent extends React.Component {
     this.props.actions.backAction();
   }
 
-  renderMovies = () => {
+  renderSearchResult = () => {
     let { fetching, totalResults, peopleFetching, peopleTotalResults, tvshowsFetching, tvshowsTotalResults } = this.props;
     let { searchType } = this.props.navigation.state.params;
 
@@ -100,7 +102,7 @@ class SearchComponent extends React.Component {
         />
         <View style={style.movieListContainer}>
           {
-            this.renderMovies()
+            this.renderSearchResult()
           }
         </View>
       </View>
@@ -114,6 +116,8 @@ SearchComponent.defaultProps = {
 const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(fetchMoviesActions, dispatch),
+    peopleActions: bindActionCreators(fetchPeopleActions, dispatch),
+    tvActions: bindActionCreators(fetchTvActions, dispatch),
   };
 };
 

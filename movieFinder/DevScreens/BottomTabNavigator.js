@@ -14,10 +14,11 @@ import VerticalMovieList from './Movies/VerticalMovieList';
 import Trailers from '../CommonComponent/MovieItem/Trailers';
 import MovieDetailTabNavigator from '../CommonComponent/MovieItem/MovieDetailTabNavigator/MovieDetailTabNavigator';
 import SearchComponent from '../CommonComponent/SearchComponent';
+import VerticalTvshowList from './TvShows/VerticalTvshowList';
 
 const TopBarNavigator = createMaterialTopTabNavigator(
   {
-    Movies: { screen: Movies },
+    Movies: { screen: Movies }, 
     People: { screen: People },
     TvShows: { screen: TvShows },
   },
@@ -68,7 +69,8 @@ export default StackNavigator(
     SearchComponent: {screen: SearchComponent},
     Trailers: { screen: Trailers },
     YoutubeVideo: { screen: YoutubeVideo },
-    NetworkError: { screen: NetworkError }
+    NetworkError: { screen: NetworkError },
+    VerticalTvshowList: { screen: VerticalTvshowList },
   }, {
     // headerMode: 'none',
     initialRouteName: 'TopBarNavigator',

@@ -1,25 +1,33 @@
-import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
-import SearchComponent from '../../CommonComponent/SearchComponent';
-import LinearGradient from 'react-native-linear-gradient';
-import style from './style'
+import React from 'react'
+import { View, Image, TouchableOpacity, Text } from 'react-native'
+import { Images } from '../DevTheme'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import styles from '../Styles/DeviceInfoScreenStyles'
+import Constants from '../../../App/Constants/Constants';
+import { Colors } from '../DevTheme';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
+import RenderPeopleItem from './RenderPeopleItem';
+
 class People extends React.Component {
+
   render() {
-    console.log("POEPLE RENDER......");
     return (
-      <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={style.linearGradient}>
+      <View style={styles.mainContainer}>
         <SearchButton
-          searchType="People"
+          searchType={Constants.PEOPLE}
           navigation={this.props.navigation}
         />
-
-        <ScrollView>
-          <View style={style.container}>
-          </View>
-        </ScrollView>
-      </LinearGradient>
-    );
+        <View style={styles.movieListContainer}>
+          <RenderPeopleItem
+            peopleType={Constants.POPULAR_PEOPLE}
+            navigation={this.props.navigation}
+            horizontal={false}
+          />
+        </View>
+      </View >
+    )
   }
 }
 

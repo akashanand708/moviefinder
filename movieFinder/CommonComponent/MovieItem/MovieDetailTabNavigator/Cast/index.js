@@ -10,7 +10,7 @@ class Cast extends React.Component {
 
     render() {
         return (
-            <View>
+            <ScrollView>
                 <View style={style.mainHorizontalContainer}>
                     <View style={style.header}>
                         <Text style={style.headerText}>Cast</Text>
@@ -36,7 +36,7 @@ class Cast extends React.Component {
                         />
                     </View>
                 </View >
-            </View>
+            </ScrollView>
         );
     }
 }

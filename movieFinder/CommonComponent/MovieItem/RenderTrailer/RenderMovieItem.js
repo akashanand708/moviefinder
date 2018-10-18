@@ -20,12 +20,12 @@ class RenderMovieItem extends React.Component {
     componentDidMount() {
         let { movieType } = this.props;
         if (movieType !== Constants.SEARCHED_MOVIES) {
-            this.fetchMovies();
+            this.fetchMovies(); 
         }
     }
 
     componentWillUnmount() {
-        //this.props.actions.resetPopularMoviesState();
+        this.props.actions.resetPopularMoviesState();
     }
     fetchMovies = () => {
         let { pageNo } = this.state;
@@ -40,7 +40,7 @@ class RenderMovieItem extends React.Component {
     }
     handleEnd = () => {
         let { movieType, totalPages, totalNowPlayingPages,
-            totalPopularPages, totalTopRatedPages, totalUpcomingPages, horizontal, searchedTotalPages,queryString } = this.props;
+            totalPopularPages, totalTopRatedPages, totalUpcomingPages, horizontal, searchedTotalPages } = this.props;
         if (horizontal) {
             switch (movieType) {
                 case Constants.NOW_PLAYING_MOVIES:
@@ -182,7 +182,7 @@ const mapStateToProps = (state) => {
         totalPages: state.data.movies.totalPages,
 
         searchedMoviesList: state.data.searchedMovies.searchedMoviesList,
-        searchedMoviesFetching: state.data.searchedMovies.moviesFetching,
+        searchedMoviesFetching: state.data.searchedMovies.moviesFetching, 
         searchedTotalPages: state.data.searchedMovies.totalPages,
     };
 };

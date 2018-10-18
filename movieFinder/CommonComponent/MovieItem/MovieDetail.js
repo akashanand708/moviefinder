@@ -17,8 +17,8 @@ import MovieDetailHeader from './MovieDetailHeader';
 class MovieDetail extends Component {
 
     componentDidMount() {
-        let { movieId } = this.props.navigation.state.params;
-        this.props.actions.fetchMovieDetail(movieId);
+        let { movieId, movieOrTvshow } = this.props.navigation.state.params;
+        this.props.actions.fetchMovieDetail(movieId, movieOrTvshow);
     }
     componentWillUnmount() {
         this.props.actions.resetMovieDetailState();
@@ -35,6 +35,7 @@ class MovieDetail extends Component {
     };
     render() {
         let { movieDetail, movieDetailFetching } = this.props;
+        let { movieId, movieOrTvshow } = this.props.navigation.state.params;
         console.log("movieDetailFetching", movieDetailFetching, movieDetail)
         return (
             <View style={Styles.mainContainer}>
@@ -43,11 +44,14 @@ class MovieDetail extends Component {
                     <MovieDetailHeader
                         goBack={this.goBack}
                         navigation={this.props.navigation}
+                        movieOrTvshow={movieOrTvshow}
                     />
                 }
                 {
                     movieDetail && !movieDetailFetching &&
-                    <MovieDetailTabNavigator />
+                    <MovieDetailTabNavigator
+                        screenProps={{movieOrTvshow}}
+                    />
                 }
                 <ActivityIndicator animating={movieDetailFetching} size="large" />
             </View>

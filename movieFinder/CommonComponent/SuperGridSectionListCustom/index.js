@@ -1,6 +1,7 @@
 import React from 'react'
 import { ActivityIndicator, Text, View } from 'react-native'
 import { SuperGridSectionList } from 'react-native-super-grid';
+import style from './style';
 import MovieItem from '../MovieItem/MovieItem';
 
 class SuperGridSectionListCustom extends React.Component {
@@ -14,7 +15,6 @@ class SuperGridSectionListCustom extends React.Component {
         let { itemList, gridHeight, spacing, horizontal, staticDimension, moviesFetching } = this.props;
 
         return (
-            <View>
                 <SuperGridSectionList
                     itemDimension={100}
                     sections={[
@@ -40,7 +40,6 @@ class SuperGridSectionListCustom extends React.Component {
                         <Text style={{ color: 'green' }}>{section.title}</Text>
                     )}
                 />
-            </View>
 
         )
     }

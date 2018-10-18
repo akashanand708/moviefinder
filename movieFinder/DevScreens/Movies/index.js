@@ -1,17 +1,9 @@
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
-import { Button, Icon } from 'native-base';
+import { View, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { StackNavigator } from 'react-navigation'
 import style from './style';
-import VerticalMovieList from './VerticalMovieList';
 import HorizontalMovieList from './HorizontalMovieList';
 import Constants from '../../../App/Constants/Constants';
-import { ROUTE_NAME } from '../../../App/Constants/RouteNameConstant';
-import NetworkError from '../NetworkError';
-import YoutubeVideo from '../../CommonComponent/MovieItem/RenderTrailer/YoutubeVideo';
-import { Colors } from '../DevTheme';
-import SearchComponent from '../../CommonComponent/SearchComponent';
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
 
 class Movies extends React.Component {
@@ -32,11 +24,11 @@ class Movies extends React.Component {
 
 
     render() {
-        console.log("MOVIE RENDER......");
+        console.log("MOVIE RENDER......"); 
         return (
             <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={style.linearGradient}>
                 <SearchButton
-                    searchType="Movie"
+                    searchType={Constants.MOVIE}
                     navigation={this.props.navigation}
                 />
                 <ScrollView>

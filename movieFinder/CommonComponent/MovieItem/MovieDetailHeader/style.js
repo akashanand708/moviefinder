@@ -4,13 +4,11 @@ import { Colors, Metrics, Fonts, ApplicationStyles } from '../../../DevScreens/D
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   movieDetailHeader: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     position: 'relative'
   },
   headerLower: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     flexDirection: 'row',
     width: '90%',
     position: 'absolute',
@@ -22,10 +20,23 @@ export default StyleSheet.create({
     paddingLeft: 10
   },
   heading: {
-
+    ...ApplicationStyles.screen.title
   },
   subHeading: {
+    ...ApplicationStyles.screen.subtitle,
+    flex: 0.3
+  },
+  movieDbMain:{
+    backgroundColor:'#081c24',
+    borderColor:'#01d177',
+    borderWidth:2,
+    borderRadius:10
 
+  },
+  movieDb:{
+    color:'#01d177',
+    padding:5,
+    fontFamily: Fonts.type.bold
   },
   releaseCountryTime: {
     justifyContent: 'flex-start',

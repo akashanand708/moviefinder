@@ -1,19 +1,21 @@
+import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { createMaterialTopTabNavigator, StackNavigator } from 'react-navigation'
+import { createMaterialTopTabNavigator } from 'react-navigation'
 // Screens
 import Info from './Info/index'
 import Cast from './Cast/index'
 import UserReviews from './UserReviews/index'
 import Awards from './Awards/index'
-import { Colors } from '../../../DevScreens/DevTheme';
 import style from './style';
+
+const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow} />)
 
 const MovieDetailTabNavigator = createMaterialTopTabNavigator(
   {
-    Info: { screen: Info },
-    Cast: { screen: Cast },
-    UserReviews: { screen: UserReviews },
-    Awards: { screen: Awards },
+    Info: tempInfo,
+    ["Cast & Crew"]: { screen: Cast },
+    ["User Reviews"]: { screen: UserReviews },
+    Images: { screen: Awards },
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -24,13 +26,13 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
         if (routeName === 'Info') {
           // iconName = `film${focused ? '' : '-outline'}`;
           iconName = 'film';
-        } else if (routeName === 'Cast') {
+        } else if (routeName === 'Cast & Crew') {
           // iconName = `ios-options${focused ? '' : '-outline'}`;
           iconName = 'film';
-        } else if (routeName === 'UserReviews') {
+        } else if (routeName === 'User Reviews') {
           // iconName = `ios-options${focused ? '' : '-outline'}`;
           iconName = 'film';
-        } else if (routeName === 'Awards') {
+        } else if (routeName === 'Images') {
           // iconName = `ios-options${focused ? '' : '-outline'}`;
           iconName = 'film';
         }
@@ -55,14 +57,3 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
 )
 
 export default MovieDetailTabNavigator
-// export default StackNavigator(
-//   {
-//     MovieDetailTabNavigator: { screen: MovieDetailTabNavigator },
-//   }, {
-//     initialRouteName: 'MovieDetailTabNavigator',
-//     // navigationOptions: ({ navigation }) => ({
-//     //   headerTintColor: Colors.headerText,
-//     //   headerStyle: { backgroundColor: Colors.silver },
-//     // })
-//   }
-// )
