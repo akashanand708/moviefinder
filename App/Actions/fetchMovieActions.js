@@ -131,7 +131,6 @@ export const fetchMovieDetail = (movieId, movieOrTvshow) => {
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.MOVIE_DETAIL }));
                 return response;
             }).catch((error) => {
-                debugger
                 console.log(error)
                 dispatch({ type: MOVIE_DETAIL.ERROR })
                 return error;

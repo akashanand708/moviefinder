@@ -6,13 +6,6 @@ export default StyleSheet.create({
   searchButtonMain: {
     position: 'relative'
   },
-  peopleMain:{
-    height: 195,
-    display:'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems:'center'
-  },
   castImage:{
     width: 100, 
     height: 100,
@@ -21,6 +14,9 @@ export default StyleSheet.create({
   peopleImage:{
     width: 100, 
     height: 100
+  },
+  image:{
+    //width: 300, 
+    height: 100
   }
-
 })

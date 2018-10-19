@@ -110,7 +110,6 @@ export const fetchPeopleDetail = (peopleId) => {
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.PEOPLE_DETAIL }));
                 return response;
             }).catch((error) => {
-                debugger
                 console.log(error)
                 dispatch({ type: PEOPLE_DETAIL.ERROR })
                 return error;

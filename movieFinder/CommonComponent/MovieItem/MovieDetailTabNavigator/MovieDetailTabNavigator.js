@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from 'react-navigation'
 import Info from './Info/index'
 import Cast from './Cast/index'
 import UserReviews from './UserReviews/index'
-import Awards from './Awards/index'
+import Images from './Images/index'
 import style from './style';
 
 const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow} />)
@@ -15,7 +15,7 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
     Info: tempInfo,
     ["Cast & Crew"]: { screen: Cast },
     ["User Reviews"]: { screen: UserReviews },
-    Images: { screen: Awards },
+    Images: { screen: Images },
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -43,7 +43,7 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
       }
     }),
     tabBarPosition: 'top',
-    // lazy: true,
+    lazy: true,
     // title:'Movie Finder',
     tabBarOptions: {
       activeTintColor: 'black',

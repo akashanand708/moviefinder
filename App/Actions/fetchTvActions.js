@@ -129,7 +129,6 @@ export const fetchTvshowsDetail = (TvshowsId) => {
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.TVSHOWS_DETAIL }));
                 return response;
             }).catch((error) => {
-                debugger
                 console.log(error)
                 dispatch({ type: TVSHOWS_DETAIL.ERROR })
                 return error;

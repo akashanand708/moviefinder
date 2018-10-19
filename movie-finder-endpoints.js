@@ -44,9 +44,9 @@ export const searchMovies = function (queryString, pageNo) {
  */
 export const fetchMovieDetail = function (movieId, movieOrTvshow) {
   if (movieOrTvshow === Constants.MOVIE) {
-    return api.http_get(`/movie/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=images,videos,casts,reviews`);
+    return api.http_get(`/movie/${movieId}?api_key=${API_KEY}&language=en-US&include_image_language=en,null&append_to_response=videos,images,casts,reviews`);
   } else {
-    return api.http_get(`/tv/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=images,videos,credits,reviews`);
+    return api.http_get(`/tv/${movieId}?api_key=${API_KEY}&language=en-US&include_image_language=en,null&append_to_response=videos,images,credits,reviews`);
   }
 }
 

@@ -81,12 +81,12 @@ class RenderMovieItem extends React.Component {
             })
         }
     }
-    _keyExtractor = (item, index) => index;
+    _keyExtractor = (item, index) => item.id;
 
     renderItem = (item) => {
-        console.log("Render Movie Items......");
         return <MovieItem
             movieItem={item}
+            key={item.id}
             navigation={this.props.navigation}
         />
     }

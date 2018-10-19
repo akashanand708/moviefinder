@@ -6,43 +6,46 @@ import MovieItem from '../MovieItem/MovieItem';
 
 class SuperGridSectionListCustom extends React.Component {
 
-    _keyExtractor = (item, index) => index;
+    static defaultProps = {
+        itemDimension: 100
+    }
+    //_keyExtractor = (item, index) => {console.log("INDEX.....",index);item.id};
 
-    renderItem = (item) => {
-        return this.props.renderItem(item);
+    renderItem = (item, index) => {
+        // console.log("ITEM INDEX......",item, index);
+        return this.props.renderItem(item, index);
     }
     render() {
-        let { itemList, gridHeight, spacing, horizontal, staticDimension, moviesFetching } = this.props;
+        let { itemList, gridHeight, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
 
         return (
-                <SuperGridSectionList
-                    itemDimension={100}
-                    sections={[
-                        {
-                            title: '',
-                            data: itemList
-                        }
-                    ]}
-                    style={gridHeight}
-                    spacing={spacing}
-                    fixed={true}
-                    keyExtractor={this._keyExtractor}
-                    ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
-                    initialNumToRender={1}
-                    onEndReached={() => this.props.handleEnd()}
-                    onEndReachedThreshold={0.8}
-                    horizontal={horizontal}
-                    staticDimension={staticDimension}
-                    renderItem={({ item }) => (
-                        this.renderItem(item)
-                    )}
-                    renderSectionHeader={({ section }) => (
-                        <Text style={{ color: 'green' }}>{section.title}</Text>
-                    )}
-                />
+            <SuperGridSectionList
+                itemDimension={itemDimension}
+                sections={[
+                    {
+                        title: '',
+                        data: itemList
+                    }
+                ]}
+                style={gridHeight}
+                spacing={spacing}
+                fixed={true}
+                //keyExtractor={this.props._keyExtractor}
+                ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
+                initialNumToRender={1}
+                onEndReached={() => this.props.handleEnd()}
+                onEndReachedThreshold={0.8}
+                horizontal={horizontal}
+                staticDimension={staticDimension}
+                renderItem={({ item, index }) => (
+                    this.renderItem(item, index)
+                )}
+                renderSectionHeader={({ section }) => (
+                    <Text style={{ color: 'green' }}>{section.title}</Text>
+                )}
+            />
 
         )
     }
 }
-
 export default SuperGridSectionListCustom;

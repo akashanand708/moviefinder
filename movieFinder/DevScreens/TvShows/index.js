@@ -10,7 +10,6 @@ class TvShows extends React.Component {
   navigate = (tvshowType, title) => {
     // this.props.navigation.navigate('NetworkError');
     let { connectionType } = this.props;
-    debugger;
     if (['none', 'unknown'].includes(connectionType)) {
         this.props.navigation.navigate('NetworkError');
     } else {
