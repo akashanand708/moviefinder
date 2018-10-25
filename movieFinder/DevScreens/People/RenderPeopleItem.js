@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchPeopleActions from '../../../App/Actions/fetchPeopleActions'
 import Constants from '../../../App/Constants/Constants';
+import {Metrics} from '../../../App/Themes';
 import People from '../../CommonComponent/People/People';
 import SuperGridSectionListCustom from '../../CommonComponent/SuperGridSectionListCustom';
 
@@ -33,7 +34,6 @@ class RenderPeopleItem extends React.Component {
   fetchSearchResult = () => {
     let { pageNo } = this.state;
     let { queryString } = this.props;
-    console.log("Render Item query string....", queryString);
     return this.props.actions.searchPeople(queryString, pageNo);
   }
   handleEnd = () => {
@@ -72,7 +72,6 @@ class RenderPeopleItem extends React.Component {
   _keyExtractor = (item, index) => index;
 
   renderItem = (item) => {
-    console.log("Render Movie Items......");
     return <People
       people={item}
       type="people"
@@ -82,9 +81,9 @@ class RenderPeopleItem extends React.Component {
   render() {
     let { searchedPeopleFetching, searchedPeopleList, peopleList, peopleFetching, horizontal,
       peopleType } = this.props;
-    let staticDimension = 0,
-      gridHeight = {},
-      spacing = 18;
+      let staticDimension = Metrics.screenWidth,
+      gridHeight = {height: Metrics.screenHeight - 150},
+      spacing = 12;
     if (horizontal) {
       staticDimension = 110;
       gridHeight = { height: 195 };
@@ -105,7 +104,6 @@ class RenderPeopleItem extends React.Component {
         peopleFetching = searchedPeopleFetching;
       }
     }
-    console.log("Render Items......");
     return (
       <View>
         {/* <AdvertisementBanner

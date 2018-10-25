@@ -22,8 +22,8 @@ class VerticalMovieList extends React.Component {
   }
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('title', ''),
-      // header: null
+      // title: navigation.getParam('title', ''),
+      header: null
     };
   };
   render() {
@@ -32,9 +32,10 @@ class VerticalMovieList extends React.Component {
       <View style={styles.mainContainer}>
         <SearchButton
           searchType={Constants.MOVIE}
+          horizontal={false}
           navigation={this.props.navigation}
         />
-        <View style={styles.movieListContainer}>
+        <View style={styles.verticalListContainer}>
           <RenderMovieItem
             movieType={movieType}
             navigation={this.props.navigation}

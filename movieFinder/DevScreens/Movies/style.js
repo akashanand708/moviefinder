@@ -5,7 +5,7 @@ export default StyleSheet.create({
     ...ApplicationStyles.screen,
     container: {
         width: '100%',
-        height:'100%',
+        height: '100%',
         justifyContent: 'flex-start',
         flexDirection: 'column',
         //backgroundColor: Colors.eggplant

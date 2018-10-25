@@ -12,12 +12,10 @@ class SuperGridSectionListCustom extends React.Component {
     //_keyExtractor = (item, index) => {console.log("INDEX.....",index);item.id};
 
     renderItem = (item, index) => {
-        // console.log("ITEM INDEX......",item, index);
         return this.props.renderItem(item, index);
     }
     render() {
         let { itemList, gridHeight, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
-
         return (
             <SuperGridSectionList
                 itemDimension={itemDimension}
@@ -32,7 +30,7 @@ class SuperGridSectionListCustom extends React.Component {
                 fixed={true}
                 //keyExtractor={this.props._keyExtractor}
                 ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
-                initialNumToRender={1}
+                initialNumToRender={10}
                 onEndReached={() => this.props.handleEnd()}
                 onEndReachedThreshold={0.8}
                 horizontal={horizontal}

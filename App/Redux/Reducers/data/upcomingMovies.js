@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { UPCOMING_MOVIES, RESET_UPCOMING_MOVIES } from '../../../ActionTypes/moviesActionTypes';
+import { UPCOMING_MOVIES, RESET_UPCOMING_MOVIES, UPCOMING_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const upcomingMoviesReducer = handleActions({
     [UPCOMING_MOVIES.PENDING]: (state, action) => {
@@ -34,6 +34,13 @@ const upcomingMoviesReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             moviesFetching: false,
+            pageNo: 1
+        };
+    },
+    [UPCOMING_MOVIES_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -43,6 +50,7 @@ const upcomingMoviesReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         moviesFetching: false,
+        pageNo: 1
 
     });
 

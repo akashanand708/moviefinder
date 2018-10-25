@@ -36,7 +36,6 @@ class MovieDetail extends Component {
     render() {
         let { movieDetail, movieDetailFetching } = this.props;
         let { movieId, movieOrTvshow } = this.props.navigation.state.params;
-        console.log("movieDetailFetching", movieDetailFetching, movieDetail)
         return (
             <View style={Styles.mainContainer}>
                 {
@@ -50,7 +49,8 @@ class MovieDetail extends Component {
                 {
                     movieDetail && !movieDetailFetching &&
                     <MovieDetailTabNavigator
-                        screenProps={{movieOrTvshow}}
+                        screenProps={{ movieOrTvshow, navigation: this.props.navigation }}
+                    //navigation={this.props.navigation}
                     />
                 }
                 <ActivityIndicator animating={movieDetailFetching} size="large" />

@@ -1,6 +1,6 @@
 
 import { handleActions } from 'redux-actions';
-import { SEARCHED_TVSHOWS, RESET_SEARCHED_TVSHOWS } from '../../../ActionTypes/moviesActionTypes';
+import { SEARCHED_TVSHOWS, RESET_SEARCHED_TVSHOWS, SEARCHED_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const searchedTvshowsReducer = handleActions({
     [SEARCHED_TVSHOWS.PENDING]: (state, action) => {
@@ -32,6 +32,13 @@ const searchedTvshowsReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             tvshowsFetching: false,
+            pageNo: 1
+        };
+    },
+    [SEARCHED_TVSHOWS_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -41,6 +48,7 @@ const searchedTvshowsReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         tvshowsFetching: false,
+        pageNo: 1
 
     });
 

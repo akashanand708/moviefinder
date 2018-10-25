@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { TOP_RATED_MOVIES, RESET_TOP_RATED_MOVIES } from '../../../ActionTypes/moviesActionTypes';
+import { TOP_RATED_MOVIES, RESET_TOP_RATED_MOVIES, TOP_RATED_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const topRatedMoviesReducer = handleActions({
     [TOP_RATED_MOVIES.PENDING]: (state, action) => {
@@ -34,6 +34,13 @@ const topRatedMoviesReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             moviesFetching: false,
+            pageNo: 1
+        };
+    },
+    [TOP_RATED_MOVIES_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -43,6 +50,7 @@ const topRatedMoviesReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         moviesFetching: false,
+        pageNo: 1
 
     });
 

@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
   posterImage: {
     width: 95,
-    height: 140,
+    height: 142,
     resizeMode: 'contain',
     borderRadius: 5,
   }

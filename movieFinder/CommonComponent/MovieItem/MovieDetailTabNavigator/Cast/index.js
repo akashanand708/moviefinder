@@ -11,31 +11,33 @@ class Cast extends React.Component {
     render() {
         return (
             <ScrollView>
-                <View style={style.mainHorizontalContainer}>
-                    <View style={style.header}>
-                        <Text style={style.headerText}>Cast</Text>
-                    </View>
-                    <View style={style.movieListContainer}>
-                        <RenderCast
-                            castCrewType={Constants.CAST_CREW.CAST}
-                            navigation={this.props.navigation}
-                            horizontal={true}
-                        />
-                    </View>
-                </View >
+                <View style={{ paddingTop: 20 }}>
+                    <View style={style.mainHorizontalContainer}>
+                        <View style={style.header}>
+                            <Text style={style.headerText}>Cast</Text>
+                        </View>
+                        <View style={style.movieListContainer}>
+                            <RenderCast
+                                castCrewType={Constants.CAST_CREW.CAST}
+                                navigation={this.props.navigation}
+                                horizontal={true}
+                            />
+                        </View>
+                    </View >
 
-                <View style={style.mainHorizontalContainer}>
-                    <View style={style.header}>
-                        <Text style={style.headerText}>Crew</Text>
-                    </View>
-                    <View style={style.movieListContainer}>
-                        <RenderCast
-                            castCrewType={Constants.CAST_CREW.CREW}
-                            navigation={this.props.navigation}
-                            horizontal={true}
-                        />
-                    </View>
-                </View >
+                    <View style={style.mainHorizontalContainer}>
+                        <View style={style.header}>
+                            <Text style={style.headerText}>Crew</Text>
+                        </View>
+                        <View style={style.movieListContainer}>
+                            <RenderCast
+                                castCrewType={Constants.CAST_CREW.CREW}
+                                navigation={this.props.navigation}
+                                horizontal={true}
+                            />
+                        </View>
+                    </View >
+                </View>
             </ScrollView>
         );
     }

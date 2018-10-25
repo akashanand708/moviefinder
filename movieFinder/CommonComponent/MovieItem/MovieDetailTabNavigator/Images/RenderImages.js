@@ -15,7 +15,6 @@ class RenderImages extends React.Component {
     }
 
     renderItem = (item, index) => {
-        // console.log("ITEM INDEX......", index);
         let { imageType, images } = this.props;
         let imageSize = '';
         switch (imageType) {
@@ -40,7 +39,6 @@ class RenderImages extends React.Component {
                 }
             };
         })
-        console.log()
         return <People
             people={item}
             type="image"
@@ -59,17 +57,17 @@ class RenderImages extends React.Component {
             spacing = 20;
         if (horizontal) {
             staticDimension = 70;
-            gridHeight = { height: 120 };
+            gridHeight = { height: 140 };
             spacing = 1;
         }
         switch (imageType) {
             case Constants.IMAGE_TYPE.BACKDROPS:
-                imageList = images.backdrops;
+                imageList = images.backdrops || [];
                 itemDimension = 190;
                 // imageSize = Constants.IMAGE_SIZE.IMG_TAB_BACKDROP_SIZE;
                 break;
             case Constants.IMAGE_TYPE.POSTERS:
-                imageList = images.posters;
+                imageList = images.posters || [];
                 itemDimension = 75
                 // imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
                 break;
@@ -83,8 +81,7 @@ class RenderImages extends React.Component {
                 index: index
             };
         })
-        
-        console.log("Image List", imageList);
+
         return (
             <View>
                 {/* <AdvertisementBanner
@@ -111,7 +108,7 @@ class RenderImages extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        images: state.data.movieDetail.movieDetail.images,
+        images: _.get(state, 'data.movieDetail.movieDetail.images', {backdrops:[],posters:[]})
     };
 };
 export default connect(mapStateToProps, null)(RenderImages);

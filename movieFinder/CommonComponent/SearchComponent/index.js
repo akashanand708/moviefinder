@@ -12,6 +12,8 @@ import BackButton from '../BackButton';
 import RenderMovieItem from '../MovieItem/RenderTrailer/RenderMovieItem';
 import Constants from '../../../App/Constants/Constants';
 import SearchInput from './SearchInput';
+import RenderTvshowItem from '../TvshowItem/RenderTvshowItem';
+import RenderPeopleItem from '../../DevScreens/People/RenderPeopleItem';
 
 class SearchComponent extends React.Component {
 
@@ -33,7 +35,7 @@ class SearchComponent extends React.Component {
           this.props.peopleActions.resetSearchedPeople();
           this.props.peopleActions.searchPeople(queryString, pageNo);
           break;
-        case Constants.TVSHOWS: 
+        case Constants.TVSHOWS:
           this.props.tvActions.resetSearchedTvshows();
           this.props.tvActions.searchTvshows(queryString, pageNo);
           break;
@@ -46,7 +48,7 @@ class SearchComponent extends React.Component {
   }
   static navigationOptions = ({ navigation }) => {
     return {
-      //header: null
+      header: null
     };
   };
 
@@ -77,9 +79,17 @@ class SearchComponent extends React.Component {
     } else {
       switch (searchType) {
         case Constants.PEOPLE:
-          return <Text>Render people.</Text>
+          return <RenderPeopleItem
+            peopleType={Constants.SEARCHED_PEOPLE}
+            navigation={this.props.navigation}
+            horizontal={false}
+            queryString={queryString} />
         case Constants.TVSHOWS:
-          return <Text>Render tv shows</Text>
+          return <RenderTvshowItem
+            tvshowType={Constants.SEARCHED_TVSHOWS}
+            navigation={this.props.navigation}
+            horizontal={false}
+            queryString={queryString} />
         default:
           return <RenderMovieItem
             movieType={Constants.SEARCHED_MOVIES}
@@ -96,6 +106,7 @@ class SearchComponent extends React.Component {
     return (
       <View>
         <SearchInput
+          navigation={this.props.navigation}
           ref={"searchInput"}
           fetchSearchResult={this.fetchSearchResult}
           searchType={searchType}

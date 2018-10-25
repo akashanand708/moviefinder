@@ -4,6 +4,8 @@ import { Icon, Header, Left, Body, Right, Item, Input, } from 'native-base';
 import { View, TouchableOpacity, Button } from 'react-native';
 import style from './style';
 import colors from '../../DevScreens/DevTheme/Colors';
+import BackButton from '../BackButton';
+import Constants from '../../../App/Constants/Constants';
 
 const SearchButton = (props) => {
   navigateToSearch = (searchType) => {
@@ -13,22 +15,32 @@ const SearchButton = (props) => {
       params: { searchType: searchType }
     })
   }
-  let { searchType } = props;
+
+
+
+  let { searchType, horizontal } = props;
   return (
     <View style={style.searchButtonMain}>
       <Header searchBar rounded hasSegment>
         <Left>
+          {
+            !horizontal &&
+            <BackButton
+              navigation={props.navigation}
+              style={{}}
+            />
+          }
         </Left>
         <Body>
           <Item>
             <Icon name="ios-search" style={{ color: colors.buttonIcon }} />
             <Input editable={false} placeholder={`Search ${searchType}...`} />
           </Item>
+          <TouchableOpacity style={style.searchButton} onPress={() => this.navigateToSearch(searchType)} />
         </Body>
         <Right>
         </Right>
       </Header>
-      <TouchableOpacity style={style.searchButton} onPress={() => this.navigateToSearch(searchType)} />
     </View>
   );
 }

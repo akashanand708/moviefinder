@@ -14,7 +14,7 @@ export default StyleSheet.create({
     },
     header:{
         ...ApplicationStyles.screen.alignRowLeft,
-        height: 50,
+        height: 14,
         paddingLeft: 10
     }
 })

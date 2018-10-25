@@ -6,7 +6,7 @@ export default StyleSheet.create({
   itemContainer: {
     justifyContent: 'flex-start',
     alignItems: 'center',
-    borderRadius: 5,
+    // borderRadius: 5,
     //margin: 5,
   },
   linearGradient:{

@@ -31,22 +31,19 @@ class Shimmer extends Component {
         super(props);
 
         this.state = {
-            visible: true,
+            visible: false,
             beginShimmerPosition: new Animated.Value(-1),
         };
     }
     componentDidMount() {
         const { autoRun } = this.props;
-        console.log("DID MOUNT...", autoRun)
         if (autoRun) {
             this.loopAnimated();
         }
     }
-
     loopAnimated() {
         const shimmerAnimated = this.getAnimated();
         const { visible } = this.props;
-        console.log("VISIBLE...", visible)
         shimmerAnimated.start(() => {
             if (!visible) {
                 this.loopAnimated();
@@ -55,7 +52,6 @@ class Shimmer extends Component {
     }
     getAnimated = () => {
         this.state.beginShimmerPosition.setValue(-1);
-        // this.setState({ beginShimmerPosition: new Animated.Value(-1) });
         return Animated.timing(this.state.beginShimmerPosition, {
             toValue: 1,
             duration: this.props.duration,
@@ -73,7 +69,6 @@ class Shimmer extends Component {
             inputRange: [-1, 1],
             outputRange: [beginPostioner, endPosition],
         });
-        console.log("RENDER SIMMER");
         return (
             <View style={!visible
                 ? [{ height, width }, styles.container, style]
@@ -120,7 +115,7 @@ Shimmer.defaultProps = {
     colorShimmer: ['#ebebeb', '#c5c5c5', '#ebebeb'],
     reverse: false,
     autoRun: false,
-    visible: true,
+    visible: false,
     backgroundColorBehindBorder: 'white',
     hasBorder: false,
 };

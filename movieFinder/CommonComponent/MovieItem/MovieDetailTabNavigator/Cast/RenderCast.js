@@ -27,11 +27,13 @@ class RenderCast extends React.Component {
         let castCrewList = [];
         let staticDimension = 0,
             gridHeight = {},
-            spacing = 20;
+            spacing = 20,
+            itemDimension = {};
         if (horizontal) {
             staticDimension = 70;
-            gridHeight = { height: 120 };
-            spacing = 1;
+            gridHeight = { height: 195 };
+            spacing = 5;
+            itemDimension = 100;
         }
         switch (castCrewType) {
             case Constants.CAST_CREW.CAST:
@@ -55,6 +57,7 @@ class RenderCast extends React.Component {
                     spacing={spacing}
                     horizontal={horizontal}
                     staticDimension={staticDimension}
+                    itemDimension={itemDimension}
                     handleEnd={this.handleEnd}
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
@@ -69,7 +72,8 @@ class RenderCast extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        castCrewObject: state.data.movieDetail.movieDetail.casts || state.data.movieDetail.movieDetail.credits
+        // TODO castCrewObject: (_.get(state, 'data.movieDetail.movieDetail.casts', []) || _.get(state, 'data.movieDetail.movieDetail.credits', [])
+        castCrewObject :_.get(state, 'data.movieDetail.movieDetail.casts', { cast: [], crew: [] })
     };
 };
 export default connect(mapStateToProps, null)(RenderCast);

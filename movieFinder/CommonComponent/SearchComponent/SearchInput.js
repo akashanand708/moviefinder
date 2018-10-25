@@ -3,6 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Header, Left, Body, Right, Button, Icon, Item, Input, Text } from 'native-base';
 import Colors from '../../DevScreens/DevTheme/Colors';
+import BackButton from '../BackButton';
 
 class SearchInput extends React.Component {
 
@@ -18,16 +19,15 @@ class SearchInput extends React.Component {
 
 
   render() {
-    let { searchType } = this.props;
+    let { searchType, navigation } = this.props;
 
     return (
       <View>
         <Header searchBar rounded hasSegment>
           <Left>
-            {/* <BackButton
-              goBack={this.goBack}
-              style={{}}
-            /> */}
+            <BackButton
+              navigation={navigation}
+            />
           </Left>
           <Body>
             <Item>

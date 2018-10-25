@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { TV_ARIVING_TVSHOWS, RESET_TV_ARIVING_TVSHOWS } from '../../../ActionTypes/moviesActionTypes';
+import { TV_ARIVING_TVSHOWS, RESET_TV_ARIVING_TVSHOWS, TV_ARIVING_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const tvArivingTvshowsReducer = handleActions({
     [TV_ARIVING_TVSHOWS.PENDING]: (state, action) => {
@@ -8,7 +8,7 @@ const tvArivingTvshowsReducer = handleActions({
             tvshowsFetching: true,
         };
     },
-    [TV_ARIVING_TVSHOWS.SUCCESS]: (state, action) => { 
+    [TV_ARIVING_TVSHOWS.SUCCESS]: (state, action) => {
         // let results = _.keyBy(action.payload.results, 'id');
         let results = action.payload.results;
         return {
@@ -34,6 +34,13 @@ const tvArivingTvshowsReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             tvshowsFetching: false,
+            pageNo: 1
+        };
+    },
+    [TV_ARIVING_TVSHOWS_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -43,6 +50,7 @@ const tvArivingTvshowsReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         tvshowsFetching: false,
+        pageNo: 1
 
     });
 

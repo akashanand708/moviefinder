@@ -55,7 +55,6 @@ export const fetchPeople = (pageNo, peopleType, horizontal) => {
         }
         return fetchPeopleApis.fetchPeople(pageNo, peopleType)
             .then((response) => {
-                console.log(`${peopleType} movies.....`, response);
                 if (horizontal) {
                     switch (peopleType) {
                         case Constants.POPULAR_PEOPLE:
@@ -104,7 +103,7 @@ export const fetchPeople = (pageNo, peopleType, horizontal) => {
 export const fetchPeopleDetail = (peopleId) => {
     return (dispatch) => {
         dispatch({ type: PEOPLE_DETAIL.PENDING })
-        return fetchPeopleApis.fetchPeopleDetail(movieId)
+        return fetchPeopleApis.fetchPeopleDetail(peopleId)
             .then((response) => {
                 dispatch({ type: PEOPLE_DETAIL.SUCCESS, payload: response.data });
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.PEOPLE_DETAIL }));

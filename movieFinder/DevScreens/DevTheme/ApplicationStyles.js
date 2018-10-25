@@ -5,11 +5,15 @@ import Colors from './Colors'
 
 const ApplicationStyles = {
   screen: {
+    listScroll: {
+      height: (Metrics.screenHeight - 110),
+    },
     mainContainer: {
       flex: 1,
       backgroundColor: Colors.background
     },
     mainHorizontalContainer: {
+      //marginBottom:20,
       flexDirection: 'column',
       justifyContent: 'flex-start',
       backgroundColor: Colors.transparent
@@ -109,8 +113,9 @@ const ApplicationStyles = {
     taglineFontSize:{
       ...Fonts.style.tagline
     },
-    movieListContainer: {
-      //marginTop: 75
+    verticalListContainer: {
+      //paddingTop: 10
+      // height: Metrics.screenHeight
     },
     addElevation: {
       shadowColor: "#000",

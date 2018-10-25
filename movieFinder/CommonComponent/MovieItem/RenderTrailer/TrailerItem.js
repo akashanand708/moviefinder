@@ -27,7 +27,6 @@ class TrailerItem extends Component {
         let { trailerItem } = this.props;
         let youtubeThumbnailUrl = `${Constants.YOUTUBE_THUMBNAIL_BASE_URL}/${trailerItem.key}/hqdefault.jpg`
         let trailerUrl = `${Constants.YOUTUBE_BASE_URL}/watch?v=${trailerItem.key}`;
-        console.log("TRAILER ITEM......", trailerItem);
         return (
             <View style={[style.addElevation, style.trailerItemMain]}>
                 <View style={[style.trailerItem]}>

@@ -11,9 +11,18 @@ export default StyleSheet.create({
     height: 100,
     borderRadius: 50
   },
+  name:{
+    textAlign:"center"
+  },
+  character:{
+    textAlign:"center"
+  },
   peopleImage:{
     width: 100, 
-    height: 100
+    height: 150,
+  },
+  profileImageContainer:{
+    height: 195
   },
   image:{
     //width: 300, 

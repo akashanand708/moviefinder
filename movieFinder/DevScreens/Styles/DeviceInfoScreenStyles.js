@@ -80,8 +80,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 7,
     paddingRight: 7,
-    marginBottom: -16,
-    zIndex: 2
+    // marginBottom: -16,
+    // zIndex: 2
   },
   headerText:{
     color: colors.movieHeaderText

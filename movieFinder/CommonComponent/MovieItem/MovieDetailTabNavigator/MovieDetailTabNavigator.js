@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { createMaterialTopTabNavigator } from 'react-navigation'
+import { createMaterialTopTabNavigator,StackNavigator } from 'react-navigation'
 // Screens
 import Info from './Info/index'
 import Cast from './Cast/index'
 import UserReviews from './UserReviews/index'
 import Images from './Images/index'
 import style from './style';
+import PeopleDetail from '../../People/PeopleDetail';
 
-const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow} />)
+const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow} />);
+const tempCast = (props) => (<Cast navigation={props.screenProps.navigation} />);
+const tempReview = (props) => (<UserReviews navigation={props.screenProps.navigation} />);
 
 const MovieDetailTabNavigator = createMaterialTopTabNavigator(
   {
     Info: tempInfo,
-    ["Cast & Crew"]: { screen: Cast },
-    ["User Reviews"]: { screen: UserReviews },
+    ["Cast & Crew"]: tempCast,
+    ["User Reviews"]: tempReview,
     Images: { screen: Images },
   },
   {
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
-        console.log("ROUTE NAME....", routeName)
         let iconName;
         if (routeName === 'Info') {
           // iconName = `film${focused ? '' : '-outline'}`;

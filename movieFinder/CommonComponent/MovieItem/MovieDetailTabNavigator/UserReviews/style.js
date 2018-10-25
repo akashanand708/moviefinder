@@ -3,13 +3,19 @@ import { Colors, Metrics, Fonts, ApplicationStyles } from '../../../../DevScreen
 
 export default StyleSheet.create({
     ...ApplicationStyles.screen,
-    container: {
-        width: '100%',
+    reviewMain:{
+        ...ApplicationStyles.screen.alignColumnCenter,
         height:'100%',
-        justifyContent: 'flex-start',
-        flexDirection: 'column',
-        //backgroundColor: Colors.eggplant
-        marginTop: Metrics.baseMargin,
-        marginBottom: Metrics.baseMargin
+    },
+    reviewContainer:{
+        width: 298,
+        height: 200
+    },
+    cardContainer:{
+        width: 298,
+        height: 195
+    },
+    contentText:{
+        height:50,
     }
 })

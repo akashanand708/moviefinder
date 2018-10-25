@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { TouchableOpacity, Text, View, Image } from 'react-native'
-
+import { TouchableOpacity, Text, View, Image } from 'react-native';
 import ImageLightbox from '../ImageLightBox';
+import Poster from '../MovieItem/Poster';
 // import {
 //     CachedImage
 // } from 'react-native-cached-image';
@@ -17,22 +16,25 @@ class People extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
+            imageLoading: true
         }
     }
+
     navigateToMovieDetails = (people) => {
-        // console.log("CLICKED PEOPLE......", people);
-        // let { connectionType } = this.props;
-        // if (['none', 'unknown'].includes(connectionType)) {
-        //     this.props.navigation.navigate('NetworkError');
-        // } else {
-        //     this.props.navigation.navigate({
-        //         key: 'MovieDetail',
-        //         routeName: 'MovieDetail',
-        //         params: { movieId: movieItem.id, movieName: movieItem.original_title }
-        //     })
-        // }
-        this.openLightBox();
+        let { connectionType, type } = this.props;
+        if (['none', 'unknown'].includes(connectionType)) {
+            this.props.navigation.navigate('NetworkError');
+        } else {
+            this.props.navigation.navigate({
+                key: 'PeopleDetail',
+                routeName: 'PeopleDetail',
+                params: { peopleId: people.id, peopleName: people.name }
+            })
+        }
+        if (type === 'image') {
+            this.openLightBox();
+        }
     }
     openLightBox = () => {
         this.setState({ visible: true });
@@ -42,25 +44,31 @@ class People extends Component {
         this.setState({ visible: false });
     }
 
+    imageLoadingComplete = () => {
+        this.setState({ imageLoading: false });
+    }
     render() {
         let { people, type, castCrewType, imageType, images } = this.props,
             character = people.character,
             profilepath = DEFAULT_PROFILE_PIC,
             profileImageStyle = {},
+            profileImageContainer = {},
             imageSize = Constants.IMAGE_SIZE.PROFILE_IMAGE_SIZE;
 
-        let { visible } = this.state;
+        let { visible, imageLoading } = this.state;
         if (type === 'cast_crew') {
             profileImageStyle = style.castImage;
+            profileImageContainer = { height: 160 };
             if (castCrewType === Constants.CAST_CREW.CREW) {
                 character = `(${people.job})`
             }
         } else if (type === 'people') {
             profileImageStyle = style.peopleImage;
+            profileImageContainer = style.profileImageContainer
         } else if (type === 'image') {
-            console.log("PEOPLE images......", images);
             profileImageStyle = { height: 100 };
             profileImageStyle.width = profileImageStyle.height * people.aspect_ratio;
+            profileImageContainer = profileImageStyle;
             if (imageType === Constants.IMAGE_TYPE.BACKDROPS) {
                 imageSize = Constants.IMAGE_SIZE.IMG_TAB_BACKDROP_SIZE;
             } else {
@@ -72,18 +80,23 @@ class People extends Component {
         }
         return (
             <TouchableOpacity onPress={() => this.navigateToMovieDetails(people)}>
-                <View style={profileImageStyle}>
-                    <Image
-                        style={profileImageStyle}
-                        source={{ uri: profilepath }}
-                    />
-                    {
-                        type !== 'image' &&
-                        <View>
-                            < Text style={style.name}>{people.name}</Text>
-                            <Text style={style.character}>{character}</Text>
-                        </View>
-                    }
+                <View style={profileImageContainer}>
+
+                    <Poster
+                        posterUrl={people.profile_path || people.file_path}
+                        posterStyle={profileImageStyle}
+                        posterType={type}
+                    >
+
+                        {
+                            ["people", "cast_crew"].includes(type) &&
+                            <View style={{ width: '100%' }}>
+                                <Text style={style.name}>{people.name}</Text>
+                                {character !== '' && <Text style={style.character}>{character}</Text>}
+                            </View>
+                        }
+                    </Poster>
+
                 </View>
                 {
                     visible &&
@@ -91,8 +104,6 @@ class People extends Component {
                         images={images}
                         index={people.index}
                         closeLightBox={this.closeLightBox}
-                        // renderHeader={this.renderHeader}
-                        // renderFooter={this.renderHeader}
                     />
                 }
             </TouchableOpacity >

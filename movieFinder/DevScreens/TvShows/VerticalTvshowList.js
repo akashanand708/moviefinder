@@ -23,8 +23,8 @@ class VerticalTvshowList extends React.Component {
   }
   static navigationOptions = ({ navigation }) => {
     return {
-      title: navigation.getParam('title', ''),
-      // header: null
+      // title: navigation.getParam('title', ''),
+      header: null
     };
   };
   render() {
@@ -34,8 +34,9 @@ class VerticalTvshowList extends React.Component {
         <SearchButton
           searchType={Constants.TVSHOWS}
           navigation={this.props.navigation}
+          horizontal={false}
         />
-        <View style={styles.movieListContainer}>
+        <View style={styles.verticalListContainer}>
           <RenderTvshowItem
             tvshowType={tvshowType}
             navigation={this.props.navigation}

@@ -22,16 +22,15 @@ class Movies extends React.Component {
         }
     }
 
-
     render() {
-        console.log("MOVIE RENDER......"); 
         return (
-            <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={style.linearGradient}>
+            <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={[style.linearGradient]}>
                 <SearchButton
                     searchType={Constants.MOVIE}
                     navigation={this.props.navigation}
+                    horizontal={true}
                 />
-                <ScrollView>
+                <ScrollView style={style.listScroll}>
                     <View style={style.container}>
                         <HorizontalMovieList title={Constants.TITLE.POPULAR} movieType={Constants.POPULAR_MOVIES} navigation={this.props.navigation} navigate={this.navigate} />
                         <HorizontalMovieList title={Constants.TITLE.NOWPLAYING} movieType={Constants.NOW_PLAYING_MOVIES} navigation={this.props.navigation} navigate={this.navigate} />

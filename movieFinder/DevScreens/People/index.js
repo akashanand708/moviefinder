@@ -18,8 +18,9 @@ class People extends React.Component {
         <SearchButton
           searchType={Constants.PEOPLE}
           navigation={this.props.navigation}
+          horizontal={true}
         />
-        <View style={styles.movieListContainer}>
+        <View style={[styles.movieListContainer, { marginBottom: 50 }]}>
           <RenderPeopleItem
             peopleType={Constants.POPULAR_PEOPLE}
             navigation={this.props.navigation}

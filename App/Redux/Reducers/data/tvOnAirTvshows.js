@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { TV_ONAIR_TVSHOWS, RESET_TV_ONAIR_TVSHOWS } from '../../../ActionTypes/moviesActionTypes'; 
+import { TV_ONAIR_TVSHOWS, RESET_TV_ONAIR_TVSHOWS, TV_ONAIR_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const tvOnAirTvshowsReducer = handleActions({
     [TV_ONAIR_TVSHOWS.PENDING]: (state, action) => {
@@ -34,6 +34,13 @@ const tvOnAirTvshowsReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             tvshowsFetching: false,
+            pageNo: 1
+        };
+    },
+    [TV_ONAIR_TVSHOWS_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -43,6 +50,7 @@ const tvOnAirTvshowsReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         tvshowsFetching: false,
+        pageNo: 1
 
     });
 

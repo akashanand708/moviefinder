@@ -84,17 +84,17 @@ class Poster extends Component {
     render() {
         let { posterUrl, posterType, posterStyle } = this.props;
         let { imageError, opacity, errorImageUrl, errorOpacity, imageLoading } = this.state,
-        imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
+            imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
         if (posterType === 'detail') {
             errorImageUrl = images.errorPosterDetailImage;
             imageSize = Constants.IMAGE_SIZE.BACKDROP_IMAGE_SIZE;
         }
         let movieItemPosterUrl = { uri: `${Constants.POSTER_BASE_URL}/${imageSize}/${posterUrl}` };
-        console.log("poster Image loading....", imageLoading)
         return (
             <View style={[Styles.itemContainer,
-
-            (posterType === 'detail') ? { margin: 0 } : ({ margin: 5 }, Styles.addElevation)]}>
+            (posterType === 'cast_crew') ? { borderRadius: 50,height: 100 } : {borderRadius: 5},
+            (posterType === 'people') ? { height: '100%' } : {},
+            (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
                 {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
                 {
                     !imageError &&
@@ -142,6 +142,7 @@ class Poster extends Component {
                         ]}
                     />
                 }
+                {this.props.children}
                 {
                     posterType === 'detail' &&
                     <LinearGradient ref={r => this.gradiant = r} locations={[0, 1.0]} colors=

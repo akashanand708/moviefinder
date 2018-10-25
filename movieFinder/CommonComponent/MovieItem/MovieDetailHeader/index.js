@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Linking } from 'react-native';
+import { Label } from 'native-base';
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Colors } from '../../../DevScreens/DevTheme';
@@ -18,7 +19,6 @@ class MovieDetailHeader extends React.Component {
     let releaseDate = new Date(movieDetail.release_date);
     let releaseYear = releaseDate.getFullYear();
     let votePercentage = movieDetail.vote_average;
-    console.log("VOTE PERCENTAGE.....", votePercentage);
     if (votePercentage !== undefined && votePercentage > 0) {
       votePercentage = votePercentage * 10;
     }
@@ -27,7 +27,6 @@ class MovieDetailHeader extends React.Component {
     if (movieDetail.videos && movieDetail.videos.results.length > 0) {
       trailerVideoLength = movieDetail.videos.results.length;
     }
-    console.log("Movie details.....", movieDetail);
     let genre = Utils.ConcatArrayString(movieDetail.genres),
       dateString = Utils.convertDate(movieDetail.release_date || movieDetail.first_air_date),
       country = Utils.getProductionCountryString(movieDetail.production_countries || movieDetail.origin_country),
@@ -49,27 +48,26 @@ class MovieDetailHeader extends React.Component {
           <View style={style.headerlowerRight}>
             <Text style={style.heading}>{movieDetail.title || movieDetail.original_name}</Text>
             {
-              movieDetail.tagline &&
+              movieDetail.tagline !== '' &&
               <Text style={[style.subHeading, style.taglineFontSize]}>{movieDetail.tagline}</Text>
             }
             {
-              genre &&
+              genre !== '' &&
               <Text style={style.subHeading}>{genre}</Text>
             }
-
 
             <Text style={[style.subHeading, style.releaseCountryTime]}>
               {dateString}({country})
                 {
-                runtimeStr &&
+                runtimeStr !== '  ' &&
                 <Text style={[style.runtime]}> {runtimeStr}</Text>
               }
             </Text>
 
             {
-              voteAverage &&
+              voteAverage !== '' &&
               <View style={style.alignRowLeft}>
-                <Text style={style.subHeading}>{voteAverage}</Text>
+                <View><Text style={style.subHeading}>{voteAverage}</Text></View>
                 <View style={style.movieDbMain}><Text style={style.movieDb}>MovieDB</Text></View>
               </View>
             }
@@ -77,7 +75,7 @@ class MovieDetailHeader extends React.Component {
           </View>
         </View>
         <BackButton
-          goBack={this.props.goBack}
+          navigation={this.props.navigation}
           style={style.backArrow}
         />
         <TouchableOpacity onPress={this.openTrailer} style={[style.commonBoxShadow, style.playButton]}>
@@ -92,7 +90,7 @@ class MovieDetailHeader extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    movieDetail: state.data.movieDetail.movieDetail,
+    movieDetail: state.data.movieDetail.movieDetail || {},
   };
 };
 

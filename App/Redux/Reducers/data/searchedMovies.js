@@ -1,6 +1,6 @@
 
 import { handleActions } from 'redux-actions';
-import { SEARCHED_MOVIES, RESET_SEARCHED_MOVIES } from '../../../ActionTypes/moviesActionTypes';
+import { SEARCHED_MOVIES, RESET_SEARCHED_MOVIES, SEARCHED_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const searchedMoviesReducer = handleActions({
     [SEARCHED_MOVIES.PENDING]: (state, action) => {
@@ -24,7 +24,8 @@ const searchedMoviesReducer = handleActions({
             ...state,
             moviesFetching: false,
         };
-    }, [RESET_SEARCHED_MOVIES]: (state, action) => {
+    }, 
+    [RESET_SEARCHED_MOVIES]: (state, action) => {
         return {
             ...state,
             page: 0,
@@ -32,6 +33,13 @@ const searchedMoviesReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             moviesFetching: false,
+            pageNo: 1
+        };
+    },
+    [SEARCHED_MOVIES_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -41,6 +49,7 @@ const searchedMoviesReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         moviesFetching: false,
+        pageNo: 1
 
     });
 

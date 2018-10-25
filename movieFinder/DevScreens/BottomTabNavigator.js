@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { createMaterialTopTabNavigator, StackNavigator } from 'react-navigation'
 import { ActivityIndicator, Text, View } from 'react-native'
@@ -15,18 +15,35 @@ import Trailers from '../CommonComponent/MovieItem/Trailers';
 import MovieDetailTabNavigator from '../CommonComponent/MovieItem/MovieDetailTabNavigator/MovieDetailTabNavigator';
 import SearchComponent from '../CommonComponent/SearchComponent';
 import VerticalTvshowList from './TvShows/VerticalTvshowList';
+import PeopleDetail from '../CommonComponent/People/PeopleDetail';
+import ReviewDetail from '../CommonComponent/MovieItem/MovieDetailTabNavigator/UserReviews/ReviewDetail';
 
+
+class TopBarNavigatorComponent extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      header: null
+    };
+  };
+
+  render() {
+    return <TopBarNavigator screenProps={{ navigation: this.props.navigation }} />
+  }
+}
+
+const tempMovie = (props) => (<Movies navigation={props.screenProps.navigation} />);
+const tempPeople = (props) => (<People navigation={props.screenProps.navigation} />);
+const tempTvShows = (props) => (<TvShows navigation={props.screenProps.navigation} />);
 const TopBarNavigator = createMaterialTopTabNavigator(
   {
-    Movies: { screen: Movies }, 
-    People: { screen: People },
-    TvShows: { screen: TvShows },
+    Movies: tempMovie,
+    People: tempPeople,
+    TvShows: tempTvShows,
   },
   {
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
-        console.log("ROUTE NAME....", routeName)
         let iconName;
         if (routeName === 'Movies') {
           // iconName = `film${focused ? '' : '-outline'}`;
@@ -60,22 +77,26 @@ const TopBarNavigator = createMaterialTopTabNavigator(
   }
 )
 
+
 export default StackNavigator(
   {
-    TopBarNavigator: { screen: TopBarNavigator },
+    TopBarNavigator: { screen: TopBarNavigatorComponent },
+    MovieDetailTabNavigator: { screen: MovieDetailTabNavigator },
     VerticalMovieList: { screen: VerticalMovieList },
     MovieDetail: { screen: MovieDetail },
-    MovieDetailTabNavigator: { screen: MovieDetailTabNavigator },
-    SearchComponent: {screen: SearchComponent},
+    ReviewDetail: { screen: ReviewDetail },
+    PeopleDetail: { screen: PeopleDetail },
     Trailers: { screen: Trailers },
     YoutubeVideo: { screen: YoutubeVideo },
     NetworkError: { screen: NetworkError },
     VerticalTvshowList: { screen: VerticalTvshowList },
+    SearchComponent: { screen: SearchComponent },
+
   }, {
     // headerMode: 'none',
     initialRouteName: 'TopBarNavigator',
     navigationOptions: ({ navigation }) => ({
-      title:"",
+      title: "",
       headerTintColor: Colors.headerText,
       headerStyle: { backgroundColor: Colors.silver },
     })

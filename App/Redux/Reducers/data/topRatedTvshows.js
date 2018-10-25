@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { TOP_RATED_TVSHOWS, RESET_TOP_RATED_TVSHOWS } from '../../../ActionTypes/moviesActionTypes';
+import { TOP_RATED_TVSHOWS, RESET_TOP_RATED_TVSHOWS, TOP_RATED_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const topRatedTvshowsReducer = handleActions({
     [TOP_RATED_TVSHOWS.PENDING]: (state, action) => {
@@ -34,6 +34,13 @@ const topRatedTvshowsReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             tvshowsFetching: false,
+            pageNo: 1
+        };
+    },
+    [TOP_RATED_TVSHOWS_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -43,6 +50,7 @@ const topRatedTvshowsReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         tvshowsFetching: false,
+        pageNo: 1
 
     });
 

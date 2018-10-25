@@ -13,31 +13,33 @@ class Images extends React.Component {
     render() {
         return (
             <ScrollView>
-                <View style={style.mainHorizontalContainer}>
-                    <View style={style.header}>
-                        <Text style={style.headerText}>Backdrops</Text>
-                    </View>
-                    <View style={style.movieListContainer}>
-                        <RenderImages
-                            imageType={Constants.IMAGE_TYPE.BACKDROPS}
-                            navigation={this.props.navigation}
-                            horizontal={true}
-                        />
-                    </View>
-                </View >
+                <View style={{paddingTop: 20}}>
+                    <View style={style.mainHorizontalContainer}>
+                        <View style={style.header}>
+                            <Text style={style.headerText}>Backdrops</Text>
+                        </View>
+                        <View style={style.movieListContainer}>
+                            <RenderImages
+                                imageType={Constants.IMAGE_TYPE.BACKDROPS}
+                                navigation={this.props.navigation}
+                                horizontal={true}
+                            />
+                        </View>
+                    </View >
 
-                <View style={style.mainHorizontalContainer}>
-                    <View style={style.header}>
-                        <Text style={style.headerText}>Posters</Text>
-                    </View>
-                    <View style={style.movieListContainer}>
-                        <RenderImages
-                            imageType={Constants.IMAGE_TYPE.POSTERS}
-                            navigation={this.props.navigation}
-                            horizontal={true}
-                        />
-                    </View>
-                </View >
+                    <View style={style.mainHorizontalContainer}>
+                        <View style={style.header}>
+                            <Text style={style.headerText}>Posters</Text>
+                        </View>
+                        <View style={style.movieListContainer}>
+                            <RenderImages
+                                imageType={Constants.IMAGE_TYPE.POSTERS}
+                                navigation={this.props.navigation}
+                                horizontal={true}
+                            />
+                        </View>
+                    </View >
+                </View>
             </ScrollView>
         );
     }

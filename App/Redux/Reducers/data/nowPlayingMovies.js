@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { NOW_PLAYING_MOVIES, RESET_NOW_PLAYING_MOVIES } from '../../../ActionTypes/moviesActionTypes';
+import { NOW_PLAYING_MOVIES, RESET_NOW_PLAYING_MOVIES, NOW_PLAYING_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
 
 const nowPlayingMoviesReducer = handleActions({
     [NOW_PLAYING_MOVIES.PENDING]: (state, action) => {
@@ -34,6 +34,13 @@ const nowPlayingMoviesReducer = handleActions({
             totalPages: 0,
             totalResults: 0,
             moviesFetching: false,
+            pageNo: 1
+        };
+    },
+    [NOW_PLAYING_MOVIES_PAGENO]: (state, action) => {
+        return {
+            ...state,
+            pageNo: action.payload
         };
     }
 },
@@ -43,6 +50,7 @@ const nowPlayingMoviesReducer = handleActions({
         totalPages: 0,
         totalResults: 0,
         moviesFetching: false,
+        pageNo: 1
 
     });
 
