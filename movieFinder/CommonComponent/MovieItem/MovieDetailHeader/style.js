@@ -30,7 +30,8 @@ export default StyleSheet.create({
     backgroundColor:'#081c24',
     borderColor:'#01d177',
     borderWidth:2,
-    borderRadius:10
+    borderRadius:10,
+    marginLeft: 5
 
   },
   movieDb:{

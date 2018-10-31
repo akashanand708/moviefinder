@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import MovieItemStyle from './MovieItemStyle'
 import Poster from './Poster';
 import { connect } from 'react-redux'
@@ -28,12 +28,14 @@ class MovieItem extends Component {
     render() {
         let { movieItem } = this.props;
         return (
-            <TouchableOpacity onPress={() => this.navigateToMovieDetails(movieItem)}>
-                <Poster
-                    posterUrl={movieItem.poster_path}
-                    posterStyle={MovieItemStyle.image}
-                />
-            </TouchableOpacity>
+            <View style={{ borderRadius: 5 }}>
+                <TouchableOpacity onPress={() => this.navigateToMovieDetails(movieItem)}>
+                    <Poster
+                        posterUrl={movieItem.poster_path}
+                        posterStyle={MovieItemStyle.image}
+                    />
+                </TouchableOpacity>
+            </View>
         )
     }
 }

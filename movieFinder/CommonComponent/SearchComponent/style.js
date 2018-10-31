@@ -11,7 +11,11 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     height: '100%',
-    width: '100%'
+    width: '100%',
+  },
+  searchHeader:{
+    ...ApplicationStyles.screen.addElevation,
+    backgroundColor: Colors.background
   }
 
 })

@@ -10,17 +10,17 @@ const ReviewDetail = (props) => {
             <Content>
                 <Card>
                     <CardItem header>
-                        <Text>{reviewItem.author}</Text>
+                        <Text style={[style.title]}>{reviewItem.author}</Text>
                     </CardItem>
                     <CardItem>
                         <Body>
-                            <Text>
+                            <Text style={[style.contentText, style.infoSubtitle]}>
                                 {reviewItem.content}
                             </Text>
                         </Body>
                     </CardItem>
                     <CardItem footer>
-                        <Text style={[style.underLine]} onPress={() => Linking.openURL(reviewItem.url)}>{reviewItem.url}</Text>
+                        <Text style={[style.subtitle, style.taglineFontSize, style.underLine]} onPress={() => Linking.openURL(reviewItem.url)}>{reviewItem.url}</Text>
                     </CardItem>
                 </Card>
             </Content>

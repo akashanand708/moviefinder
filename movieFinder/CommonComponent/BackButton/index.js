@@ -9,7 +9,7 @@ const BackButton = (props) => {
   return (
     <View style={[props.style, style.commonBoxShadow]}>
       <Button transparent onPress={() => props.navigation.goBack()}>
-        <Icon name="arrow-back" style={{ color: Colors.buttonIcon, fontSize: 35 }} />
+        <Icon name="arrow-back" style={{ color: Colors.buttonIcon, fontSize: 26 }} />
       </Button>
     </View>
     // <Button onPress={props.goBack} style={[props.style, style.backArrow]}>

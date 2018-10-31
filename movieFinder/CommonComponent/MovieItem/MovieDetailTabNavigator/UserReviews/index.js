@@ -9,16 +9,16 @@ class UserReviews extends React.Component {
     };
     render() {
         return (
-            <View style={style.mainHorizontalContainer}>
+            <View style={[style.mainHorizontalContainer, { paddingTop: 20, paddingLeft: 5 }]}>
                 <View style={style.header}>
                     <Text style={style.headerText}>Reviews</Text>
                 </View>
-                    <View style={style.movieListContainer}>
-                        <RenderReviews
-                            navigation={this.props.navigation}
-                            horizontal={true}
-                        />
-                    </View>
+                <View style={style.movieListContainer}>
+                    <RenderReviews
+                        navigation={this.props.navigation}
+                        horizontal={true}
+                    />
+                </View>
             </View >
         );
     }

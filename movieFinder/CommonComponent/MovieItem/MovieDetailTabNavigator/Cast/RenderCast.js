@@ -17,7 +17,7 @@ class RenderCast extends React.Component {
         let { castCrewType } = this.props;
         return <People
             people={item}
-            type="cast_crew"
+            type="cast_crew" 
             castCrewType={castCrewType}
             navigation={this.props.navigation}
         />

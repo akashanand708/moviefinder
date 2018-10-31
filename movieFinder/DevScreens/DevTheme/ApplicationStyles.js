@@ -140,8 +140,14 @@ const ApplicationStyles = {
     },
     backArrow: {
       position: 'absolute',
-      top: 45,
+      top: 15,
       left: 10
+    },
+    closeButton: {
+      position: 'absolute',
+      top: 15,
+      right: 10,
+      zIndex: 2
     },
     playButton: {
       position: 'absolute',

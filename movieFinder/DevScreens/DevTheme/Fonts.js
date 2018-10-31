@@ -67,7 +67,7 @@ const style = {
   },
   infoSubtitleFont:{
     fontFamily: type.base,
-    fontSize: size.regular
+    fontSize: size.medium
   },
   tagline:{
     fontSize: size.medium,

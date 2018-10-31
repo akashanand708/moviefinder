@@ -25,7 +25,7 @@ class RenderReviews extends React.Component {
     render() {
         let { reviews, horizontal } = this.props,
             itemDimension = 300
-        let staticDimension = 40,
+        let staticDimension = Metrics.screenWidth - 100,
             gridHeight = { height: 210 },
             spacing = 5;
 

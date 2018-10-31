@@ -85,7 +85,7 @@ class RenderPeopleItem extends React.Component {
       gridHeight = {height: Metrics.screenHeight - 150},
       spacing = 12;
     if (horizontal) {
-      staticDimension = 110;
+      staticDimension = Metrics.screenWidth -100,
       gridHeight = { height: 195 };
       spacing = 1;
     }

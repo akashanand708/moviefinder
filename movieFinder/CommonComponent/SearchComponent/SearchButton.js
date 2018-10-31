@@ -21,7 +21,7 @@ const SearchButton = (props) => {
   let { searchType, horizontal } = props;
   return (
     <View style={style.searchButtonMain}>
-      <Header searchBar rounded hasSegment>
+      <Header searchBar rounded hasSegment style={style.searchHeader}>
         <Left>
           {
             !horizontal &&

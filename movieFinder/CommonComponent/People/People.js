@@ -92,7 +92,7 @@ class People extends Component {
                             ["people", "cast_crew"].includes(type) &&
                             <View style={{ width: '100%' }}>
                                 <Text style={style.name}>{people.name}</Text>
-                                {character !== '' && <Text style={style.character}>{character}</Text>}
+                                {character !== '' && <Text style={style.character} numberOfLines={1}>{character}</Text>}
                             </View>
                         }
                     </Poster>

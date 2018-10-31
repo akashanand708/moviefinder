@@ -92,8 +92,8 @@ class Poster extends Component {
         let movieItemPosterUrl = { uri: `${Constants.POSTER_BASE_URL}/${imageSize}/${posterUrl}` };
         return (
             <View style={[Styles.itemContainer,
-            (posterType === 'cast_crew') ? { borderRadius: 50,height: 100 } : {borderRadius: 5},
-            (posterType === 'people') ? { height: '100%' } : {},
+            (posterType === 'cast_crew') ? { borderRadius: 50,height: 200 } : {borderRadius: 5},
+            (posterType === 'people') ? { height: '100%',borderRadius: 0 } : {},
             (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
                 {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
                 {

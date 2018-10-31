@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Linking } from 'react-native';
-import { Label } from 'native-base';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Colors } from '../../../DevScreens/DevTheme';
@@ -15,9 +14,7 @@ class MovieDetailHeader extends React.Component {
     this.props.navigation.navigate("Trailers");
   }
   render() {
-    let { movieDetail, movieDetailFetching, movieOrTvshow } = this.props;
-    let releaseDate = new Date(movieDetail.release_date);
-    let releaseYear = releaseDate.getFullYear();
+    let { movieDetail } = this.props;
     let votePercentage = movieDetail.vote_average;
     if (votePercentage !== undefined && votePercentage > 0) {
       votePercentage = votePercentage * 10;
@@ -27,10 +24,7 @@ class MovieDetailHeader extends React.Component {
     if (movieDetail.videos && movieDetail.videos.results.length > 0) {
       trailerVideoLength = movieDetail.videos.results.length;
     }
-    let genre = Utils.ConcatArrayString(movieDetail.genres),
-      dateString = Utils.convertDate(movieDetail.release_date || movieDetail.first_air_date),
-      country = Utils.getProductionCountryString(movieDetail.production_countries || movieDetail.origin_country),
-      runtimeStr = Utils.getRuntime(movieDetail.runtime),
+    let runtimeStr = Utils.getRuntime(movieDetail.runtime),
       voteAverage = movieDetail.vote_average ? movieDetail.vote_average + '/10' : '';
     return (
 
@@ -48,21 +42,9 @@ class MovieDetailHeader extends React.Component {
           <View style={style.headerlowerRight}>
             <Text style={style.heading}>{movieDetail.title || movieDetail.original_name}</Text>
             {
-              movieDetail.tagline !== '' &&
+              movieDetail.tagline !== '' && movieDetail.tagline !== null &&
               <Text style={[style.subHeading, style.taglineFontSize]}>{movieDetail.tagline}</Text>
             }
-            {
-              genre !== '' &&
-              <Text style={style.subHeading}>{genre}</Text>
-            }
-
-            <Text style={[style.subHeading, style.releaseCountryTime]}>
-              {dateString}({country})
-                {
-                runtimeStr !== '  ' &&
-                <Text style={[style.runtime]}> {runtimeStr}</Text>
-              }
-            </Text>
 
             {
               voteAverage !== '' &&
@@ -71,16 +53,22 @@ class MovieDetailHeader extends React.Component {
                 <View style={style.movieDbMain}><Text style={style.movieDb}>MovieDB</Text></View>
               </View>
             }
-            <Text style={[style.subHeading, style.underLine]} onPress={() => Linking.openURL(movieDetail.homepage)} >{movieDetail.homepage}</Text>
+            {
+              runtimeStr !== '  ' &&
+              <View><Text style={[style.runtime]}> {runtimeStr}</Text></View>
+            }
           </View>
         </View>
         <BackButton
           navigation={this.props.navigation}
           style={style.backArrow}
         />
-        <TouchableOpacity onPress={this.openTrailer} style={[style.commonBoxShadow, style.playButton]}>
-          <Icon name="play-circle" size={40} style={{ color: Colors.playButton }} />
-        </TouchableOpacity>
+        {
+          trailerVideoLength > 0 &&
+          <TouchableOpacity onPress={this.openTrailer} style={[style.commonBoxShadow, style.playButton]}>
+            <Icon name="play-circle" size={40} style={{ color: Colors.playButton }} />
+          </TouchableOpacity>
+        }
       </View>
 
     );
