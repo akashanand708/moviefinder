@@ -230,7 +230,6 @@ const mapDispatch = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log("STATE....", state);
     return {
         nowPlayingMoviesList: state.data.nowPlayingMovies.nowPlayingMoviesList,
         popularMoviesList: state.data.popularMovies.popularMoviesList,

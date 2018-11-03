@@ -9,16 +9,17 @@ class SuperGridSectionListCustom extends React.Component {
     static defaultProps = {
         itemDimension: 100
     }
-    //_keyExtractor = (item, index) => {console.log("INDEX.....",index);item.id};
+    _keyExtractor = (item, index) => { console.log("INDEX.....", item, item[0].id); item[0].id + index };
 
     renderItem = (item, index) => {
         return this.props.renderItem(item, index);
     }
-    refreshList = () =>{
+    refreshList = () => {
         this.props.refreshList();
     }
     render() {
         let { itemList, gridHeight, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
+
         return (
             <SuperGridSectionList
                 itemDimension={itemDimension}
@@ -33,8 +34,8 @@ class SuperGridSectionListCustom extends React.Component {
                 fixed={true}
                 onRefresh={this.refreshList}
                 refreshing={moviesFetching}
-                //keyExtractor={this.props._keyExtractor}
-                ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
+                keyExtractor={this._keyExtractor}
+                // ListFooterComponent={() => { return <ActivityIndicator animating={moviesFetching} size="large" /> }}
                 initialNumToRender={20}
                 onEndReached={() => this.props.handleEnd()}
                 onEndReachedThreshold={0.8}

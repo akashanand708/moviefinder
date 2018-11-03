@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import style from './style';
 import HorizontalMovieList from './HorizontalMovieList';
 import Constants from '../../../App/Constants/Constants';
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
 
 const Movies = (props) => {
+    let refreshing = false;
+    let apiCounter = 0;
     navigate = (movieType, title) => {
         // props.navigation.navigate('NetworkError');
         let { connectionType } = props;
@@ -21,7 +26,35 @@ const Movies = (props) => {
 
         }
     }
+    _onRefresh = () => {
+        refreshing = true;
+        props.actions.fetchMovies(1, Constants.POPULAR_MOVIES, Constants.REFRESH)
+            .then(() => {
+                apiCounter++;
+                isApiCounterFour();
+            });
+        props.actions.fetchMovies(1, Constants.NOW_PLAYING_MOVIES, Constants.REFRESH)
+            .then(() => {
+                apiCounter++;
+                isApiCounterFour();
+            });
+        props.actions.fetchMovies(1, Constants.TOP_RATED_MOVIES, Constants.REFRESH)
+            .then(() => {
+                apiCounter++;
+                isApiCounterFour();
+            });
+        props.actions.fetchMovies(1, Constants.UPCOMING_MOVIES, Constants.REFRESH)
+            .then(() => {
+                apiCounter++;
+                isApiCounterFour();
+            });
+    }
 
+    isApiCounterFour = () => {
+        if (apiCounter === 4) {
+            refreshing = false
+        }
+    }
     return (
         <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={[style.linearGradient]}>
             <SearchButton
@@ -29,7 +62,15 @@ const Movies = (props) => {
                 navigation={props.navigation}
                 horizontal={true}
             />
-            <ScrollView style={style.listScroll}>
+            <ScrollView
+                style={style.listScroll} 
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={this._onRefresh}
+                    />
+                }
+            >
                 <View style={style.container}>
                     <HorizontalMovieList title={Constants.TITLE.POPULAR} movieType={Constants.POPULAR_MOVIES} navigation={props.navigation} navigate={this.navigate} />
                     <HorizontalMovieList title={Constants.TITLE.NOWPLAYING} movieType={Constants.NOW_PLAYING_MOVIES} navigation={props.navigation} navigate={this.navigate} />
@@ -40,4 +81,11 @@ const Movies = (props) => {
         </LinearGradient>
     );
 }
-export default Movies;
+
+const mapDispatch = (dispatch) => {
+    return {
+        actions: bindActionCreators(fetchMoviesActions, dispatch),
+    };
+};
+
+export default connect(null, mapDispatch)(Movies);
