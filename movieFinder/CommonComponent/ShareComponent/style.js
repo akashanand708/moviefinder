@@ -8,11 +8,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: Colors.borderColor,
     padding:3,
-    width: 70
   },
   shareText: {
 

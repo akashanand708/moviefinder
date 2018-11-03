@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { InteractionManager, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
@@ -19,8 +19,18 @@ class RenderMovieItem extends React.Component {
         }
     }
     componentDidMount() {
-        let { pageNo } = 1;
-        let { movieType, horizontal,
+        let { movieType, horizontal } = this.props;
+        InteractionManager.runAfterInteractions(() => {
+            if (movieType !== Constants.SEARCHED_MOVIES && horizontal) {
+                this.fetchMoviesCommon("");
+            }
+        })
+
+    }
+
+    fetchMoviesCommon = (refresh) => {
+        let pageNo = 1;
+        let { movieType,
             pageNoNowPlayingPages, pageNoPopularPages,
             pageNoTopRatedPages, pageNoUpcomingPages } = this.props;
 
@@ -40,22 +50,26 @@ class RenderMovieItem extends React.Component {
             default:
                 break;
         }
-        if (movieType !== Constants.SEARCHED_MOVIES && horizontal) {
-            this.fetchMovies(pageNo);
+        if (refresh === Constants.REFRESH) {
+            pageNo = 1;
         }
+        this.fetchMovies(pageNo, refresh);
     }
 
     componentWillUnmount() {
-        this.props.actions.resetPopularMoviesState();
+        //this.props.actions.resetPopularMoviesState();
     }
-    fetchMovies = (pageNo) => {
+    fetchMovies = (pageNo, refresh) => {
         let { movieType } = this.props;
-        return this.props.actions.fetchMovies(pageNo, movieType);
+        return this.props.actions.fetchMovies(pageNo, movieType, refresh);
     }
-    fetchSearchResult = () => {
-        let { pageNoSearched } = this.props;
+    fetchSearchResult = (pageNo, refresh) => {
         let { queryString } = this.props;
-        return this.props.actions.searchMovies(queryString, pageNoSearched);
+        return this.props.actions.searchMovies(queryString, pageNo, refresh);
+    }
+    fetchSearchResultCommon = (refresh) => {
+        let pageNo = 1;
+        this.fetchSearchResult(pageNo, refresh);
     }
     handleEnd = () => {
         let { movieType, totalNowPlayingPages,
@@ -63,7 +77,7 @@ class RenderMovieItem extends React.Component {
             pageNoNowPlayingPages, pageNoPopularPages,
             pageNoTopRatedPages, pageNoUpcomingPages, pageNoSearched } = this.props;
         let totalPages = 0;
-        let pageNo = 1;
+        let pageNo = 0;
         switch (movieType) {
             case Constants.NOW_PLAYING_MOVIES:
                 totalPages = totalNowPlayingPages;
@@ -91,21 +105,50 @@ class RenderMovieItem extends React.Component {
 
         let nextPage = pageNo + 1;
         if (nextPage <= totalPages) {
+            this.props.actions.updatePageNo(movieType, nextPage);
             if (movieType !== Constants.SEARCHED_MOVIES) {
-                this.fetchMovies(nextPage)
+                this.fetchMovies(nextPage, "")
                     .then(() => {
                         this.onEndReachedCalledDuringMomentum = true;
-                        this.props.actions.updatePageNo(movieType, nextPage);
+
 
                     })
             } else {
-                this.fetchSearchResult(nextPage)
+                this.fetchSearchResult(nextPage, "")
                     .then(() => {
                         this.onEndReachedCalledDuringMomentum = true;
-                        this.props.actions.updatePageNo(movieType, nextPage);
+                        // this.props.actions.updatePageNo(movieType, nextPage);
                     })
             }
         }
+    }
+    refreshList = () => {
+        let { movieType } = this.props
+        switch (movieType) {
+            case Constants.NOW_PLAYING_MOVIES:
+                this.props.actions.resetNowPlayingMoviesState();
+                this.fetchMoviesCommon(Constants.REFRESH);
+                break;
+            case Constants.POPULAR_MOVIES:
+                this.props.actions.resetPopularMoviesState();
+                this.fetchMoviesCommon(Constants.REFRESH);
+                break;
+            case Constants.TOP_RATED_MOVIES:
+                this.props.actions.resetTopRatedMoviesState();
+                this.fetchMoviesCommon(Constants.REFRESH);
+                break;
+            case Constants.UPCOMING_MOVIES:
+                this.props.actions.resetUpcomingMoviesState();
+                this.fetchMoviesCommon(Constants.REFRESH);
+                break;
+            case Constants.SEARCHED_MOVIES:
+                this.props.actions.resetSearchedMovies();
+                this.fetchSearchResultCommon(Constants.REFRESH);
+                break;
+            default:
+                break;
+        }
+
     }
     _keyExtractor = (item, index) => item.id;
 
@@ -171,6 +214,7 @@ class RenderMovieItem extends React.Component {
                     handleEnd={this.handleEnd}
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
+                    refreshList={this.refreshList}
                     moviesFetching={moviesFetching}
                 />
             </View >
@@ -186,6 +230,7 @@ const mapDispatch = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
+    console.log("STATE....", state);
     return {
         nowPlayingMoviesList: state.data.nowPlayingMovies.nowPlayingMoviesList,
         popularMoviesList: state.data.popularMovies.popularMoviesList,

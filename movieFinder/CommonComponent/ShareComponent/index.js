@@ -8,8 +8,14 @@ import style from './style';
 import Colors from '../../DevScreens/DevTheme/Colors';
 
 class ShareComponent extends React.Component {
+  static defaultProps = {
+    color: Colors.playButton,
+    style: style.shareButton
+  }
   shareExternal = () => {
     let { sharedUrl } = this.props;
+    debugger;
+    console.log("SHARED URL.....".sharedUrl);
     Share.share(
       {
         url: sharedUrl,
@@ -29,10 +35,10 @@ class ShareComponent extends React.Component {
   }
 
   render() {
+    let { color, style } = this.props;
     return (
-      <TouchableOpacity onPress={this.shareExternal} style={[style.addElevation,style.shareButton]}>
-        <Icon name="share-alt" size={22} style={{ color: Colors.playButton }} />
-        <Text style={style.shareText}>Share</Text>
+      <TouchableOpacity onPress={this.shareExternal} style={[style]}>
+        <Icon name="share-alt" size={22} style={{ color: color }} />
       </TouchableOpacity>
     );
   }

@@ -11,26 +11,24 @@ import { bindActionCreators } from 'redux'
 import * as fetchTvshowsActions from '../../../App/Actions/fetchTvActions'
 import RenderTvshowItem from '../../CommonComponent/TvshowItem/RenderTvshowItem';
 
-class HorizontalTvshowList extends React.Component {
+const HorizontalTvshowList = (props) => {
 
-  render() {
-    let { tvshowType, title } = this.props;
-    return (
-      <View style={styles.mainHorizontalContainer}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>{title}</Text>
-          <TouchableOpacity onPress={() => this.props.navigate(tvshowType, title)}><Text style={styles.headerText} >See all</Text></TouchableOpacity>
-        </View>
-        <View style={styles.movieListContainer}>
-          <RenderTvshowItem
-            tvshowType={tvshowType}
-            navigation={this.props.navigation}
-            horizontal={true}
-          />
-        </View>
-      </View >
-    )
-  }
+  let { tvshowType, title } = props;
+  return (
+    <View style={styles.mainHorizontalContainer}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>{title}</Text>
+        <TouchableOpacity onPress={() => props.navigate(tvshowType, title)}><Text style={styles.headerText} >See all</Text></TouchableOpacity>
+      </View>
+      <View style={styles.movieListContainer}>
+        <RenderTvshowItem
+          tvshowType={tvshowType}
+          navigation={props.navigation}
+          horizontal={true}
+        />
+      </View>
+    </View >
+  )
 }
 
 

@@ -1,11 +1,11 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { InteractionManager, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchPeopleActions from '../../../App/Actions/fetchPeopleActions'
 import Constants from '../../../App/Constants/Constants';
-import {Metrics} from '../../../App/Themes';
+import { Metrics } from '../../../App/Themes';
 import People from '../../CommonComponent/People/People';
 import SuperGridSectionListCustom from '../../CommonComponent/SuperGridSectionListCustom';
 
@@ -18,23 +18,25 @@ class RenderPeopleItem extends React.Component {
   }
   componentDidMount() {
     let { peopleType } = this.props;
-    if (peopleType !== Constants.SEARCHED_PEOPLE) {
-      this.fetchPeople();
-    }
+    InteractionManager.runAfterInteractions(() => {
+      if (peopleType !== Constants.SEARCHED_PEOPLE) {
+        this.fetchPeople();
+      }
+    })
   }
 
   componentWillUnmount() {
     //this.props.actions.resetPopularMoviesState();
   }
-  fetchPeople = () => {
+  fetchPeople = (refresh) => {
     let { pageNo } = this.state;
     let { peopleType, horizontal } = this.props;
-    return this.props.actions.fetchPeople(pageNo, peopleType, horizontal);
+    return this.props.actions.fetchPeople(pageNo, peopleType, horizontal, refresh);
   }
-  fetchSearchResult = () => {
+  fetchSearchResult = (refresh) => {
     let { pageNo } = this.state;
     let { queryString } = this.props;
-    return this.props.actions.searchPeople(queryString, pageNo);
+    return this.props.actions.searchPeople(queryString, pageNo,refresh);
   }
   handleEnd = () => {
     let { peopleType, totalPages, horizontal, searchedTotalPages } = this.props;
@@ -54,7 +56,6 @@ class RenderPeopleItem extends React.Component {
     let nextPage = this.state.pageNo + 1;
     if (nextPage <= totalPages) {
       this.setState(state => ({ pageNo: state.pageNo + 1 }), () => {
-
         if (peopleType !== Constants.SEARCHED_PEOPLE) {
           this.fetchPeople()
             .then(() => {
@@ -78,15 +79,28 @@ class RenderPeopleItem extends React.Component {
       navigation={this.props.navigation}
     />
   }
+  refreshList = () => {
+    let { peopleType } = this.props;
+    this.props.actions.resetPeopleState();
+    InteractionManager.runAfterInteractions(() => {
+      if (peopleType !== Constants.SEARCHED_PEOPLE) {
+        this.props.actions.resetPeopleState();
+        this.setState({ pageNo: 1 }, () => this.fetchPeople(Constants.REFRESH));
+      } else {
+        this.props.actions.resetSearchedPeople();
+        this.setState({ pageNo: 1 }, () => this.fetchSearchResult(Constants.REFRESH));
+      }
+    })
+  }
   render() {
     let { searchedPeopleFetching, searchedPeopleList, peopleList, peopleFetching, horizontal,
       peopleType } = this.props;
-      let staticDimension = Metrics.screenWidth,
-      gridHeight = {height: Metrics.screenHeight - 150},
+    let staticDimension = Metrics.screenWidth,
+      gridHeight = { height: Metrics.screenHeight - 150 },
       spacing = 12;
     if (horizontal) {
-      staticDimension = Metrics.screenWidth -100,
-      gridHeight = { height: 195 };
+      staticDimension = Metrics.screenWidth - 100,
+        gridHeight = { height: 195 };
       spacing = 1;
     }
     if (horizontal) {
@@ -117,8 +131,9 @@ class RenderPeopleItem extends React.Component {
           staticDimension={staticDimension}
           handleEnd={this.handleEnd}
           renderItem={this.renderItem}
+          refreshList={this.refreshList}
           navigation={this.props.navigation}
-          peopleFetching={peopleFetching}
+          moviesFetching={peopleFetching}
         />
       </View>
 

@@ -4,7 +4,7 @@ import * as fetchPeopleApis from '../../movie-finder-endpoints';
 import {
     PEOPLE, PEOPLE_DETAIL,
     POPULAR_PEOPLE, LATEST_PEOPLE, RESET_PEOPLE_DETAIL,
-    RESET_SEARCHED_PEOPLE, SEARCHED_PEOPLE
+    RESET_SEARCHED_PEOPLE, SEARCHED_PEOPLE, RESET_PEOPLE
 } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import Constants from '../Constants/Constants';
@@ -21,12 +21,12 @@ export const resetSearchedPeople = () => {
         dispatch({ type: RESET_SEARCHED_PEOPLE });
     }
 }
-export const searchPeople = (queryString, pageNo) => {
+export const searchPeople = (queryString, pageNo, refresh) => {
     return (dispatch) => {
         dispatch({ type: SEARCHED_PEOPLE.PENDING })
         return fetchPeopleApis.searchPeople(queryString, pageNo)
             .then((response) => {
-                dispatch({ type: SEARCHED_PEOPLE.SUCCESS, payload: response.data });
+                dispatch({ type: SEARCHED_PEOPLE.SUCCESS, payload: { searchPeopleList: response.data, refresh } });
                 //dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[peopleType] }));
                 return response;
             }).catch((error) => {
@@ -37,7 +37,7 @@ export const searchPeople = (queryString, pageNo) => {
     }
 }
 
-export const fetchPeople = (pageNo, peopleType, horizontal) => {
+export const fetchPeople = (pageNo, peopleType, horizontal, refresh) => {
     return (dispatch) => {
         if (horizontal) {
             switch (peopleType) {
@@ -58,16 +58,16 @@ export const fetchPeople = (pageNo, peopleType, horizontal) => {
                 if (horizontal) {
                     switch (peopleType) {
                         case Constants.POPULAR_PEOPLE:
-                            dispatch({ type: POPULAR_PEOPLE.SUCCESS, payload: response.data });
+                            dispatch({ type: POPULAR_PEOPLE.SUCCESS, payload: { peopleList: response.data, refresh } });
                             break;
                         case Constants.LATEST_PEOPLE:
-                            dispatch({ type: LATEST_PEOPLE.SUCCESS, payload: response.data });
+                            dispatch({ type: LATEST_PEOPLE.SUCCESS, payload: { peopleList: response.data, refresh } });
                             break;
                         default:
                             break;
                     }
                 } else {
-                    dispatch({ type: PEOPLE.SUCCESS, payload: response.data });
+                    dispatch({ type: PEOPLE.SUCCESS, payload: { peopleList: response.data, refresh } });
                 }
                 // dispatch({ type: NavigationActions.NAVIGATE, routName: ROUTE_NAME[peopleType] })
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[peopleType] }));
@@ -93,11 +93,11 @@ export const fetchPeople = (pageNo, peopleType, horizontal) => {
     }
 }
 
-// export const resetPopularPeopleState = () => {
-//     return (dispatch) => {
-//         dispatch({ type: RESET_PEOPLE });
-//     }
-// }
+export const resetPeopleState = () => {
+    return (dispatch) => {
+        dispatch({ type: RESET_PEOPLE });
+    }
+}
 
 
 export const fetchPeopleDetail = (peopleId) => {

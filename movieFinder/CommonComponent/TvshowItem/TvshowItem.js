@@ -6,46 +6,41 @@ import Poster from '../MovieItem/Poster';
 import { connect } from 'react-redux'
 import Constants from '../../../App/Constants/Constants';
 
-class TvshowItem extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.tvshowItem.title !== nextProps.tvshowItem.title) {
-            return true;
-        }
-        return false;
-    }
-    navigateToMovieDetails = (tvshowItem) => {
-        let { connectionType } = this.props;
+const TvshowItem = (props) => {
+
+    let navigateToMovieDetails = (tvshowItem) => {
+        let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            this.props.navigation.navigate('NetworkError');
+            props.navigation.navigate('NetworkError');
         } else {
-            this.props.navigation.navigate({
+            props.navigation.navigate({
                 key: 'MovieDetail',
                 routeName: 'MovieDetail',
-                params: { movieId: tvshowItem.id, movieName: tvshowItem.name,movieOrTvshow:Constants.TVSHOWS }
+                params: { movieId: tvshowItem.id, movieName: tvshowItem.name, movieOrTvshow: Constants.TVSHOWS }
             })
         }
     }
-    render() {
-        let { tvshowItem } = this.props;
-        return (
-            <TouchableOpacity onPress={() => this.navigateToMovieDetails(tvshowItem)}>
-                <Poster
-                    posterUrl={tvshowItem.poster_path}
-                    posterStyle={TvshowItemStyle.image}
-                />
-            </TouchableOpacity>
-        )
-    }
+    console.log("Render TV SHOWS item.........");
+    let { tvshowItem } = props;
+    return (
+        <TouchableOpacity onPress={() => navigateToMovieDetails(tvshowItem)}>
+            <Poster
+                posterUrl={tvshowItem.poster_path}
+                posterStyle={TvshowItemStyle.image}
+            />
+        </TouchableOpacity>
+    )
 }
 TvshowItem.propTypes = {
     TvshowItem: PropTypes.object
 }
 
 
-const mapStateToProps = (state) => {
-    return {
-        connectionType: state.ui.networkInfo.connectionType
-    };
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         connectionType: state.ui.networkInfo.connectionType
+//     };
+// };
 
-export default connect(mapStateToProps, null)(TvshowItem);
+// export default connect(mapStateToProps, null)(TvshowItem);
+export default TvshowItem;

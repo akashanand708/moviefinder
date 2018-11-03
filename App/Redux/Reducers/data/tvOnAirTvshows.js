@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { TV_ONAIR_TVSHOWS, RESET_TV_ONAIR_TVSHOWS, TV_ONAIR_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const tvOnAirTvshowsReducer = handleActions({
     [TV_ONAIR_TVSHOWS.PENDING]: (state, action) => {
@@ -9,14 +10,20 @@ const tvOnAirTvshowsReducer = handleActions({
         };
     },
     [TV_ONAIR_TVSHOWS.SUCCESS]: (state, action) => {
-        // let results = _.keyBy(action.payload.results, 'id');
-        let results = action.payload.results;
+        let results = action.payload.tvshowList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.tvOnAirTvshowsList, ...results]
+        }
         return {
             ...state,
-            page: action.payload.page,
-            tvOnAirTvshowsList: [...state.tvOnAirTvshowsList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            page: action.payload.tvshowList.page,
+            tvOnAirTvshowsList: updatedList,
+            totalPages: action.payload.tvshowList.total_pages,
+            totalResults: action.payload.tvshowList.total_results,
             tvshowsFetching: false,
         };
     },
@@ -49,7 +56,7 @@ const tvOnAirTvshowsReducer = handleActions({
         tvOnAirTvshowsList: [],
         totalPages: 0,
         totalResults: 0,
-        tvshowsFetching: false,
+        tvshowsFetching: false, 
         pageNo: 1
 
     });

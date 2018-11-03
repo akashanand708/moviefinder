@@ -8,8 +8,31 @@ import People from '../../../People/People';
 import SuperGridSectionListCustom from '../../../SuperGridSectionListCustom';
 
 const PROFILE_PIC_URL = Constants.POSTER_BASE_URL;
+
 class RenderImages extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.counterIndex = 0;
+        this.itemList = this.prepareItemList();
+        this.renderImageInterval = null;
+    }
+    // componentDidMount() {
+    //     this.renderImageInterval = setInterval(() => {
+    //         if (this.counterIndex <= (this.itemList.length - 1)) {
+    //             if (this.renderImageListRef) {
+    //                 let itemIndex = this.counterIndex;
+    //                 this.renderImageListRef.scrollToItem(itemIndex);
+    //                 this.counterIndex++;
+    //             }
+    //         } else {
+    //             this.counterIndex = 0;
+    //         }
+    //     }, 1500)
+    // }
+    // componentWillUnmount() {
+    //     this.renderImageInterval = null;
+    // }
     handleEnd = () => {
 
     }
@@ -47,29 +70,17 @@ class RenderImages extends React.Component {
             navigation={this.props.navigation}
         />
     }
-    render() {
-        let { images, imageType, horizontal } = this.props,
-            imageSize = '';
-        itemDimension = 100;
+
+    prepareItemList = () => {
+        let { images, imageType } = this.props;
         let imageList = [];
-        let staticDimension = 0,
-            gridHeight = {},
-            spacing = 20;
-        if (horizontal) {
-            staticDimension = 70;
-            gridHeight = { height: 140 };
-            spacing = 1;
-        }
+
         switch (imageType) {
             case Constants.IMAGE_TYPE.BACKDROPS:
                 imageList = images.backdrops || [];
-                itemDimension = 190;
-                // imageSize = Constants.IMAGE_SIZE.IMG_TAB_BACKDROP_SIZE;
                 break;
             case Constants.IMAGE_TYPE.POSTERS:
                 imageList = images.posters || [];
-                itemDimension = 75
-                // imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
                 break;
             default:
                 break;
@@ -81,6 +92,22 @@ class RenderImages extends React.Component {
                 index: index
             };
         })
+        return imageList;
+    }
+    render() {
+        let { images, imageType, horizontal } = this.props,
+            imageSize = '';
+        itemDimension = 100;
+        let imageList = this.prepareItemList();
+        let staticDimension = 0,
+            gridHeight = {},
+            spacing = 20;
+        if (horizontal) {
+            staticDimension = 70;
+            gridHeight = { height: 140 };
+            spacing = 1;
+        }
+
 
         return (
             <View>
@@ -90,6 +117,7 @@ class RenderImages extends React.Component {
                 <SuperGridSectionListCustom
                     itemList={imageList}
                     gridHeight={gridHeight}
+                    ref={(ref) => { this.renderImageListRef = ref; }}
                     spacing={spacing}
                     horizontal={horizontal}
                     staticDimension={staticDimension}
@@ -108,7 +136,7 @@ class RenderImages extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        images: _.get(state, 'data.movieDetail.movieDetail.images', {backdrops:[],posters:[]})
+        images: _.get(state, 'data.movieDetail.movieDetail.images', { backdrops: [], posters: [] })
     };
 };
 export default connect(mapStateToProps, null)(RenderImages);

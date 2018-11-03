@@ -11,26 +11,24 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 
-class HorizontalMovieList extends React.Component {
+const HorizontalMovieList = (props) => {
 
-  render() {
-    let { movieType, title } = this.props;
-    return (
-      <View style={styles.mainHorizontalContainer}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>{title}</Text>
-          <TouchableOpacity onPress={() => this.props.navigate(movieType, title)}><Text style={styles.headerText} >See all</Text></TouchableOpacity>
-        </View>
-        <View style={styles.movieListContainer}>
-          <RenderMovieItem
-            movieType={movieType}
-            navigation={this.props.navigation}
-            horizontal={true}
-          />
-        </View>
-      </View >
-    )
-  }
+  let { movieType, title } = props;
+  return (
+    <View style={styles.mainHorizontalContainer}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>{title}</Text>
+        <TouchableOpacity onPress={() => props.navigate(movieType, title)}><Text style={styles.headerText} >See all</Text></TouchableOpacity>
+      </View>
+      <View style={styles.movieListContainer}>
+        <RenderMovieItem
+          movieType={movieType}
+          navigation={props.navigation}
+          horizontal={true}
+        />
+      </View>
+    </View >
+  )
 }
 
 

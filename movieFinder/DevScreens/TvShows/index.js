@@ -6,14 +6,14 @@ import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
 import Constants from '../../../App/Constants/Constants';
 import HorizontalTvshowList from './HorizontalTvshowList';
 
-class TvShows extends React.Component {
+const TvShows = (props) => {
     navigate = (tvshowType, title) => {
-        // this.props.navigation.navigate('NetworkError');
-        let { connectionType } = this.props;
+        // props.navigation.navigate('NetworkError');
+        let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            this.props.navigation.navigate('NetworkError');
+            props.navigation.navigate('NetworkError');
         } else {
-            this.props.navigation.navigate({
+            props.navigation.navigate({
                 key: tvshowType,
                 routeName: 'VerticalTvshowList',
                 params: { tvshowType: tvshowType, title: title }
@@ -21,25 +21,23 @@ class TvShows extends React.Component {
 
         }
     }
-    render() {
-        return (
-            <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={style.linearGradient}>
-                <SearchButton
-                    searchType={Constants.TVSHOWS}
-                    navigation={this.props.navigation}
-                    horizontal={true}
-                />
-                <ScrollView style={style.listScroll}>
-                    <View style={style.container}>
-                        <HorizontalTvshowList title={Constants.TVSHOW_TITLE.POPULAR} tvshowType={Constants.POPULAR_TVSHOWS} navigation={this.props.navigation} navigate={this.navigate} />
-                        <HorizontalTvshowList title={Constants.TVSHOW_TITLE.TOP_RATED} tvshowType={Constants.TOP_RATED_TVSHOWS} navigation={this.props.navigation} navigate={this.navigate} />
-                        <HorizontalTvshowList title={Constants.TVSHOW_TITLE.ON_AIR} tvshowType={Constants.TV_ONAIR_TVSHOWS} navigation={this.props.navigation} navigate={this.navigate} />
-                        <HorizontalTvshowList title={Constants.TVSHOW_TITLE.AIRING} tvshowType={Constants.TV_ARIVING_TVSHOWS} navigation={this.props.navigation} navigate={this.navigate} />
-                    </View>
-                </ScrollView>
-            </LinearGradient>
-        );
-    }
+    return (
+        <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={style.linearGradient}>
+            <SearchButton
+                searchType={Constants.TVSHOWS}
+                navigation={props.navigation}
+                horizontal={true}
+            />
+            <ScrollView style={style.listScroll}>
+                <View style={style.container}>
+                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.POPULAR} tvshowType={Constants.POPULAR_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.TOP_RATED} tvshowType={Constants.TOP_RATED_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.ON_AIR} tvshowType={Constants.TV_ONAIR_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.AIRING} tvshowType={Constants.TV_ARIVING_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
+                </View>
+            </ScrollView>
+        </LinearGradient>
+    );
 }
 
 export default TvShows;

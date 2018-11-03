@@ -1,6 +1,7 @@
 
 import { handleActions } from 'redux-actions';
 import { SEARCHED_TVSHOWS, RESET_SEARCHED_TVSHOWS, SEARCHED_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const searchedTvshowsReducer = handleActions({
     [SEARCHED_TVSHOWS.PENDING]: (state, action) => {
@@ -10,12 +11,20 @@ const searchedTvshowsReducer = handleActions({
         };
     },
     [SEARCHED_TVSHOWS.SUCCESS]: (state, action) => {
-        let results = action.payload.results;
+        let results = action.payload.searchTvshowList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.searchedTvshowsList, ...results]
+        }
         return {
-            page: action.payload.page,
-            searchedTvshowsList: [...state.searchedTvshowsList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            ...state,
+            page: action.payload.searchTvshowList.page,
+            searchedTvshowsList: updatedList,
+            totalPages: action.payload.searchTvshowList.total_pages,
+            totalResults: action.payload.searchTvshowList.total_results,
             tvshowsFetching: false,
         };
     },

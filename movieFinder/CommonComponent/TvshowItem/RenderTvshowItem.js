@@ -1,10 +1,10 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { InteractionManager, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchTvActions from '../../../App/Actions/fetchTvActions'
-import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner'; 
+import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
 import style from './TvshowItemStyle';
 import { Metrics } from '../../../App/Themes';
 import SuperGridSectionListCustom from '../SuperGridSectionListCustom';
@@ -19,8 +19,24 @@ class RenderTvshowItem extends React.Component {
         }
     }
     componentDidMount() {
+        let { tvshowType, horizontal } = this.props;
+        InteractionManager.runAfterInteractions(() => {
+            if (tvshowType !== Constants.SEARCHED_TVSHOWS && horizontal) {
+                this.fetchTvshowsCommon("")
+            }
+        })
+    }
+
+    componentWillUnmount() {
+       // this.props.actions.resetPopularTvshowsState();
+    }
+    fetchTvshows = (pageNo, refresh) => {
+        let { tvshowType } = this.props;
+        return this.props.actions.fetchTvshows(pageNo, tvshowType, refresh);
+    }
+    fetchTvshowsCommon = (refresh) => {
         let { pageNo } = 1;
-        let { tvshowType, horizontal,
+        let { tvshowType,
             pageNoPopularPages, pageNoArivingPages, pageNoTopRatedPages,
             pageNoOnairPages } = this.props;
 
@@ -41,22 +57,15 @@ class RenderTvshowItem extends React.Component {
             default:
                 break;
         }
-        if (tvshowType !== Constants.SEARCHED_TVSHOWS && horizontal) {
-            this.fetchTvshows(pageNo);
-        }
+        this.fetchTvshows(pageNo, refresh);
     }
-
-    componentWillUnmount() {
-        this.props.actions.resetPopularTvshowsState();
-    }
-    fetchTvshows = (pageNo) => {
-        let { tvshowType } = this.props;
-        return this.props.actions.fetchTvshows(pageNo, tvshowType);
-    }
-    fetchSearchResult = () => {
-        let { pageNoSearched } = this.props;
+    fetchSearchResult = (pageNo, refresh) => {
         let { queryString } = this.props;
-        return this.props.actions.searchTvshows(queryString, pageNoSearched);
+        return this.props.actions.searchTvshows(queryString, pageNo, refresh);
+    }
+    fetchSearchResultCommon = (refresh) => {
+        let pageNo = 1;
+        this.fetchSearchResult(pageNo, refresh);
     }
     handleEnd = () => {
         let { tvshowType, totalOnairPages,
@@ -66,7 +75,7 @@ class RenderTvshowItem extends React.Component {
             pageNoOnairPages, pageNoSearched } = this.props;
         let totalPages = 0;
         let pageNo = -1;
-        
+
         switch (tvshowType) {
             case Constants.TV_ARIVING_TVSHOWS:
                 totalPages = totalArivingPages;
@@ -93,17 +102,16 @@ class RenderTvshowItem extends React.Component {
         }
         let nextPage = pageNo + 1;
         if (nextPage <= totalPages) {
+            this.props.actions.updateTvshowsPageNo(tvshowType, nextPage);
             if (tvshowType !== Constants.SEARCHED_TVSHOWS) {
-                this.fetchTvshows(nextPage)
+                this.fetchTvshows(nextPage, "")
                     .then(() => {
                         this.onEndReachedCalledDuringMomentum = true;
-                        this.props.actions.updateTvshowsPageNo(tvshowType, nextPage);
                     })
             } else {
-                this.fetchSearchResult(nextPage)
+                this.fetchSearchResult(nextPage, "")
                     .then(() => {
                         this.onEndReachedCalledDuringMomentum = true;
-                        this.props.actions.updateTvshowsPageNo(tvshowType, nextPage);
                     })
             }
         }
@@ -115,6 +123,33 @@ class RenderTvshowItem extends React.Component {
             tvshowItem={item}
             navigation={this.props.navigation}
         />
+    }
+    refreshList = () => {
+        let { tvshowType } = this.props
+        switch (tvshowType) {
+            case Constants.TV_ARIVING_TVSHOWS:
+                this.props.actions.resetTvairingTvshowsState();
+                this.fetchTvshowsCommon(Constants.REFRESH);
+                break;
+            case Constants.POPULAR_TVSHOWS:
+                this.props.actions.resetPopularTvshowsState();
+                this.fetchTvshowsCommon(Constants.REFRESH);
+                break;
+            case Constants.TOP_RATED_TVSHOWS:
+                this.props.actions.resetTopRatedTvshowsState();
+                this.fetchTvshowsCommon(Constants.REFRESH);
+                break;
+            case Constants.TV_ONAIR_TVSHOWS:
+                this.props.actions.resetTvonAirTvshowsState();
+                this.fetchTvshowsCommon(Constants.REFRESH);
+                break;
+            case Constants.SEARCHED_TVSHOWS:
+                this.props.actions.resetSearchedTvshows();
+                this.fetchSearchResultCommon(Constants.REFRESH);
+                break;
+            default:
+                break;
+        }
     }
     render() {
         let { horizontal,
@@ -171,7 +206,8 @@ class RenderTvshowItem extends React.Component {
                     handleEnd={this.handleEnd}
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
-                    tvshowsFetching={tvshowsFetching}
+                    refreshList={this.refreshList}
+                    moviesFetching={tvshowsFetching}
                 />
             </View>
 
@@ -208,7 +244,7 @@ const mapStateToProps = (state) => {
         topRatedTvshowsFetching: state.data.topRatedTvshows.tvshowsFetching,
         onairTvshowsFetching: state.data.tvOnAirTvshows.tvshowsFetching,
 
-        searchedTvshowsList: _.get(state,'data.searchedTvshows.searchedTvshowsList',[]),
+        searchedTvshowsList: _.get(state, 'data.searchedTvshows.searchedTvshowsList', []),
         searchedTvshowsFetching: state.data.searchedTvshows.tvshowsFetching,
         searchedTotalPages: state.data.searchedTvshows.totalPages,
     };

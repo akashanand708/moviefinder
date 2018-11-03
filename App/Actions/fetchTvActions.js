@@ -48,12 +48,12 @@ export const resetSearchedTvshows = () => {
         dispatch({ type: RESET_SEARCHED_TVSHOWS });
     }
 }
-export const searchTvshows = (queryString, pageNo) => {
+export const searchTvshows = (queryString, pageNo, refresh) => {
     return (dispatch) => {
         dispatch({ type: SEARCHED_TVSHOWS.PENDING })
         return fetchTvshowsApis.searchTvshows(queryString, pageNo)
             .then((response) => {
-                dispatch({ type: SEARCHED_TVSHOWS.SUCCESS, payload: response.data });
+                dispatch({ type: SEARCHED_TVSHOWS.SUCCESS, payload: { searchTvshowList: response.data, refresh } });
                 //dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[TvshowsType] }));
                 return response;
             }).catch((error) => {
@@ -64,7 +64,7 @@ export const searchTvshows = (queryString, pageNo) => {
     }
 }
 
-export const fetchTvshows = (pageNo, TvshowsType) => {
+export const fetchTvshows = (pageNo, TvshowsType, refresh) => {
     return (dispatch) => {
         switch (TvshowsType) {
             case Constants.POPULAR_TVSHOWS:
@@ -87,16 +87,16 @@ export const fetchTvshows = (pageNo, TvshowsType) => {
             .then((response) => {
                 switch (TvshowsType) {
                     case Constants.POPULAR_TVSHOWS:
-                        dispatch({ type: POPULAR_TVSHOWS.SUCCESS, payload: response.data });
+                        dispatch({ type: POPULAR_TVSHOWS.SUCCESS, payload: { tvshowList: response.data, refresh } });
                         break;
                     case Constants.TOP_RATED_TVSHOWS:
-                        dispatch({ type: TOP_RATED_TVSHOWS.SUCCESS, payload: response.data });
+                        dispatch({ type: TOP_RATED_TVSHOWS.SUCCESS, payload: { tvshowList: response.data, refresh } });
                         break;
                     case Constants.TV_ONAIR_TVSHOWS:
-                        dispatch({ type: TV_ONAIR_TVSHOWS.SUCCESS, payload: response.data });
+                        dispatch({ type: TV_ONAIR_TVSHOWS.SUCCESS, payload: { tvshowList: response.data, refresh } });
                         break;
                     case Constants.TV_ARIVING_TVSHOWS:
-                        dispatch({ type: TV_ARIVING_TVSHOWS.SUCCESS, payload: response.data });
+                        dispatch({ type: TV_ARIVING_TVSHOWS.SUCCESS, payload: { tvshowList: response.data, refresh } });
                         break;
                     default:
                         break;
@@ -131,7 +131,22 @@ export const fetchTvshows = (pageNo, TvshowsType) => {
 
 export const resetPopularTvshowsState = () => {
     return (dispatch) => {
-        dispatch({ type: RESET_TVSHOWS });
+        dispatch({ type: RESET_POPULAR_TVSHOWS });
+    }
+}
+export const resetTopRatedTvshowsState = () => {
+    return (dispatch) => {
+        dispatch({ type: RESET_TOP_RATED_TVSHOWS });
+    }
+}
+export const resetTvonAirTvshowsState = () => {
+    return (dispatch) => {
+        dispatch({ type: RESET_TV_ONAIR_TVSHOWS });
+    }
+}
+export const resetTvairingTvshowsState = () => {
+    return (dispatch) => {
+        dispatch({ type: RESET_TV_ARIVING_TVSHOWS });
     }
 }
 

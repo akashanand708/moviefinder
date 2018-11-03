@@ -1,6 +1,7 @@
 
 import { handleActions } from 'redux-actions';
 import { SEARCHED_PEOPLE, RESET_SEARCHED_PEOPLE } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const searchedPeopleReducer = handleActions({
     [SEARCHED_PEOPLE.PENDING]: (state, action) => {
@@ -10,12 +11,20 @@ const searchedPeopleReducer = handleActions({
         };
     },
     [SEARCHED_PEOPLE.SUCCESS]: (state, action) => {
-        let results = action.payload.results;
+        let results = action.payload.searchPeopleList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.searchedPeopleList, ...results]
+        }
         return {
-            page: action.payload.page,
-            searchedPeopleList: [...state.searchedPeopleList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            ...state,
+            page: action.payload.searchPeopleList.page,
+            searchedPeopleList: updatedList,
+            totalPages: action.payload.searchPeopleList.total_pages,
+            totalResults: action.payload.searchPeopleList.total_results,
             peopleFetching: false,
         };
     },

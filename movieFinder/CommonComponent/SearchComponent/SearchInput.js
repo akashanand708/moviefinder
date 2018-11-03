@@ -14,9 +14,6 @@ class SearchInput extends React.Component {
       queryString: ''
     }
   }
-  componentDidMount() {
-    this.refs.searchInputBox._root.focus();
-  }
 
 
   render() {
@@ -33,12 +30,18 @@ class SearchInput extends React.Component {
           <Body>
             <Item>
               <Icon name="ios-search" style={{ color: Colors.buttonIcon }} />
-              <Input ref={"searchInputBox"} placeholder={`Search ${searchType}...`} />
+              <Input
+                ref={"searchInputBox"}
+                autoFocus={true}
+                placeholder={`Search...`}
+                returnKeyType='search'
+                onSubmitEditing={this.props.fetchSearchResult}
+                clearButtonMode="while-editing" />
             </Item>
           </Body>
           <Right>
             <Button transparent onPress={this.props.fetchSearchResult}>
-              <Icon name="ios-search" style={{ color: Colors.buttonIcon, fontSize: 35 }} />
+              <Icon name="close" style={{ color: Colors.buttonIcon }} />
             </Button>
           </Right>
         </Header>

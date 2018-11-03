@@ -22,6 +22,13 @@ class Poster extends Component {
         this.posterInterval = null;
         this.errorInterval = null;
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.posterUrl === nextProps.posterUrl) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     // TODO componentWillMount() {
     //     let { posterUrl } = this.props;
     //     let { posterStyle } = this.state;

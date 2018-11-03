@@ -34,7 +34,7 @@ const SearchButton = (props) => {
         <Body>
           <Item>
             <Icon name="ios-search" style={{ color: colors.buttonIcon }} />
-            <Input editable={false} placeholder={`Search ${searchType}...`} />
+            <Input editable={false} placeholder={`Search...`} />
           </Item>
           <TouchableOpacity style={style.searchButton} onPress={() => this.navigateToSearch(searchType)} />
         </Body>

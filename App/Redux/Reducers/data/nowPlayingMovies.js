@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { NOW_PLAYING_MOVIES, RESET_NOW_PLAYING_MOVIES, NOW_PLAYING_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const nowPlayingMoviesReducer = handleActions({
     [NOW_PLAYING_MOVIES.PENDING]: (state, action) => {
@@ -9,14 +10,20 @@ const nowPlayingMoviesReducer = handleActions({
         };
     },
     [NOW_PLAYING_MOVIES.SUCCESS]: (state, action) => {
-        // let results = _.keyBy(action.payload.results, 'id');
-        let results = action.payload.results;
+        let results = action.payload.movieList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.nowPlayingMoviesList, ...results]
+        }
         return {
             ...state,
-            page: action.payload.page,
-            nowPlayingMoviesList: [...state.nowPlayingMoviesList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            page: action.payload.movieList.page,
+            nowPlayingMoviesList: updatedList,
+            totalPages: action.payload.movieList.total_pages,
+            totalResults: action.payload.movieList.total_results,
             moviesFetching: false,
         };
     },

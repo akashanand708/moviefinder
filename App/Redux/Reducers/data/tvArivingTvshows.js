@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { TV_ARIVING_TVSHOWS, RESET_TV_ARIVING_TVSHOWS, TV_ARIVING_TVSHOWS_PAGENO } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const tvArivingTvshowsReducer = handleActions({
     [TV_ARIVING_TVSHOWS.PENDING]: (state, action) => {
@@ -9,14 +10,20 @@ const tvArivingTvshowsReducer = handleActions({
         };
     },
     [TV_ARIVING_TVSHOWS.SUCCESS]: (state, action) => {
-        // let results = _.keyBy(action.payload.results, 'id');
-        let results = action.payload.results;
+        let results = action.payload.tvshowList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.tvArivingTvshowsList, ...results]
+        }
         return {
             ...state,
-            page: action.payload.page,
-            tvArivingTvshowsList: [...state.tvArivingTvshowsList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            page: action.payload.tvshowList.page,
+            tvArivingTvshowsList: updatedList,
+            totalPages: action.payload.tvshowList.total_pages,
+            totalResults: action.payload.tvshowList.total_results,
             tvshowsFetching: false,
         };
     },

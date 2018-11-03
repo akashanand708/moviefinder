@@ -6,14 +6,14 @@ import HorizontalMovieList from './HorizontalMovieList';
 import Constants from '../../../App/Constants/Constants';
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
 
-class Movies extends React.Component {
+const Movies = (props) => {
     navigate = (movieType, title) => {
-        // this.props.navigation.navigate('NetworkError');
-        let { connectionType } = this.props;
+        // props.navigation.navigate('NetworkError');
+        let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            this.props.navigation.navigate('NetworkError');
+            props.navigation.navigate('NetworkError');
         } else {
-            this.props.navigation.navigate({
+            props.navigation.navigate({
                 key: movieType,
                 routeName: 'VerticalMovieList',
                 params: { movieType: movieType, title: title }
@@ -22,24 +22,22 @@ class Movies extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={[style.linearGradient]}>
-                <SearchButton
-                    searchType={Constants.MOVIE}
-                    navigation={this.props.navigation}
-                    horizontal={true}
-                />
-                <ScrollView style={style.listScroll}>
-                    <View style={style.container}>
-                        <HorizontalMovieList title={Constants.TITLE.POPULAR} movieType={Constants.POPULAR_MOVIES} navigation={this.props.navigation} navigate={this.navigate} />
-                        <HorizontalMovieList title={Constants.TITLE.NOWPLAYING} movieType={Constants.NOW_PLAYING_MOVIES} navigation={this.props.navigation} navigate={this.navigate} />
-                        <HorizontalMovieList title={Constants.TITLE.TOP_RATED} movieType={Constants.TOP_RATED_MOVIES} navigation={this.props.navigation} navigate={this.navigate} />
-                        <HorizontalMovieList title={Constants.TITLE.UPCOMING} movieType={Constants.UPCOMING_MOVIES} navigation={this.props.navigation} navigate={this.navigate} />
-                    </View>
-                </ScrollView>
-            </LinearGradient>
-        );
-    }
+    return (
+        <LinearGradient colors={['#FFFFFF', '#D8D8D8', '#B0B0B0']} style={[style.linearGradient]}>
+            <SearchButton
+                searchType={Constants.MOVIE}
+                navigation={props.navigation}
+                horizontal={true}
+            />
+            <ScrollView style={style.listScroll}>
+                <View style={style.container}>
+                    <HorizontalMovieList title={Constants.TITLE.POPULAR} movieType={Constants.POPULAR_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalMovieList title={Constants.TITLE.NOWPLAYING} movieType={Constants.NOW_PLAYING_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalMovieList title={Constants.TITLE.TOP_RATED} movieType={Constants.TOP_RATED_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalMovieList title={Constants.TITLE.UPCOMING} movieType={Constants.UPCOMING_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                </View>
+            </ScrollView>
+        </LinearGradient>
+    );
 }
 export default Movies;

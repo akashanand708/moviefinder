@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { UPCOMING_MOVIES, RESET_UPCOMING_MOVIES, UPCOMING_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const upcomingMoviesReducer = handleActions({
     [UPCOMING_MOVIES.PENDING]: (state, action) => {
@@ -10,13 +11,20 @@ const upcomingMoviesReducer = handleActions({
     },
     [UPCOMING_MOVIES.SUCCESS]: (state, action) => {
         // let results = _.keyBy(action.payload.results, 'id');
-        let results = action.payload.results;
+        let results = action.payload.movieList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.upcomingMoviesList, ...results]
+        }
         return {
             ...state,
-            page: action.payload.page,
-            upcomingMoviesList: [...state.upcomingMoviesList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            page: action.payload.movieList.page,
+            upcomingMoviesList: updatedList,
+            totalPages: action.payload.movieList.total_pages,
+            totalResults: action.payload.movieList.total_results,
             moviesFetching: false,
         };
     },

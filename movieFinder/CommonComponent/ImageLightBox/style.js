@@ -11,5 +11,9 @@ export default StyleSheet.create({
         //backgroundColor: Colors.eggplant
         marginTop: Metrics.baseMargin,
         marginBottom: Metrics.baseMargin
+    },
+    sharePhoto:{
+        right:15,
+        bottom:20
     }
 })

@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import LightBoxHeader from './lightBoxHeader';
 import style from './style';
 import { Colors } from '../../DevScreens/DevTheme';
+import ShareComponent from '../ShareComponent';
 
 class ImageLightbox extends React.Component {
     constructor(props) {
@@ -22,6 +23,13 @@ class ImageLightbox extends React.Component {
             <Icon name="times" size={40} style={{ color: Colors.closeButtonColor }} />
         </TouchableOpacity>
     }
+    renderFooter = () => {
+        let { images, index } = this.props;
+        return <ShareComponent
+            color={Colors.closeButtonColor}
+            sharedUrl={images[index].url}
+        />
+    }
     render() {
         let { images, index } = this.props;
         let { visible } = this.state;
@@ -34,7 +42,9 @@ class ImageLightbox extends React.Component {
                     enablePreload={true}
                     onCancel={this.closeModal}
                     renderHeader={this.renderHeader}
-                    loadingRender={() => { return <Text style={{color: 'white'}}>{"Loading..."}</Text> }}
+                    renderFooter={this.renderFooter}
+                    footerContainerStyle={style.sharePhoto}
+                    loadingRender={() => { return <Text style={{ color: 'white' }}>{"Loading..."}</Text> }}
                 />
             </Modal>
         );

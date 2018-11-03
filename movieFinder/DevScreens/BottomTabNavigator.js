@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { createMaterialTopTabNavigator, StackNavigator } from 'react-navigation'
-import { ActivityIndicator, Text, View } from 'react-native'
 import Movies from './Movies/index'
 import People from './People/index'
 import TvShows from './TvShows/index'
@@ -9,7 +8,6 @@ import { Colors } from './DevTheme';
 import NetworkError from './NetworkError';
 import MovieDetail from '../CommonComponent/MovieItem/MovieDetail';
 import YoutubeVideo from '../CommonComponent/MovieItem/RenderTrailer/YoutubeVideo';
-import HorizontalMovieList from './Movies/HorizontalMovieList';
 import VerticalMovieList from './Movies/VerticalMovieList';
 import Trailers from '../CommonComponent/MovieItem/Trailers';
 import MovieDetailTabNavigator from '../CommonComponent/MovieItem/MovieDetailTabNavigator/MovieDetailTabNavigator';
@@ -37,7 +35,7 @@ const tempTvShows = (props) => (<TvShows navigation={props.screenProps.navigatio
 const TopBarNavigator = createMaterialTopTabNavigator(
   {
     Movies: tempMovie,
-    People: tempPeople,
+    Celebs: tempPeople,
     TvShows: tempTvShows,
   },
   {
@@ -46,27 +44,31 @@ const TopBarNavigator = createMaterialTopTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Movies') {
-          // iconName = `film${focused ? '' : '-outline'}`;
           iconName = 'film';
-        } else if (routeName === 'People') {
-          // iconName = `ios-options${focused ? '' : '-outline'}`;
-          iconName = 'film';
+        } else if (routeName === 'Celebs') {
+          iconName = 'users';
         } else if (routeName === 'TvShows') {
-          // iconName = `ios-options${focused ? '' : '-outline'}`;
-          iconName = 'film';
+          iconName = 'tv';
         }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return <Icon name={iconName} size={25} color={tintColor} />;
+        return <Icon name={iconName} size={15} color={tintColor} />;
       }
     }),
     tabBarPosition: 'bottom',
     lazy: true,
-    //title: 'Movie Finder',
     tabBarOptions: {
+      showIcon: true,
       activeTintColor: 'black',
       inactiveTintColor: 'gray',
+      labelStyle: {
+        fontSize: 12,
+      },
+      tabStyle: {
+        height: 50,
+
+      },
+      labelStyle:{
+        margin: 2
+      },
       style: {
         backgroundColor: Colors.background
       },
@@ -93,7 +95,6 @@ export default StackNavigator(
     SearchComponent: { screen: SearchComponent },
 
   }, {
-    // headerMode: 'none',
     initialRouteName: 'TopBarNavigator',
     navigationOptions: ({ navigation }) => ({
       title: "",

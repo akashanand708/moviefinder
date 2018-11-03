@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { TOP_RATED_MOVIES, RESET_TOP_RATED_MOVIES, TOP_RATED_MOVIES_PAGENO } from '../../../ActionTypes/moviesActionTypes';
+import Constants from '../../../Constants/Constants';
 
 const topRatedMoviesReducer = handleActions({
     [TOP_RATED_MOVIES.PENDING]: (state, action) => {
@@ -9,14 +10,20 @@ const topRatedMoviesReducer = handleActions({
         };
     },
     [TOP_RATED_MOVIES.SUCCESS]: (state, action) => {
-        // let results = _.keyBy(action.payload.results, 'id');
-        let results = action.payload.results;
+        let results = action.payload.movieList.results;
+        let refresh = action.payload.refresh;
+        let updatedList = [];
+        if (refresh === Constants.REFRESH) {
+            updatedList = results;
+        } else {
+            updatedList = [...state.topRatedMoviesList, ...results]
+        }
         return {
             ...state,
-            page: action.payload.page,
-            topRatedMoviesList: [...state.topRatedMoviesList, ...results],
-            totalPages: action.payload.total_pages,
-            totalResults: action.payload.total_results,
+            page: action.payload.movieList.page,
+            topRatedMoviesList: updatedList,
+            totalPages: action.payload.movieList.total_pages,
+            totalResults: action.payload.movieList.total_results,
             moviesFetching: false,
         };
     },

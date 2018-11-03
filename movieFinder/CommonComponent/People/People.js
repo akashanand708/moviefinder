@@ -21,6 +21,13 @@ class People extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.people.id === nextProps.people.id) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     navigateToMovieDetails = (people) => {
         let { connectionType, type } = this.props;
         if (['none', 'unknown'].includes(connectionType)) {
@@ -48,6 +55,7 @@ class People extends Component {
         this.setState({ imageLoading: false });
     }
     render() {
+        console.log("Render People item.........");
         let { people, type, castCrewType, imageType, images } = this.props,
             character = people.character,
             profilepath = DEFAULT_PROFILE_PIC,
