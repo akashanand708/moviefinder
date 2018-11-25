@@ -11,9 +11,11 @@ class ImageLightbox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: true
+            visible: true,
+            index: props.index
         }
     }
+
     closeModal = () => {
         this.props.closeLightBox();
         this.setState({ visible: false });
@@ -24,23 +26,34 @@ class ImageLightbox extends React.Component {
         </TouchableOpacity>
     }
     renderFooter = () => {
-        let { images, index } = this.props;
+        let { images } = this.props;
+        let { index } = this.state;
         return <ShareComponent
             color={Colors.closeButtonColor}
             sharedUrl={images[index].url}
         />
     }
+    imageChange = (index) => {
+        console.log("IMAGE INDEX......", index);
+        this.setState({ index });
+    }
     render() {
-        let { images, index } = this.props;
-        let { visible } = this.state;
+        let { images } = this.props;
+        let { visible, index } = this.state;
         return (
-            <Modal visible={visible} transparent={false}>
+            <Modal
+                visible={visible}
+                transparent={false}
+                onRequestClose={() => {
+                }}
+            >
                 <ImageViewer
                     imageUrls={images}
                     index={index}
                     enableSwipeDown={true}
                     enablePreload={true}
                     onCancel={this.closeModal}
+                    onChange={this.imageChange}
                     renderHeader={this.renderHeader}
                     renderFooter={this.renderFooter}
                     footerContainerStyle={style.sharePhoto}

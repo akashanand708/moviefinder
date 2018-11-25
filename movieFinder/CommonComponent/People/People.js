@@ -21,13 +21,13 @@ class People extends Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.people.id === nextProps.people.id) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    // TODO shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.props.people === nextProps.people) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
     navigateToMovieDetails = (people) => {
         let { connectionType, type } = this.props;
         if (['none', 'unknown'].includes(connectionType)) {
@@ -91,9 +91,9 @@ class People extends Component {
                 <View style={profileImageContainer}>
 
                     <Poster
-                        posterUrl={people.profile_path || people.file_path}
+                        posterUrl={people.profile_path || people.file_path} 
                         posterStyle={profileImageStyle}
-                        posterType={type}
+                        posterType={type} 
                     >
 
                         {
@@ -111,6 +111,7 @@ class People extends Component {
                     <ImageLightbox
                         images={images}
                         index={people.index}
+                        visible={visible}
                         closeLightBox={this.closeLightBox}
                     />
                 }

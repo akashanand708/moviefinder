@@ -64,6 +64,7 @@ class RenderImages extends React.Component {
         })
         return <People
             people={item}
+            key={item.file_path}
             type="image"
             imageType={imageType}
             images={imageList}
@@ -103,11 +104,15 @@ class RenderImages extends React.Component {
             gridHeight = {},
             spacing = 20;
         if (horizontal) {
-            staticDimension = 70;
+            staticDimension = 40;
+            itemDimension = 200;
             gridHeight = { height: 140 };
             spacing = 1;
         }
-
+        let fixed = true;
+        if ([Constants.IMAGE_TYPE.BACKDROPS, Constants.IMAGE_TYPE.POSTERS].includes(imageType)) {
+            fixed = false;
+        }
 
         return (
             <View>
@@ -126,6 +131,7 @@ class RenderImages extends React.Component {
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
                     moviesFetching={false}
+                    fixed={fixed}
                 />
 
             </View>

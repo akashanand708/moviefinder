@@ -7,18 +7,31 @@ import MovieItem from '../MovieItem/MovieItem';
 class SuperGridSectionListCustom extends React.Component {
 
     static defaultProps = {
-        itemDimension: 100
+        itemDimension: 100,
+        fixed: true
     }
-    _keyExtractor = (item, index) => { console.log("INDEX.....", item, item[0].id); item[0].id + index };
+    _keyExtractor = (item, index) => {
+        console.log("ITEM extracter.....", item);
+        if (item[0]) {
+            if (item[0].id) {
+                return item[0].id + index;
+            }else{
+                return item[0].file_path;
+            }
+        }
+        // else
+        // console.log("ITEM.....",item);
+    };
 
     renderItem = (item, index) => {
+        // console.log("ITEM.....",item);
         return this.props.renderItem(item, index);
     }
     refreshList = () => {
         this.props.refreshList();
     }
     render() {
-        let { itemList, gridHeight, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
+        let { itemList, gridHeight,fixed, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
 
         return (
             <SuperGridSectionList
@@ -31,7 +44,7 @@ class SuperGridSectionListCustom extends React.Component {
                 ]}
                 style={gridHeight}
                 spacing={spacing}
-                fixed={true}
+                fixed={fixed}
                 onRefresh={this.refreshList}
                 refreshing={moviesFetching}
                 keyExtractor={this._keyExtractor}

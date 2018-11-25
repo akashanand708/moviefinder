@@ -15,6 +15,9 @@ class SearchInput extends React.Component {
     }
   }
 
+  clearText = () =>{
+    this.refs.searchInputBox._root.clear();
+  }
 
   render() {
     let { searchType, navigation } = this.props;
@@ -40,8 +43,8 @@ class SearchInput extends React.Component {
             </Item>
           </Body>
           <Right>
-            <Button transparent onPress={this.props.fetchSearchResult}>
-              <Icon name="close" style={{ color: Colors.buttonIcon }} />
+            <Button transparent onPress={this.clearText}>
+              <Icon name="close" style={{ color: Colors.buttonIcon }} /> 
             </Button>
           </Right>
         </Header>

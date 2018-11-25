@@ -6,7 +6,7 @@ import Styles from './PosterStyle'
 import images from '../../DevScreens/DevTheme/Images'
 import Constants from '../../../App/Constants/Constants';
 import Shimmer from '../Shimmer/Shimmer';
-import { Colors } from '../../../App/Themes';
+import { Colors, Images } from '../../../App/Themes';
 
 class Poster extends Component {
     constructor(props) {
@@ -16,19 +16,20 @@ class Poster extends Component {
             opacity: new Animated.Value(0),
             errorOpacity: new Animated.Value(0),
             imageError: false,
-            errorImageUrl: images.loadingImage,
+            errorImageUrl: Images.movie_placeholder,
+            placeholderImage: Images.movie_placeholder,
             posterStyle: {}
         };
         this.posterInterval = null;
         this.errorInterval = null;
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.posterUrl === nextProps.posterUrl) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.props.posterUrl === nextProps.posterUrl) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
     // TODO componentWillMount() {
     //     let { posterUrl } = this.props;
     //     let { posterStyle } = this.state;
@@ -90,19 +91,25 @@ class Poster extends Component {
 
     render() {
         let { posterUrl, posterType, posterStyle } = this.props;
-        let { imageError, opacity, errorImageUrl, errorOpacity, imageLoading } = this.state,
+        let { imageError, opacity, errorImageUrl, errorOpacity, imageLoading, placeholderImage } = this.state,
             imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
         if (posterType === 'detail') {
             errorImageUrl = images.errorPosterDetailImage;
             imageSize = Constants.IMAGE_SIZE.BACKDROP_IMAGE_SIZE;
         }
         let movieItemPosterUrl = { uri: `${Constants.POSTER_BASE_URL}/${imageSize}/${posterUrl}` };
+        if (['people', 'cast_crew'].includes(posterType)) {
+            errorImageUrl = Images.people_placeholder;
+            placeholderImage = Images.people_placeholder;
+        }
+        console.log("IMAGE ERROR....", imageLoading);
         return (
             <View style={[Styles.itemContainer,
-            (posterType === 'cast_crew') ? { borderRadius: 50,height: 200 } : {borderRadius: 5},
-            (posterType === 'people') ? { height: '100%',borderRadius: 0 } : {},
+            (posterType === 'cast_crew') ? { borderRadius: 50, height: 200 } : { borderRadius: 5 },
+            (posterType === 'people') ? { height: '100%', borderRadius: 0 } : {},
             (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
                 {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
+
                 {
                     !imageError &&
                     <Animated.Image
@@ -122,7 +129,6 @@ class Poster extends Component {
                             },
                             posterStyle
                         ]}
-                        defaultSource={images.loadingImage}
                         //onLoadStart={this.imageLoadingstart}
                         onLoad={this.imageLoadingComplete}
                         onError={this.imageLoadingError}
@@ -156,6 +162,13 @@ class Poster extends Component {
                         {['rgba(255,255,255,0.00)', 'rgba(255,255,255,1)']}
                         style={Styles.linearGradient}>
                     </LinearGradient>
+                }
+                {
+                    imageLoading &&
+                    <Image
+                        style={{ position: 'absolute', width: '100%', height: '100%' }}
+                        source={placeholderImage}
+                    />
                 }
                 {/* </Shimmer> */}
             </View>

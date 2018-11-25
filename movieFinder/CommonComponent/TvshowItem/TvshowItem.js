@@ -27,6 +27,7 @@ const TvshowItem = (props) => {
             <Poster
                 posterUrl={tvshowItem.poster_path}
                 posterStyle={TvshowItemStyle.image}
+                posterType="tv_show"
             />
         </TouchableOpacity>
     )

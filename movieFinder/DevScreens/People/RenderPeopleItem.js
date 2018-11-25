@@ -96,7 +96,7 @@ class RenderPeopleItem extends React.Component {
     let { searchedPeopleFetching, searchedPeopleList, peopleList, peopleFetching, horizontal,
       peopleType } = this.props;
     let staticDimension = Metrics.screenWidth,
-      gridHeight = { height: Metrics.screenHeight - 150 },
+      gridHeight = { height: Metrics.screenHeight - 130 },
       spacing = 12;
     if (horizontal) {
       staticDimension = Metrics.screenWidth - 100,

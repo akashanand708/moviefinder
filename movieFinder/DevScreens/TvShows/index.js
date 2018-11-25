@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import style from './style'
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux'

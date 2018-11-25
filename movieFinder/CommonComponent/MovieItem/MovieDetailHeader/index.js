@@ -38,6 +38,7 @@ class MovieDetailHeader extends React.Component {
           <Poster
             posterUrl={movieDetail.poster_path}
             posterStyle={style.posterImage}
+            posterType="movie"
           />
           <View style={style.headerlowerRight}>
             <Text style={style.heading}>{movieDetail.title || movieDetail.original_name}</Text>

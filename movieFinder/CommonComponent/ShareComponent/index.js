@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ScrollView, Share, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, Share, TouchableOpacity,Platform } from 'react-native';
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { bindActionCreators } from 'redux'
@@ -14,13 +14,19 @@ class ShareComponent extends React.Component {
   }
   shareExternal = () => {
     let { sharedUrl } = this.props;
-    debugger;
-    console.log("SHARED URL.....".sharedUrl);
+    console.log("SHARED URL.....",sharedUrl);
     Share.share(
       {
-        url: sharedUrl,
-        message: 'Watch video',
-        title: 'Watch this video'
+        ...Platform.select({
+          ios: {
+            message: 'Have a look on : ',
+            url: sharedUrl,
+          },
+          android: {
+            message: 'Have a look on : \n' + sharedUrl
+          }
+        }),
+        title: 'Wow, did you see that?'
       },
       {
         subject: 'To watch this video, click the link',
