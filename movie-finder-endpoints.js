@@ -11,19 +11,20 @@ const API_KEY = '5697c2d8d03861578344d7c40e737193';
  * Fetch different movie types.
  * @param {*} pageNo 
  * @param {*} movieType 
+ * @param {*} countryCode 
  */
-export const fetchMovies = function (pageNo, movieType) {
+export const fetchMovies = function (pageNo, movieType, countryCode) {
   switch (movieType) {
     case Constants.POPULAR_MOVIES:
-      return api.http_get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNo}`);
+      return api.http_get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=${pageNo}&region=${countryCode}`);
     case Constants.TOP_RATED_MOVIES:
-      return api.http_get(`/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${pageNo}`);
+      return api.http_get(`/movie/top_rated?api_key=${API_KEY}&language=en-US&page=${pageNo}&region=${countryCode}`);
     case Constants.UPCOMING_MOVIES:
-      return api.http_get(`/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${pageNo}`);
+      return api.http_get(`/movie/upcoming?api_key=${API_KEY}&language=en-US&page=${pageNo}&region=${countryCode}`);
     case Constants.NOW_PLAYING_MOVIES:
-      return api.http_get(`/movie/now_playing?api_key=${API_KEY}&language=en-US&page=${pageNo}`);
+      return api.http_get(`/movie/now_playing?api_key=${API_KEY}&language=en-US&page=${pageNo}&region=${countryCode}`);
     case Constants.LATEST_MOVIES:
-      return api.http_get(`/movie/latest?api_key=${API_KEY}&language=en-US&page=${pageNo}`);
+      return api.http_get(`/movie/latest?api_key=${API_KEY}&language=en-US&page=${pageNo}&region=${countryCode}`);
     default:
       break;
   }

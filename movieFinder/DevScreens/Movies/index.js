@@ -27,23 +27,24 @@ const Movies = (props) => {
         }
     }
     _onRefresh = () => {
+        let { countryCode } = props;
         refreshing = true;
-        props.actions.fetchMovies(1, Constants.POPULAR_MOVIES, Constants.REFRESH)
+        props.actions.fetchMovies(1, Constants.POPULAR_MOVIES, countryCode, Constants.REFRESH)
             .then(() => {
                 apiCounter++;
                 isApiCounterFour();
             });
-        props.actions.fetchMovies(1, Constants.NOW_PLAYING_MOVIES, Constants.REFRESH)
+        props.actions.fetchMovies(1, Constants.NOW_PLAYING_MOVIES, countryCode, Constants.REFRESH)
             .then(() => {
                 apiCounter++;
                 isApiCounterFour();
             });
-        props.actions.fetchMovies(1, Constants.TOP_RATED_MOVIES, Constants.REFRESH)
+        props.actions.fetchMovies(1, Constants.TOP_RATED_MOVIES, countryCode, Constants.REFRESH)
             .then(() => {
                 apiCounter++;
                 isApiCounterFour();
             });
-        props.actions.fetchMovies(1, Constants.UPCOMING_MOVIES, Constants.REFRESH)
+        props.actions.fetchMovies(1, Constants.UPCOMING_MOVIES, countryCode, Constants.REFRESH)
             .then(() => {
                 apiCounter++;
                 isApiCounterFour();
@@ -63,7 +64,7 @@ const Movies = (props) => {
                 horizontal={true}
             />
             <ScrollView
-                style={style.listScroll} 
+                style={style.listScroll}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
@@ -88,4 +89,9 @@ const mapDispatch = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatch)(Movies);
+const mapStateToProps = (state) => {
+    return {
+        countryCode: state.ui.filterCountry.selected_country
+    }
+}
+export default connect(mapStateToProps, mapDispatch)(Movies);

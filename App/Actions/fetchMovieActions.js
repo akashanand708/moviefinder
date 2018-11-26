@@ -1,7 +1,7 @@
 import { NavigationActions } from 'react-navigation'
 //import FileSaver from 'file-saver';
 import * as fetchMovieApis from '../../movie-finder-endpoints';
-import { MOVIES, SEARCHED_MOVIES, RESET_SEARCHED_MOVIES, RESET_POPULAR_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES, NOW_PLAYING_MOVIES_PAGENO, POPULAR_MOVIES_PAGENO, TOP_RATED_MOVIES_PAGENO, SEARCHED_MOVIES_PAGENO, UPCOMING_MOVIES_PAGENO, RESET_UPCOMING_MOVIES, RESET_TOP_RATED_MOVIES, RESET_NOW_PLAYING_MOVIES } from '../ActionTypes/moviesActionTypes';
+import { MOVIES, SEARCHED_MOVIES, RESET_SEARCHED_MOVIES, RESET_POPULAR_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES, NOW_PLAYING_MOVIES_PAGENO, POPULAR_MOVIES_PAGENO, TOP_RATED_MOVIES_PAGENO, SEARCHED_MOVIES_PAGENO, UPCOMING_MOVIES_PAGENO, RESET_UPCOMING_MOVIES, RESET_TOP_RATED_MOVIES, RESET_NOW_PLAYING_MOVIES, SET_COUNTRY } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import RNFS from 'react-native-fs';
 import Constants from '../Constants/Constants';
@@ -65,7 +65,7 @@ export const searchMovies = (queryString, pageNo, refresh) => {
     }
 }
 
-export const fetchMovies = (pageNo, movieType, refresh) => {
+export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
     return (dispatch) => {
         switch (movieType) {
             case Constants.NOW_PLAYING_MOVIES:
@@ -84,7 +84,7 @@ export const fetchMovies = (pageNo, movieType, refresh) => {
                 break;
         }
         // dispatch({ type: MOVIES.PENDING })
-        return fetchMovieApis.fetchMovies(pageNo, movieType)
+        return fetchMovieApis.fetchMovies(pageNo, movieType, countryCode)
             .then((response) => {
                 switch (movieType) {
                     case Constants.NOW_PLAYING_MOVIES:
@@ -171,5 +171,11 @@ export const fetchMovieDetail = (movieId, movieOrTvshow) => {
 export const resetMovieDetailState = () => {
     return (dispatch) => {
         dispatch({ type: RESET_MOVIE_DETAIL });
+    }
+}
+
+export const setFilterCountry = (countryCode) => {
+    return (dispatch) => {
+        dispatch({ type: SET_COUNTRY, payload: countryCode });
     }
 }

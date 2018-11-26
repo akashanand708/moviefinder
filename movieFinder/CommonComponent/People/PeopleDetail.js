@@ -35,6 +35,7 @@ class PeopleDetail extends Component {
     render() {
         let { peopleDetail, peopleDetailFetching } = this.props;
         let { peopleId,peopleName } = this.props.navigation.state.params;
+        console.log("People detail...",peopleDetail);
         return (
             <View style={style.mainContainer}>
             <Text>People details</Text>

@@ -60,8 +60,8 @@ class RenderMovieItem extends React.Component {
         //this.props.actions.resetPopularMoviesState();
     }
     fetchMovies = (pageNo, refresh) => {
-        let { movieType } = this.props;
-        return this.props.actions.fetchMovies(pageNo, movieType, refresh);
+        let { movieType, countryCode } = this.props;
+        return this.props.actions.fetchMovies(pageNo, movieType, countryCode, refresh);
     }
     fetchSearchResult = (pageNo, refresh) => {
         let { queryString } = this.props;
@@ -256,6 +256,8 @@ const mapStateToProps = (state) => {
         searchedMoviesList: state.data.searchedMovies.searchedMoviesList,
         searchedMoviesFetching: state.data.searchedMovies.moviesFetching,
         searchedTotalPages: state.data.searchedMovies.totalPages,
+
+        countryCode: state.ui.filterCountry.selected_country
     };
 };
 export default connect(mapStateToProps, mapDispatch)(RenderMovieItem);

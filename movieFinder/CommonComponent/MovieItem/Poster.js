@@ -94,7 +94,7 @@ class Poster extends Component {
         let { imageError, opacity, errorImageUrl, errorOpacity, imageLoading, placeholderImage } = this.state,
             imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
         if (posterType === 'detail') {
-            errorImageUrl = images.errorPosterDetailImage;
+            //errorImageUrl = images.errorPosterDetailImage;
             imageSize = Constants.IMAGE_SIZE.BACKDROP_IMAGE_SIZE;
         }
         let movieItemPosterUrl = { uri: `${Constants.POSTER_BASE_URL}/${imageSize}/${posterUrl}` };

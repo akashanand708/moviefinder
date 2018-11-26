@@ -6,6 +6,7 @@ import style from './style';
 import colors from '../../DevScreens/DevTheme/Colors';
 import BackButton from '../BackButton';
 import Constants from '../../../App/Constants/Constants';
+import FilterComponent from './FilterComponent';
 
 const SearchButton = (props) => {
   navigateToSearch = (searchType) => {
@@ -39,6 +40,10 @@ const SearchButton = (props) => {
           <TouchableOpacity style={style.searchButton} onPress={() => this.navigateToSearch(searchType)} />
         </Body>
         <Right>
+          {
+            searchType === Constants.MOVIE &&
+            <FilterComponent />
+          }
         </Right>
       </Header>
     </View>
