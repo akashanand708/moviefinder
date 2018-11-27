@@ -3,6 +3,7 @@ package com.moviefinder;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.horcrux.svg.SvgPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -24,11 +25,11 @@ public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
-        @Override
-        protected String getJSBundleFile() {
-        return CodePush.getJSBundleFile();
-        }
-    
+    @Override
+    protected String getJSBundleFile() {
+      return CodePush.getJSBundleFile();
+    }
+
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -36,18 +37,12 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new ReactNativeYouTube(),
-            new SvgPackage(),
-            new LinearGradientPackage(),
-            new CodePush("_W82jdg5DFwUBqQ7WDKFT6fsldOkad00311d-31e3-4726-8eb6-d7e6901776d6", MainApplication.this, BuildConfig.DEBUG),
-            new RNFSPackage(),
-            new CustomWebViewPackage(),
-            new VectorIconsPackage(),
-            new RNDeviceInfo(),
-            new ReactNativeConfigPackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new SplashScreenReactPackage(),
+          new ReactNativeYouTube(), new SvgPackage(), new LinearGradientPackage(),
+          new CodePush("_W82jdg5DFwUBqQ7WDKFT6fsldOkad00311d-31e3-4726-8eb6-d7e6901776d6", MainApplication.this,
+              BuildConfig.DEBUG),
+          new RNFSPackage(), new CustomWebViewPackage(), new VectorIconsPackage(), new RNDeviceInfo(),
+          new ReactNativeConfigPackage());
     }
 
     @Override
