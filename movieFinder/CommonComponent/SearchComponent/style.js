@@ -7,11 +7,8 @@ export default StyleSheet.create({
     position: 'relative'
   },
   searchButton: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
     height: '100%',
-    width: '100%',
+    width: 30,
   },
   searchHeader:{
     ...ApplicationStyles.screen.addElevation,

@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import LinearGradient from 'react-native-linear-gradient';
 import style from './style';
 import Colors from '../../DevScreens/DevTheme/Colors';
+import Constants from '../../../App/Constants/Constants';
 
 class ShareComponent extends React.Component {
   static defaultProps = {
@@ -20,10 +21,10 @@ class ShareComponent extends React.Component {
         ...Platform.select({
           ios: {
             message: 'Have a look on : ',
-            url: sharedUrl,
+            url: 'Install app : \n' + Constants.APP_URL +'\n'+ 'Have a look on : \n' + sharedUrl,
           },
           android: {
-            message: 'Have a look on : \n' + sharedUrl
+            message: 'Install app : \n' + Constants.APP_URL +'\n'+ 'Have a look on : \n' + sharedUrl
           }
         }),
         title: 'Wow, did you see that?'

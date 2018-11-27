@@ -11,13 +11,8 @@ import style from '../MovieItemStyle';
 import Constants from '../../../../App/Constants/Constants';
 import SuperGridSectionListCustom from '../../SuperGridSectionListCustom';
 
-class RenderMovieItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //pageNo: 1
-        }
-    }
+class RenderMovieItem extends React.PureComponent {
+   
     componentDidMount() {
         let { movieType, horizontal } = this.props;
         InteractionManager.runAfterInteractions(() => {

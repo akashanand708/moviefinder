@@ -33,17 +33,15 @@ const SearchButton = (props) => {
           }
         </Left>
         <Body>
-          <Item>
-            <Icon name="ios-search" style={{ color: colors.buttonIcon }} />
-            <Input editable={false} placeholder={`Search...`} />
-          </Item>
-          <TouchableOpacity style={style.searchButton} onPress={() => this.navigateToSearch(searchType)} />
-        </Body>
-        <Right>
           {
             searchType === Constants.MOVIE &&
             <FilterComponent />
           }
+        </Body>
+        <Right>
+          <TouchableOpacity style={style.searchButton} onPress={() => this.navigateToSearch(searchType)} >
+            <Icon name="ios-search" style={{ color: colors.buttonIcon }} />
+          </TouchableOpacity>
         </Right>
       </Header>
     </View>

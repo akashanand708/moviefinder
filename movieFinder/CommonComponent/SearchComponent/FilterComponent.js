@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { View } from 'react-native';
-import { Button, ActionSheet, Icon, Item, Picker } from "native-base";
+import { View, Picker } from 'react-native';
+import { Button, ActionSheet, Icon, Item, } from "native-base";
 import colors from '../../DevScreens/DevTheme/Colors';
 import style from './style';
 import BackButton from '../BackButton';
@@ -10,6 +10,7 @@ import CountryComponent from './CountryComponent';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
+import { CustomToast } from '../CommonToast/CommonToast';
 // import CountryComponent from './CountryComponent';
 
 
@@ -31,16 +32,16 @@ var BUTTONS = [
 
 //   </View>
 // })
-class FilterComponent extends React.Component {
+class FilterComponent extends React.PureComponent {
 
 
-  onValueChange2 = (value) => {
-    console.log("SELECTED VALUE...", value);
-    this.props.actions.setFilterCountry(value)
+  onValueChange = (itemValue, itemIndex) =>{
+    this.props.actions.setFilterCountry(itemValue);
+    CustomToast.showToast("Please, refresh after selecting country.", 'info');
   }
   renderPicketItem = () => {
     return CountryCode.COUNTRY_CODE.map((item, index) => {
-      return <Picker.Item label={item.text} value={item.country_id} />
+      return <Picker.Item key={item.country_id} label={item.text} value={item.country_id} />
     })
   }
   render() {
@@ -67,14 +68,10 @@ class FilterComponent extends React.Component {
 
       <Item picker>
         <Picker
-          mode="dropdown"
-          iosIcon={<Icon type="FontAwesome" name="filter" style={{ color: colors.buttonIcon }} />}
-          style={{ width: undefined }}
+          mode='dialog'
           selectedValue={selectedCountry}
-          onValueChange={this.onValueChange2}
-        >
-          {/* <Picker.Item label={"ABC"} value={"IN"} /> */}
-          {/* <CountryComponent /> */}
+          style={{ width: '100%' }}
+          onValueChange={(itemValue, itemIndex) => { setTimeout(() => {this.onValueChange(itemValue, itemIndex)}, 10)}}>
           {
             this.renderPicketItem()
           }

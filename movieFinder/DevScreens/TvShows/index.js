@@ -73,10 +73,10 @@ const TvShows = (props) => {
                 }
             >
                 <View style={style.container}>
+                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.AIRING} tvshowType={Constants.TV_ARIVING_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.ON_AIR} tvshowType={Constants.TV_ONAIR_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
                     <HorizontalTvshowList title={Constants.TVSHOW_TITLE.POPULAR} tvshowType={Constants.POPULAR_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
                     <HorizontalTvshowList title={Constants.TVSHOW_TITLE.TOP_RATED} tvshowType={Constants.TOP_RATED_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
-                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.ON_AIR} tvshowType={Constants.TV_ONAIR_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
-                    <HorizontalTvshowList title={Constants.TVSHOW_TITLE.AIRING} tvshowType={Constants.TV_ARIVING_TVSHOWS} navigation={props.navigation} navigate={this.navigate} />
                 </View>
             </ScrollView>
         </LinearGradient>

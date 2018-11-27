@@ -73,10 +73,10 @@ const Movies = (props) => {
                 }
             >
                 <View style={style.container}>
-                    <HorizontalMovieList title={Constants.TITLE.POPULAR} movieType={Constants.POPULAR_MOVIES} navigation={props.navigation} navigate={this.navigate} />
-                    <HorizontalMovieList title={Constants.TITLE.NOWPLAYING} movieType={Constants.NOW_PLAYING_MOVIES} navigation={props.navigation} navigate={this.navigate} />
-                    <HorizontalMovieList title={Constants.TITLE.TOP_RATED} movieType={Constants.TOP_RATED_MOVIES} navigation={props.navigation} navigate={this.navigate} />
                     <HorizontalMovieList title={Constants.TITLE.UPCOMING} movieType={Constants.UPCOMING_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalMovieList title={Constants.TITLE.NOWPLAYING} movieType={Constants.NOW_PLAYING_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalMovieList title={Constants.TITLE.POPULAR} movieType={Constants.POPULAR_MOVIES} navigation={props.navigation} navigate={this.navigate} />
+                    <HorizontalMovieList title={Constants.TITLE.TOP_RATED} movieType={Constants.TOP_RATED_MOVIES} navigation={props.navigation} navigate={this.navigate} />
                 </View>
             </ScrollView>
         </LinearGradient>
