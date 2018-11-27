@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { View, TouchableOpacity, Text, ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View, Text, ActivityIndicator } from 'react-native'
 import style from './style'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import LinearGradient from 'react-native-linear-gradient';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { Fonts } from '../../../App/Themes'
 import * as fetchPeoplesActions from '../../../App/Actions/fetchPeopleActions'
-// import Poster from './Poster';
-import { Colors } from '../../DevScreens/DevTheme';
-// import PeopleDetailTabNavigator from './PeopleDetailTabNavigator/PeopleDetailTabNavigator';
-// import PeopleDetailHeader from './PeopleDetailHeader';
 class PeopleDetail extends Component {
 
     componentDidMount() {
@@ -20,7 +11,7 @@ class PeopleDetail extends Component {
         this.props.actions.fetchPeopleDetail(peopleId);
     }
     componentWillUnmount() {
-       // this.props.actions.resetPeopleDetailState();
+        // this.props.actions.resetPeopleDetailState();
     }
     goBack = () => {
         this.props.navigation.goBack();
@@ -34,11 +25,11 @@ class PeopleDetail extends Component {
     };
     render() {
         let { peopleDetail, peopleDetailFetching } = this.props;
-        let { peopleId,peopleName } = this.props.navigation.state.params;
-        console.log("People detail...",peopleDetail);
+        let { peopleId, peopleName } = this.props.navigation.state.params;
+        console.log("People detail...", peopleDetail);
         return (
             <View style={style.mainContainer}>
-            <Text>People details</Text>
+                <Text>People details</Text>
                 {/* {
                     peopleDetail && !peopleDetailFetching &&
                     <PeopleDetailHeader

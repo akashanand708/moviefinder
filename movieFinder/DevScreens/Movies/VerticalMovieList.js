@@ -1,17 +1,11 @@
-// An All Components Screen is a great way to dev and quick-test components
 import React from 'react'
-import { View, Image, TouchableOpacity, Text } from 'react-native'
-import { Images } from '../DevTheme'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View } from 'react-native'
 import styles from '../Styles/DeviceInfoScreenStyles'
 import RenderMovieItem from '../../CommonComponent/MovieItem/RenderTrailer/RenderMovieItem';
 import Constants from '../../../App/Constants/Constants';
-import { Colors } from '../DevTheme';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
-import SearchComponent from '../../CommonComponent/SearchComponent';
-import BackButton from '../../CommonComponent/BackButton';
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
 
 class VerticalMovieList extends React.Component {
@@ -22,7 +16,6 @@ class VerticalMovieList extends React.Component {
   }
   static navigationOptions = ({ navigation }) => {
     return {
-      // title: navigation.getParam('title', ''),
       header: null
     };
   };

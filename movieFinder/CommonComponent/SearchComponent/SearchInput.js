@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { View } from 'react-native';
-import { Header, Left, Body, Right, Button, Icon, Item, Input, Text } from 'native-base';
+import { Header, Left, Body, Right, Button, Icon, Item, Input } from 'native-base';
 import Colors from '../../DevScreens/DevTheme/Colors';
 import style from './style';
 import BackButton from '../BackButton';
@@ -15,7 +15,7 @@ class SearchInput extends React.Component {
     }
   }
 
-  clearText = () =>{
+  clearText = () => {
     this.refs.searchInputBox._root.clear();
   }
 
@@ -44,7 +44,7 @@ class SearchInput extends React.Component {
           </Body>
           <Right>
             <Button transparent onPress={this.clearText}>
-              <Icon name="close" style={{ color: Colors.buttonIcon }} /> 
+              <Icon name="close" style={{ color: Colors.buttonIcon }} />
             </Button>
           </Right>
         </Header>

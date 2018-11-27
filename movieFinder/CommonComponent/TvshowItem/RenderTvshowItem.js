@@ -1,23 +1,15 @@
 import React from 'react'
-import { InteractionManager, Text, View } from 'react-native'
+import { InteractionManager, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchTvActions from '../../../App/Actions/fetchTvActions'
 import AdvertisementBanner from '../AdvertisementBanner/AdvertisementBanner';
-import style from './TvshowItemStyle';
 import { Metrics } from '../../../App/Themes';
 import SuperGridSectionListCustom from '../SuperGridSectionListCustom';
 import Constants from '../../../App/Constants/Constants';
 import TvshowItem from './TvshowItem';
 
 class RenderTvshowItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // pageNo: 1
-        }
-    }
     componentDidMount() {
         let { tvshowType, horizontal } = this.props;
         InteractionManager.runAfterInteractions(() => {

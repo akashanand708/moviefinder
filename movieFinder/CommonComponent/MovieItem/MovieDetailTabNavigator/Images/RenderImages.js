@@ -1,7 +1,6 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
-import style from './style';
 import Constants from '../../../../../App/Constants/Constants';
 import People from '../../../People/People';
 
@@ -17,22 +16,7 @@ class RenderImages extends React.Component {
         this.itemList = this.prepareItemList();
         this.renderImageInterval = null;
     }
-    // componentDidMount() {
-    //     this.renderImageInterval = setInterval(() => {
-    //         if (this.counterIndex <= (this.itemList.length - 1)) {
-    //             if (this.renderImageListRef) {
-    //                 let itemIndex = this.counterIndex;
-    //                 this.renderImageListRef.scrollToItem(itemIndex);
-    //                 this.counterIndex++;
-    //             }
-    //         } else {
-    //             this.counterIndex = 0;
-    //         }
-    //     }, 1500)
-    // }
-    // componentWillUnmount() {
-    //     this.renderImageInterval = null;
-    // }
+
     handleEnd = () => {
 
     }

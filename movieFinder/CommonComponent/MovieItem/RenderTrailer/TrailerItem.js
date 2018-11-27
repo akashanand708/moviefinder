@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Image, Text, TouchableOpacity, Share } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import style from './RenderTrailerItemStyle';
 import Constants from '../../../../App/Constants/Constants';

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts, ApplicationStyles } from '../DevTheme'
+import { Metrics, ApplicationStyles } from '../DevTheme'
 
 export default StyleSheet.create({
     ...ApplicationStyles.screen,
@@ -8,7 +8,6 @@ export default StyleSheet.create({
         height: '100%',
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        //backgroundColor: Colors.eggplant
         marginTop: Metrics.baseMargin,
         marginBottom: Metrics.baseMargin
     }

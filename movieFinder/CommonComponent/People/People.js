@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { TouchableOpacity, Text, View, Image } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import ImageLightbox from '../ImageLightBox';
 import Poster from '../MovieItem/Poster';
-// import {
-//     CachedImage
-// } from 'react-native-cached-image';
+
 import Constants from '../../../App/Constants/Constants';
 import style from './style';
 
@@ -91,9 +89,9 @@ class People extends Component {
                 <View style={profileImageContainer}>
 
                     <Poster
-                        posterUrl={people.profile_path || people.file_path} 
+                        posterUrl={people.profile_path || people.file_path}
                         posterStyle={profileImageStyle}
-                        posterType={type} 
+                        posterType={type}
                     >
 
                         {

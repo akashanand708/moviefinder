@@ -37,7 +37,6 @@ class ReviewItem extends React.Component {
                                 ellipsizeMode={"middle"}>
                                 {reviewItem.url}{"...See more"}
                             </Text>
-                            {/* <Text style={[ßstyle.subtitle, style.taglineFontSize]}>...See more</Text> */}
                         </CardItem>
                     </Card>
                 </View>

@@ -1,18 +1,16 @@
 import React from 'react'
-import { InteractionManager, Text, View } from 'react-native'
+import { InteractionManager, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { SuperGridSectionList } from 'react-native-super-grid';
 import { Metrics } from '../../../../App/Themes';
 import * as fetchMoviesActions from '../../../../App/Actions/fetchMovieActions'
 import MovieItem from '../MovieItem';
 import AdvertisementBanner from '../../AdvertisementBanner/AdvertisementBanner';
-import style from '../MovieItemStyle';
 import Constants from '../../../../App/Constants/Constants';
 import SuperGridSectionListCustom from '../../SuperGridSectionListCustom';
 
 class RenderMovieItem extends React.PureComponent {
-   
+
     componentDidMount() {
         let { movieType, horizontal } = this.props;
         InteractionManager.runAfterInteractions(() => {

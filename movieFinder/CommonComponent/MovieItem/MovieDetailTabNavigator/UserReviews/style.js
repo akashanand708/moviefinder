@@ -1,21 +1,21 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts, ApplicationStyles } from '../../../../DevScreens/DevTheme'
+import { ApplicationStyles } from '../../../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
     ...ApplicationStyles.screen,
-    reviewMain:{
+    reviewMain: {
         ...ApplicationStyles.screen.alignColumnCenter,
-        height:'100%',
+        height: '100%',
     },
-    reviewContainer:{
+    reviewContainer: {
         width: 298,
         height: 200
     },
-    cardContainer:{
+    cardContainer: {
         width: 298,
         height: 195
     },
-    contentText:{
-        height:50,
+    contentText: {
+        height: 50,
     }
 })

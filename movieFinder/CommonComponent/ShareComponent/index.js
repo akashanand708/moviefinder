@@ -1,9 +1,6 @@
 import React from 'react';
-import { Text, View, ScrollView, Share, TouchableOpacity,Platform } from 'react-native';
-import { connect } from 'react-redux'
+import { Share, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { bindActionCreators } from 'redux'
-import LinearGradient from 'react-native-linear-gradient';
 import style from './style';
 import Colors from '../../DevScreens/DevTheme/Colors';
 import Constants from '../../../App/Constants/Constants';
@@ -15,16 +12,16 @@ class ShareComponent extends React.Component {
   }
   shareExternal = () => {
     let { sharedUrl } = this.props;
-    console.log("SHARED URL.....",sharedUrl);
+    console.log("SHARED URL.....", sharedUrl);
     Share.share(
       {
         ...Platform.select({
           ios: {
             message: 'Have a look on : ',
-            url: 'Install app : \n' + Constants.APP_URL +'\n'+ 'Have a look on : \n' + sharedUrl,
+            url: 'Install app : \n' + Constants.APP_URL + '\n' + 'Have a look on : \n' + sharedUrl,
           },
           android: {
-            message: 'Install app : \n' + Constants.APP_URL +'\n'+ 'Have a look on : \n' + sharedUrl
+            message: 'Install app : \n' + Constants.APP_URL + '\n' + 'Have a look on : \n' + sharedUrl
           }
         }),
         title: 'Wow, did you see that?'

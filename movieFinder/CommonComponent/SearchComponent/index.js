@@ -1,14 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Header, Left, Body, Right, Button, Icon, Item, Input, Text } from 'native-base';
+import { Text } from 'native-base';
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import * as fetchPeopleActions from '../../../App/Actions/fetchPeopleActions'
 import * as fetchTvActions from '../../../App/Actions/fetchTvActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import style from './style';
-import Colors from '../../DevScreens/DevTheme/Colors';
-import BackButton from '../BackButton';
 import RenderMovieItem from '../MovieItem/RenderTrailer/RenderMovieItem';
 import Constants from '../../../App/Constants/Constants';
 import SearchInput from './SearchInput';

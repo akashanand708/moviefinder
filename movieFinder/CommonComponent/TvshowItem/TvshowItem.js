@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
 import TvshowItemStyle from './TvshowItemStyle'
 import Poster from '../MovieItem/Poster';
-import { connect } from 'react-redux'
 import Constants from '../../../App/Constants/Constants';
 
 const TvshowItem = (props) => {
@@ -20,7 +19,6 @@ const TvshowItem = (props) => {
             })
         }
     }
-    console.log("Render TV SHOWS item.........");
     let { tvshowItem } = props;
     return (
         <TouchableOpacity onPress={() => navigateToMovieDetails(tvshowItem)}>
@@ -36,12 +34,4 @@ TvshowItem.propTypes = {
     TvshowItem: PropTypes.object
 }
 
-
-// const mapStateToProps = (state) => {
-//     return {
-//         connectionType: state.ui.networkInfo.connectionType
-//     };
-// };
-
-// export default connect(mapStateToProps, null)(TvshowItem);
 export default TvshowItem;

@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, TouchableOpacity, Text, ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View, ActivityIndicator } from 'react-native'
 import Styles from './MovieDetailTabNavigator/style'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import LinearGradient from 'react-native-linear-gradient';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { Fonts } from '../../../App/Themes'
 import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
-import Poster from './Poster';
-import RenderTrailerItem from './RenderTrailer/RenderTrailerItem';
-import { Colors } from '../../DevScreens/DevTheme';
 import MovieDetailTabNavigator from './MovieDetailTabNavigator/MovieDetailTabNavigator';
 import MovieDetailHeader from './MovieDetailHeader';
 class MovieDetail extends Component {
@@ -50,7 +43,6 @@ class MovieDetail extends Component {
                     movieDetail && !movieDetailFetching &&
                     <MovieDetailTabNavigator
                         screenProps={{ movieOrTvshow, navigation: this.props.navigation }}
-                    //navigation={this.props.navigation}
                     />
                 }
                 <ActivityIndicator animating={movieDetailFetching} size="large" />

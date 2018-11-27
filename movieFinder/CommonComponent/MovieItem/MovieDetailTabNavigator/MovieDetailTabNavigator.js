@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import { createMaterialTopTabNavigator,StackNavigator } from 'react-navigation'
-// Screens
+import { createMaterialTopTabNavigator } from 'react-navigation'
 import Info from './Info/index'
 import Cast from './Cast/index'
 import UserReviews from './UserReviews/index'
 import Images from './Images/index'
 import style from './style';
-import PeopleDetail from '../../People/PeopleDetail';
 
 const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow} />);
 const tempCast = (props) => (<Cast navigation={props.screenProps.navigation} />);
@@ -26,16 +24,12 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Info') {
-          // iconName = `film${focused ? '' : '-outline'}`;
           iconName = 'film';
         } else if (routeName === 'Cast & Crew') {
-          // iconName = `ios-options${focused ? '' : '-outline'}`;
           iconName = 'film';
         } else if (routeName === 'User Reviews') {
-          // iconName = `ios-options${focused ? '' : '-outline'}`;
           iconName = 'film';
         } else if (routeName === 'Images') {
-          // iconName = `ios-options${focused ? '' : '-outline'}`;
           iconName = 'film';
         }
 
@@ -46,7 +40,6 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
     }),
     tabBarPosition: 'top',
     lazy: true,
-    // title:'Movie Finder',
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',

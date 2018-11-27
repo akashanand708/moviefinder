@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts, ApplicationStyles } from '../../DevScreens/DevTheme'
+import { Colors, ApplicationStyles } from '../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -10,7 +10,7 @@ export default StyleSheet.create({
     height: '100%',
     width: 30,
   },
-  searchHeader:{
+  searchHeader: {
     ...ApplicationStyles.screen.addElevation,
     backgroundColor: Colors.background
   }

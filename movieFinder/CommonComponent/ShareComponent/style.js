@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts, ApplicationStyles } from '../../DevScreens/DevTheme'
+import { ApplicationStyles } from '../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -8,7 +8,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding:3,
+    padding: 3,
   },
   shareText: {
 

@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Icon, Header, Left, Body, Right, Item, Input, } from 'native-base';
-import { View, TouchableOpacity, Button } from 'react-native';
+import { Icon, Header, Left, Body, Right } from 'native-base';
+import { View, TouchableOpacity } from 'react-native';
 import style from './style';
 import colors from '../../DevScreens/DevTheme/Colors';
 import BackButton from '../BackButton';

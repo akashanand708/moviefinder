@@ -5,7 +5,6 @@ import { isArray } from 'lodash';
 import ReviewItem from './ReviewItem'
 import { Metrics } from '../../../../DevScreens/DevTheme'
 import style from './style';
-import Constants from '../../../../../App/Constants/Constants';
 
 import SuperGridSectionListCustom from '../../../SuperGridSectionListCustom';
 

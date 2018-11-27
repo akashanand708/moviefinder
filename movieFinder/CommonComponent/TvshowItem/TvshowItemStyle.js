@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Metrics, Fonts } from '../../DevScreens/DevTheme'
-import { Colors } from '../../../App/Themes';
+import { Metrics } from '../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
   itemContainer: {
@@ -9,7 +8,7 @@ export default StyleSheet.create({
     borderRadius: 5,
     margin: 10,
   },
-  dimension:{
+  dimension: {
     width: Metrics.screenWidth,
   },
   image: {
@@ -17,7 +16,5 @@ export default StyleSheet.create({
     height: 150,
     resizeMode: 'contain',
     borderRadius: 5
-    //margin: Metrics.baseMargin
-    //backgroundColor: Colors.banner,
   }
 })

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Colors, Metrics, Fonts, ApplicationStyles } from '../../../DevScreens/DevTheme'
+import { Metrics, Fonts, ApplicationStyles } from '../../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -26,17 +26,17 @@ export default StyleSheet.create({
     ...ApplicationStyles.screen.subtitle,
     flex: 0.3
   },
-  movieDbMain:{
-    backgroundColor:'#081c24',
-    borderColor:'#01d177',
-    borderWidth:2,
-    borderRadius:10,
+  movieDbMain: {
+    backgroundColor: '#081c24',
+    borderColor: '#01d177',
+    borderWidth: 2,
+    borderRadius: 10,
     marginLeft: 5
 
   },
-  movieDb:{
-    color:'#01d177',
-    padding:5,
+  movieDb: {
+    color: '#01d177',
+    padding: 5,
     fontFamily: Fonts.type.bold
   },
   releaseCountryTime: {

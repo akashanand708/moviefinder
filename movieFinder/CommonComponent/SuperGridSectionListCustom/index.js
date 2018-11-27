@@ -1,8 +1,6 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { Text } from 'react-native'
 import { SuperGridSectionList } from 'react-native-super-grid';
-import style from './style';
-import MovieItem from '../MovieItem/MovieItem';
 
 class SuperGridSectionListCustom extends React.Component {
 
@@ -11,27 +9,23 @@ class SuperGridSectionListCustom extends React.Component {
         fixed: true
     }
     _keyExtractor = (item, index) => {
-        console.log("ITEM extracter.....", item);
         if (item[0]) {
             if (item[0].id) {
                 return item[0].id + index;
-            }else{
+            } else {
                 return item[0].file_path;
             }
         }
-        // else
-        // console.log("ITEM.....",item);
     };
 
     renderItem = (item, index) => {
-        // console.log("ITEM.....",item);
         return this.props.renderItem(item, index);
     }
     refreshList = () => {
         this.props.refreshList();
     }
     render() {
-        let { itemList, gridHeight,fixed, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
+        let { itemList, gridHeight, fixed, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
 
         return (
             <SuperGridSectionList

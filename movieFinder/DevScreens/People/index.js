@@ -1,13 +1,8 @@
 import React from 'react'
-import { View, Image, TouchableOpacity, Text } from 'react-native'
-import { Images } from '../DevTheme'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import styles from '../Styles/DeviceInfoScreenStyles'
 import Constants from '../../../App/Constants/Constants';
-import { Colors } from '../DevTheme';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import SearchButton from '../../CommonComponent/SearchComponent/SearchButton';
 import RenderPeopleItem from './RenderPeopleItem';
 

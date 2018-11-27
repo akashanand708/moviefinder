@@ -1,8 +1,7 @@
 import React from 'react'
-import { InteractionManager, Text, View } from 'react-native'
+import { InteractionManager, View } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { SuperGridSectionList } from 'react-native-super-grid';
 import * as fetchPeopleActions from '../../../App/Actions/fetchPeopleActions'
 import Constants from '../../../App/Constants/Constants';
 import { Metrics } from '../../../App/Themes';
@@ -36,7 +35,7 @@ class RenderPeopleItem extends React.Component {
   fetchSearchResult = (refresh) => {
     let { pageNo } = this.state;
     let { queryString } = this.props;
-    return this.props.actions.searchPeople(queryString, pageNo,refresh);
+    return this.props.actions.searchPeople(queryString, pageNo, refresh);
   }
   handleEnd = () => {
     let { peopleType, totalPages, horizontal, searchedTotalPages } = this.props;

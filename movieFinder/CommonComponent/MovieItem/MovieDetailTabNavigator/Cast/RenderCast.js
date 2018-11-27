@@ -1,7 +1,6 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
-import style from './style';
 import Constants from '../../../../../App/Constants/Constants';
 import People from '../../../People/People';
 import SuperGridSectionListCustom from '../../../SuperGridSectionListCustom';
@@ -72,7 +71,6 @@ class RenderCast extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        // TODO castCrewObject: (_.get(state, 'data.movieDetail.movieDetail.casts', []) || _.get(state, 'data.movieDetail.movieDetail.credits', [])
         castCrewObject :_.get(state, 'data.movieDetail.movieDetail.casts', { cast: [], crew: [] })
     };
 };

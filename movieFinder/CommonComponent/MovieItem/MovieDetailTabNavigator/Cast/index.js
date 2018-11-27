@@ -1,9 +1,7 @@
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { Text, View, ScrollView } from 'react-native';
 import style from './style';
 import Constants from '../../../../../App/Constants/Constants';
-import { ROUTE_NAME } from '../../../../../App/Constants/RouteNameConstant';
 import RenderCast from './RenderCast';
 
 class Cast extends React.Component {
