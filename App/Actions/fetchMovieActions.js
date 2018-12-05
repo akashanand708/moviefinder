@@ -1,7 +1,14 @@
 import { NavigationActions } from 'react-navigation'
-//import FileSaver from 'file-saver';
 import * as fetchMovieApis from '../../movie-finder-endpoints';
-import { MOVIES, SEARCHED_MOVIES, RESET_SEARCHED_MOVIES, RESET_POPULAR_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL, UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES, TOP_RATED_MOVIES, UPCOMING_MOVIES, NOW_PLAYING_MOVIES_PAGENO, POPULAR_MOVIES_PAGENO, TOP_RATED_MOVIES_PAGENO, SEARCHED_MOVIES_PAGENO, UPCOMING_MOVIES_PAGENO, RESET_UPCOMING_MOVIES, RESET_TOP_RATED_MOVIES, RESET_NOW_PLAYING_MOVIES, SET_COUNTRY } from '../ActionTypes/moviesActionTypes';
+import {
+    MOVIES, SEARCHED_MOVIES, RESET_SEARCHED_MOVIES,
+    RESET_POPULAR_MOVIES, MOVIE_DETAIL, RESET_MOVIE_DETAIL,
+    UPDATE_NETWORK_INFO, NOW_PLAYING_MOVIES, POPULAR_MOVIES,
+    TOP_RATED_MOVIES, UPCOMING_MOVIES, NOW_PLAYING_MOVIES_PAGENO,
+    POPULAR_MOVIES_PAGENO, TOP_RATED_MOVIES_PAGENO, SEARCHED_MOVIES_PAGENO,
+    UPCOMING_MOVIES_PAGENO, RESET_UPCOMING_MOVIES, RESET_TOP_RATED_MOVIES,
+    RESET_NOW_PLAYING_MOVIES, SET_COUNTRY, DATA_FETCHING
+} from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import RNFS from 'react-native-fs';
 import Constants from '../Constants/Constants';
@@ -11,6 +18,10 @@ export const backAction = () => {
     return (dispatch) => {
         dispatch({ type: NavigationActions.BACK });
     }
+}
+
+export const setDataFetching = (value) => {
+    return { type: DATA_FETCHING, payload: value };
 }
 
 export const updatePageNo = (movieType, nextPage) => {
@@ -51,15 +62,15 @@ export const resetSearchedMovies = () => {
 }
 export const searchMovies = (queryString, pageNo, refresh) => {
     return (dispatch) => {
-        dispatch({ type: SEARCHED_MOVIES.PENDING })
+        dispatch(setDataFetching(true));
         return fetchMovieApis.searchMovies(queryString, pageNo)
             .then((response) => {
                 dispatch({ type: SEARCHED_MOVIES.SUCCESS, payload: { searchMovieList: response.data, refresh } });
-                //dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[movieType] }));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch({ type: SEARCHED_MOVIES.ERROR })
+                dispatch(setDataFetching(false));
                 return error;
             })
     }
@@ -83,7 +94,7 @@ export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
             default:
                 break;
         }
-        // dispatch({ type: MOVIES.PENDING })
+        dispatch(setDataFetching(true));
         return fetchMovieApis.fetchMovies(pageNo, movieType, countryCode)
             .then((response) => {
                 switch (movieType) {
@@ -102,9 +113,8 @@ export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
                     default:
                         break;
                 }
-                // dispatch({ type: MOVIES.SUCCESS, payload: response.data });
-                // dispatch({ type: NavigationActions.NAVIGATE, routName: ROUTE_NAME[movieType] })
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[movieType] }));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
@@ -124,7 +134,7 @@ export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
                     default:
                         break;
                 }
-                // dispatch({ type: MOVIES.ERROR })
+                dispatch(setDataFetching(false));
                 return error;
             })
     }
@@ -154,15 +164,16 @@ export const resetUpcomingMoviesState = () => {
 
 export const fetchMovieDetail = (movieId, movieOrTvshow) => {
     return (dispatch) => {
-        dispatch({ type: MOVIE_DETAIL.PENDING })
+        dispatch(setDataFetching(true));
         return fetchMovieApis.fetchMovieDetail(movieId, movieOrTvshow)
             .then((response) => {
                 dispatch({ type: MOVIE_DETAIL.SUCCESS, payload: response.data });
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.MOVIE_DETAIL }));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch({ type: MOVIE_DETAIL.ERROR })
+                dispatch(setDataFetching(false));
                 return error;
             })
     }

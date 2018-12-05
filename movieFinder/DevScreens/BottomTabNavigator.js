@@ -54,7 +54,6 @@ const TopBarNavigator = createMaterialTopTabNavigator(
       }
     }),
     tabBarPosition: 'bottom',
-    lazy: true,
     tabBarOptions: {
       showIcon: true,
       activeTintColor: 'black',
@@ -66,7 +65,7 @@ const TopBarNavigator = createMaterialTopTabNavigator(
         height: 50,
 
       },
-      labelStyle:{
+      labelStyle: {
         margin: 2
       },
       style: {

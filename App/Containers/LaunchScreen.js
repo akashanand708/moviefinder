@@ -8,6 +8,7 @@ import { CustomToast } from '../../movieFinder/CommonComponent/CommonToast/Commo
 
 import styles from './Styles/LaunchScreenStyles'
 import BottomTabNavigator from '../../movieFinder/DevScreens/BottomTabNavigator';
+import CommonLoader from '../../movieFinder/CommonComponent/CommonLoader/CommonLoader';
 
 class LaunchScreen extends Component {
   handleFirstConnectivityChange = (connectionInfo) => {
@@ -36,17 +37,26 @@ class LaunchScreen extends Component {
     );
   }
   render() {
+    let { dataFetching } = this.props;
+    console.log("PROPS.....", dataFetching);
     return (
-      <View style={styles.mainContainer}>
-        <BottomTabNavigator />
-      </View>
+      <React.Fragment>
+        <View style={styles.mainContainer}>
+          <BottomTabNavigator />
+        </View>
+        {
+          dataFetching &&
+          <CommonLoader />
+        }
+      </React.Fragment>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    connectionType: state.ui.networkInfo.connectionType
+    connectionType: state.ui.networkInfo.connectionType,
+    dataFetching: state.ui.filterCountry.data_fetching
   };
 };
 const mapDispatch = (dispatch) => {

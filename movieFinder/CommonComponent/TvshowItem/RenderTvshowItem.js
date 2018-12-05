@@ -20,7 +20,7 @@ class RenderTvshowItem extends React.Component {
     }
 
     componentWillUnmount() {
-       // this.props.actions.resetPopularTvshowsState();
+        // this.props.actions.resetPopularTvshowsState();
     }
     fetchTvshows = (pageNo, refresh) => {
         let { tvshowType } = this.props;
@@ -199,7 +199,7 @@ class RenderTvshowItem extends React.Component {
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
                     refreshList={this.refreshList}
-                    moviesFetching={tvshowsFetching}
+                    moviesFetching={false}
                 />
             </View>
 

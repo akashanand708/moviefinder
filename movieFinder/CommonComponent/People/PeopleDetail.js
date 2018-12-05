@@ -44,7 +44,7 @@ class PeopleDetail extends Component {
                         screenProps={{movieOrTvshow}}
                     />
                 } */}
-                <ActivityIndicator animating={peopleDetailFetching} size="large" />
+                {/* <ActivityIndicator animating={peopleDetailFetching} size="large" /> */}
             </View>
         )
     }

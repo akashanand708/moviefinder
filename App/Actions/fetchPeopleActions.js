@@ -1,5 +1,4 @@
 import { NavigationActions } from 'react-navigation'
-//import FileSaver from 'file-saver';
 import * as fetchPeopleApis from '../../movie-finder-endpoints';
 import {
     PEOPLE, PEOPLE_DETAIL,
@@ -8,6 +7,7 @@ import {
 } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import Constants from '../Constants/Constants';
+import { setDataFetching } from './fetchMovieActions';
 
 const path = '/Users/dhruva/Desktop/popular.json';
 export const backAction = () => {
@@ -23,15 +23,15 @@ export const resetSearchedPeople = () => {
 }
 export const searchPeople = (queryString, pageNo, refresh) => {
     return (dispatch) => {
-        dispatch({ type: SEARCHED_PEOPLE.PENDING })
+        dispatch(setDataFetching(true));
         return fetchPeopleApis.searchPeople(queryString, pageNo)
             .then((response) => {
                 dispatch({ type: SEARCHED_PEOPLE.SUCCESS, payload: { searchPeopleList: response.data, refresh } });
-                //dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[peopleType] }));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch({ type: SEARCHED_PEOPLE.ERROR })
+                dispatch(setDataFetching(false));
                 return error;
             })
     }
@@ -39,20 +39,7 @@ export const searchPeople = (queryString, pageNo, refresh) => {
 
 export const fetchPeople = (pageNo, peopleType, horizontal, refresh) => {
     return (dispatch) => {
-        if (horizontal) {
-            switch (peopleType) {
-                case Constants.POPULAR_PEOPLE:
-                    dispatch({ type: POPULAR_PEOPLE.PENDING })
-                    break;
-                case Constants.LATEST_PEOPLE:
-                    dispatch({ type: LATEST_PEOPLE.PENDING })
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            dispatch({ type: PEOPLE.PENDING })
-        }
+        dispatch(setDataFetching(true));
         return fetchPeopleApis.fetchPeople(pageNo, peopleType)
             .then((response) => {
                 if (horizontal) {
@@ -69,25 +56,12 @@ export const fetchPeople = (pageNo, peopleType, horizontal, refresh) => {
                 } else {
                     dispatch({ type: PEOPLE.SUCCESS, payload: { peopleList: response.data, refresh } });
                 }
-                // dispatch({ type: NavigationActions.NAVIGATE, routName: ROUTE_NAME[peopleType] })
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[peopleType] }));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                if (horizontal) {
-                    switch (peopleType) {
-                        case Constants.POPULAR_PEOPLE:
-                            dispatch({ type: POPULAR_PEOPLE.ERROR })
-                            break;
-                        case Constants.LATEST_PEOPLE:
-                            dispatch({ type: LATEST_PEOPLE.ERROR })
-                            break;
-                        default:
-                            break;
-                    }
-                } else {
-                    dispatch({ type: PEOPLE.ERROR })
-                }
+                dispatch(setDataFetching(false));
                 return error;
             })
     }
@@ -102,15 +76,16 @@ export const resetPeopleState = () => {
 
 export const fetchPeopleDetail = (peopleId) => {
     return (dispatch) => {
-        dispatch({ type: PEOPLE_DETAIL.PENDING })
+        dispatch(setDataFetching(true));
         return fetchPeopleApis.fetchPeopleDetail(peopleId)
             .then((response) => {
                 dispatch({ type: PEOPLE_DETAIL.SUCCESS, payload: response.data });
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.PEOPLE_DETAIL }));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch({ type: PEOPLE_DETAIL.ERROR })
+                dispatch(setDataFetching(false));
                 return error;
             })
     }

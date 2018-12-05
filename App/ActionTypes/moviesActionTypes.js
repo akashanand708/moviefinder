@@ -7,6 +7,8 @@ const asyncActionType = (type) => ({
 
 export const SET_COUNTRY = 'SET_COUNTRY';
 
+
+export const DATA_FETCHING = 'DATA_FETCHING';
 export const MOVIES = asyncActionType('MOVIES');
 export const POPULAR_MOVIES = asyncActionType('POPULAR_MOVIES');
 export const RESET_POPULAR_MOVIES = 'RESET_POPULAR_MOVIES';

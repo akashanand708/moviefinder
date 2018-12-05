@@ -208,7 +208,7 @@ class RenderMovieItem extends React.PureComponent {
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
                     refreshList={this.refreshList}
-                    moviesFetching={moviesFetching}
+                    moviesFetching={false}
                 />
             </View >
 
