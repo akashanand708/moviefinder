@@ -45,7 +45,6 @@ class MovieDetail extends Component {
                         screenProps={{ movieOrTvshow, navigation: this.props.navigation }}
                     />
                 }
-                <ActivityIndicator animating={movieDetailFetching} size="large" />
             </View>
         )
     }
