@@ -1,10 +1,11 @@
 import React from 'react';
-import { Modal, Text, TouchableOpacity } from 'react-native';
+import { Modal, Text, TouchableOpacity,ActivityIndicator } from 'react-native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import style from './style';
 import { Colors } from '../../DevScreens/DevTheme';
 import ShareComponent from '../ShareComponent';
+import CommonLoader from '../CommonLoader/CommonLoader';
 
 class ImageLightbox extends React.Component {
     constructor(props) {
@@ -56,7 +57,6 @@ class ImageLightbox extends React.Component {
                     renderHeader={this.renderHeader}
                     renderFooter={this.renderFooter}
                     footerContainerStyle={style.sharePhoto}
-                    loadingRender={() => { return <Text style={{ color: 'white' }}>{"Loading..."}</Text> }}
                 />
             </Modal>
         );

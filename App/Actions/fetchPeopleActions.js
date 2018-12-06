@@ -23,15 +23,25 @@ export const resetSearchedPeople = () => {
 }
 export const searchPeople = (queryString, pageNo, refresh) => {
     return (dispatch) => {
-        dispatch(setDataFetching(true));
+        if (pageNo < 2) {
+            dispatch(setDataFetching(true));
+        } else {
+            dispatch({ type: SEARCHED_PEOPLE.PENDING })
+        }
         return fetchPeopleApis.searchPeople(queryString, pageNo)
             .then((response) => {
                 dispatch({ type: SEARCHED_PEOPLE.SUCCESS, payload: { searchPeopleList: response.data, refresh } });
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                }
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                } else {
+                    dispatch({ type: SEARCHED_PEOPLE.ERROR })
+                }
                 return error;
             })
     }
@@ -39,7 +49,24 @@ export const searchPeople = (queryString, pageNo, refresh) => {
 
 export const fetchPeople = (pageNo, peopleType, horizontal, refresh) => {
     return (dispatch) => {
-        dispatch(setDataFetching(true));
+        if (pageNo < 2) {
+            dispatch(setDataFetching(true));
+        } else {
+            if (horizontal) {
+                switch (peopleType) {
+                    case Constants.POPULAR_PEOPLE:
+                        dispatch({ type: POPULAR_PEOPLE.PENDING })
+                        break;
+                    case Constants.LATEST_PEOPLE:
+                        dispatch({ type: LATEST_PEOPLE.PENDING })
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                dispatch({ type: PEOPLE.PENDING })
+            }
+        }
         return fetchPeopleApis.fetchPeople(pageNo, peopleType)
             .then((response) => {
                 if (horizontal) {
@@ -57,11 +84,30 @@ export const fetchPeople = (pageNo, peopleType, horizontal, refresh) => {
                     dispatch({ type: PEOPLE.SUCCESS, payload: { peopleList: response.data, refresh } });
                 }
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[peopleType] }));
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                }
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                } else {
+                    if (horizontal) {
+                        switch (peopleType) {
+                            case Constants.POPULAR_PEOPLE:
+                                dispatch({ type: POPULAR_PEOPLE.ERROR })
+                                break;
+                            case Constants.LATEST_PEOPLE:
+                                dispatch({ type: LATEST_PEOPLE.ERROR })
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        dispatch({ type: PEOPLE.ERROR })
+                    }
+                }
                 return error;
             })
     }

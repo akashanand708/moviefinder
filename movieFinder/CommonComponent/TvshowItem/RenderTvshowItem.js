@@ -199,7 +199,7 @@ class RenderTvshowItem extends React.Component {
                     renderItem={this.renderItem}
                     navigation={this.props.navigation}
                     refreshList={this.refreshList}
-                    moviesFetching={false}
+                    moviesFetching={tvshowsFetching}
                 />
             </View>
 

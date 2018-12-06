@@ -5,7 +5,7 @@ import CommonLoaderStyle from './CommonLoaderStyle'
 const CommonLoader = (props) => {
     return (
         <View style={CommonLoaderStyle.loaderContainer}>
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="large" color={'white'}/>
         </View>
     )
 }

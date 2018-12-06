@@ -62,15 +62,25 @@ export const resetSearchedMovies = () => {
 }
 export const searchMovies = (queryString, pageNo, refresh) => {
     return (dispatch) => {
-        dispatch(setDataFetching(true));
+        if (pageNo < 2) {
+            dispatch(setDataFetching(true));
+        } else {
+            dispatch({ type: SEARCHED_MOVIES.PENDING })
+        }
         return fetchMovieApis.searchMovies(queryString, pageNo)
             .then((response) => {
                 dispatch({ type: SEARCHED_MOVIES.SUCCESS, payload: { searchMovieList: response.data, refresh } });
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                }
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                } else {
+                    dispatch({ type: SEARCHED_MOVIES.ERROR })
+                }
                 return error;
             })
     }
@@ -94,7 +104,11 @@ export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
             default:
                 break;
         }
-        dispatch(setDataFetching(true));
+        if (pageNo < 2) {
+            dispatch(setDataFetching(true));
+        } else {
+            dispatch({ type: MOVIES.PENDING })
+        }
         return fetchMovieApis.fetchMovies(pageNo, movieType, countryCode)
             .then((response) => {
                 switch (movieType) {
@@ -114,7 +128,9 @@ export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
                         break;
                 }
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[movieType] }));
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                }
                 return response;
             }).catch((error) => {
                 console.log(error)
@@ -134,7 +150,9 @@ export const fetchMovies = (pageNo, movieType, countryCode, refresh) => {
                     default:
                         break;
                 }
-                dispatch(setDataFetching(false));
+                if (pageNo < 2) {
+                    dispatch(setDataFetching(false));
+                }
                 return error;
             })
     }
@@ -164,16 +182,18 @@ export const resetUpcomingMoviesState = () => {
 
 export const fetchMovieDetail = (movieId, movieOrTvshow) => {
     return (dispatch) => {
-        dispatch(setDataFetching(true));
+        // dispatch(setDataFetching(true));
+        dispatch({ type: MOVIE_DETAIL.PENDING })
         return fetchMovieApis.fetchMovieDetail(movieId, movieOrTvshow)
             .then((response) => {
                 dispatch({ type: MOVIE_DETAIL.SUCCESS, payload: response.data });
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.MOVIE_DETAIL }));
-                dispatch(setDataFetching(false));
+                // dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                dispatch(setDataFetching(false));
+                // dispatch(setDataFetching(false));
+                dispatch({ type: MOVIE_DETAIL.ERROR })
                 return error;
             })
     }
