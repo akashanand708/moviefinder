@@ -39,7 +39,6 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
       }
     }),
     tabBarPosition: 'top',
-    lazy: true,
     tabBarOptions: {
       activeTintColor: 'black',
       inactiveTintColor: 'gray',

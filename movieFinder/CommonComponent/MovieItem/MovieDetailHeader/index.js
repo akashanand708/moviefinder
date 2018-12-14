@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Colors } from '../../../DevScreens/DevTheme';
@@ -14,7 +14,7 @@ class MovieDetailHeader extends React.Component {
     this.props.navigation.navigate("Trailers");
   }
   render() {
-    let { movieDetail } = this.props;
+    let { movieDetail, headerHeight } = this.props;
     let votePercentage = movieDetail.vote_average;
     if (votePercentage !== undefined && votePercentage > 0) {
       votePercentage = votePercentage * 10;
@@ -28,7 +28,7 @@ class MovieDetailHeader extends React.Component {
       voteAverage = movieDetail.vote_average ? movieDetail.vote_average + '/10' : '';
     return (
 
-      <View style={[style.mainContainer, style.movieDetailHeader]}>
+      <Animated.View style={[style.movieDetailHeader, headerHeight]}>
         <Poster
           posterUrl={movieDetail.backdrop_path}
           posterStyle={style.backDropImage}
@@ -70,7 +70,7 @@ class MovieDetailHeader extends React.Component {
             <Icon name="play-circle" size={40} style={{ color: Colors.playButton }} />
           </TouchableOpacity>
         }
-      </View>
+      </Animated.View>
 
     );
   }

@@ -8,6 +8,9 @@ const ApplicationStyles = {
     listScroll: {
       height: (Metrics.screenHeight - 110),
     },
+    fill: {
+      flex: 1
+    },
     mainContainer: {
       flex: 1,
       backgroundColor: Colors.background
@@ -46,59 +49,59 @@ const ApplicationStyles = {
     },
 
 
-    commonMargin:{
+    commonMargin: {
       marginTop: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
     },
-    runtime:{
+    runtime: {
       fontFamily: Fonts.type.bold
     },
-    underLine:{
+    underLine: {
       textDecorationLine: "underline",
       textDecorationStyle: "solid",
       textDecorationColor: Colors.subTitleColor
     },
-    alignRowLeft:{
-      display:'flex',
+    alignRowLeft: {
+      display: 'flex',
       flexDirection: 'row',
-      alignItems:'center',
+      alignItems: 'center',
       justifyContent: 'flex-start',
     },
-    alignRowCenter:{
-      display:'flex',
+    alignRowCenter: {
+      display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
-      alignItems:'center'
+      alignItems: 'center'
     },
-    alignRowRight:{
-      display:'flex',
+    alignRowRight: {
+      display: 'flex',
       flexDirection: 'row',
-      alignItems:'center',
+      alignItems: 'center',
       justifyContent: 'flex-end',
     },
-    alignColumnLeft:{
-      display:'flex',
+    alignColumnLeft: {
+      display: 'flex',
       flexDirection: 'column',
-      alignItems:'flex-start',
+      alignItems: 'flex-start',
       justifyContent: 'center',
     },
-    alignColumnCenter:{
-      display:'flex',
+    alignColumnCenter: {
+      display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems:'center'
+      alignItems: 'center'
     },
-    alignColumnRight:{
-      display:'flex',
+    alignColumnRight: {
+      display: 'flex',
       flexDirection: 'column',
-      alignItems:'flex-end',
+      alignItems: 'flex-end',
       justifyContent: 'center',
     },
     subtitle: {
       ...Fonts.style.subtitleFont,
       color: Colors.subTitleColor,
     },
-    title: { 
+    title: {
       ...Fonts.style.titleFont,
       color: Colors.titleColor
     },
@@ -106,11 +109,11 @@ const ApplicationStyles = {
       ...Fonts.style.infoSubtitleFont,
       color: Colors.subTitleColor
     },
-    infoTitle: { 
+    infoTitle: {
       ...Fonts.style.infoTitleFont,
       color: Colors.titleColor
     },
-    taglineFontSize:{
+    taglineFontSize: {
       ...Fonts.style.tagline
     },
     verticalListContainer: {
@@ -159,7 +162,7 @@ const ApplicationStyles = {
       height: 35
     }
   },
-  
+
   darkLabelContainer: {
     padding: Metrics.smallMargin,
     paddingBottom: Metrics.doubleBaseMargin,

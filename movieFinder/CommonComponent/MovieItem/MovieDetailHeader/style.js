@@ -4,7 +4,8 @@ import { Metrics, Fonts, ApplicationStyles } from '../../../DevScreens/DevTheme'
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   movieDetailHeader: {
-    position: 'relative'
+    position: 'relative',
+    height: 300
   },
   headerLower: {
     justifyContent: 'center',
