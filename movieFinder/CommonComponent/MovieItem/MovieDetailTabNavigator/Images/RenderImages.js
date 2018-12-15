@@ -50,6 +50,8 @@ class RenderImages extends React.Component {
             people={item}
             key={item.file_path}
             type="image"
+            isOpenLightBox={true}
+            showName={false}
             imageType={imageType}
             images={imageList}
             navigation={this.props.navigation}

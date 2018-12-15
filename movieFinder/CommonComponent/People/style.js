@@ -21,6 +21,18 @@ export default StyleSheet.create({
     width: 100, 
     height: 150,
   },
+  peopleImageMain:{
+    width: Metrics.screenWidth, 
+    height: 150,
+    display: 'flex',
+    alignItems: 'center'
+  },
+  profilePic:{
+    marginBottom: 20
+  },
+  biography:{
+    marginTop: 30
+  },
   profileImageContainer:{
     height: 195
   },

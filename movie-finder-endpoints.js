@@ -87,7 +87,9 @@ export const fetchPeopleDetail = function (peopleId) {
   return api.http_get(`/person/${peopleId}?api_key=${API_KEY}&language=en-US&append_to_response=images,videos,casts,reviews`);
 }
 
-
+export const fetchCombinedCredits = function (peopleId) {
+  return api.http_get(`/person/${peopleId}/combined_credits?api_key=${API_KEY}&language=en-US&append_to_response=images,videos,casts,reviews`);
+}
 /**
  * Fetch different people types.
  * @param {*} pageNo 

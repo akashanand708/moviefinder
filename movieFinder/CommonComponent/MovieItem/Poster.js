@@ -68,76 +68,86 @@ class Poster extends Component {
             errorImageUrl = Images.people_placeholder;
             placeholderImage = Images.people_placeholder;
         }
-        console.log("IMAGE ERROR....", imageLoading);
+        // console.log("IMAGE ERROR....", movieItemPosterUrl);
+
         return (
-            <View style={[Styles.itemContainer,
-            (posterType === 'cast_crew') ? { borderRadius: 50, height: 200 } : { borderRadius: 5 },
-            (posterType === 'people') ? { height: '100%', borderRadius: 0 } : {},
-            (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
-                {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
+            <React.Fragment>
+                {
+                    posterUrl ? (
+                        <View style={[Styles.itemContainer,
+                        (posterType === 'cast_crew') ? { borderRadius: 50, height: 200 } : { borderRadius: 5 },
+                        (posterType === 'people') ? { height: '100%', borderRadius: 0 } : {},
+                        (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
+                            {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
 
-                {
-                    !imageError &&
-                    <Animated.Image
-                        ref={r => this.image = r}
-                        source={movieItemPosterUrl}
-                        style={[
                             {
-                                opacity: opacity,
-                                transform: [
-                                    {
-                                        scale: opacity.interpolate({
-                                            inputRange: [0, 1],
-                                            outputRange: [0.85, 1],
-                                        })
-                                    },
-                                ],
-                            },
-                            posterStyle
-                        ]}
-                        //onLoadStart={this.imageLoadingstart}
-                        onLoad={this.imageLoadingComplete}
-                        onError={this.imageLoadingError}
-                    />
+                                !imageError &&
+                                <Animated.Image
+                                    ref={r => this.image = r}
+                                    source={movieItemPosterUrl}
+                                    style={[
+                                        {
+                                            opacity: opacity,
+                                            transform: [
+                                                {
+                                                    scale: opacity.interpolate({
+                                                        inputRange: [0, 1],
+                                                        outputRange: [0.85, 1],
+                                                    })
+                                                },
+                                            ],
+                                        },
+                                        posterStyle
+                                    ]}
+                                    //onLoadStart={this.imageLoadingstart}
+                                    onLoad={this.imageLoadingComplete}
+                                    onError={this.imageLoadingError}
+                                />
 
-                }
-                {
-                    imageError &&
-                    <Animated.Image
-                        source={errorImageUrl}
-                        style={[
+                            }
                             {
-                                opacity: errorOpacity,
-                                transform: [
-                                    {
-                                        scale: errorOpacity.interpolate({
-                                            inputRange: [0, 1],
-                                            outputRange: [0.85, 1],
-                                        })
-                                    },
-                                ],
-                            },
-                            posterStyle
-                        ]}
-                    />
+                                imageError &&
+                                <Animated.Image
+                                    source={errorImageUrl}
+                                    style={[
+                                        {
+                                            opacity: errorOpacity,
+                                            transform: [
+                                                {
+                                                    scale: errorOpacity.interpolate({
+                                                        inputRange: [0, 1],
+                                                        outputRange: [0.85, 1],
+                                                    })
+                                                },
+                                            ],
+                                        },
+                                        posterStyle
+                                    ]}
+                                />
+                            }
+                            {this.props.children}
+                            {
+                                posterType === 'detail' &&
+                                <LinearGradient ref={r => this.gradiant = r} locations={[0, 1.0]} colors=
+                                    {['rgba(255,255,255,0.00)', 'rgba(255,255,255,1)']}
+                                    style={Styles.linearGradient}>
+                                </LinearGradient>
+                            }
+                            {
+                                imageLoading &&
+                                <Image
+                                    style={{ position: 'absolute', width: '100%', height: '100%' }}
+                                    source={placeholderImage}
+                                />
+                            }
+                            {/* </Shimmer> */}
+                        </View>) :
+                        ( <Image
+                            style={{ position: 'absolute', width: '100%', height: '100%' }}
+                            source={placeholderImage}
+                        />)
                 }
-                {this.props.children}
-                {
-                    posterType === 'detail' &&
-                    <LinearGradient ref={r => this.gradiant = r} locations={[0, 1.0]} colors=
-                        {['rgba(255,255,255,0.00)', 'rgba(255,255,255,1)']}
-                        style={Styles.linearGradient}>
-                    </LinearGradient>
-                }
-                {
-                    imageLoading &&
-                    <Image
-                        style={{ position: 'absolute', width: '100%', height: '100%' }}
-                        source={placeholderImage}
-                    />
-                }
-                {/* </Shimmer> */}
-            </View>
+            </React.Fragment>
         )
     }
 }

@@ -3,7 +3,7 @@ import * as fetchPeopleApis from '../../movie-finder-endpoints';
 import {
     PEOPLE, PEOPLE_DETAIL,
     POPULAR_PEOPLE, LATEST_PEOPLE, RESET_PEOPLE_DETAIL,
-    RESET_SEARCHED_PEOPLE, SEARCHED_PEOPLE, RESET_PEOPLE
+    RESET_SEARCHED_PEOPLE, SEARCHED_PEOPLE, RESET_PEOPLE, PEOPLE_COMBINED_DETAIL
 } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import Constants from '../Constants/Constants';
@@ -21,6 +21,8 @@ export const resetSearchedPeople = () => {
         dispatch({ type: RESET_SEARCHED_PEOPLE });
     }
 }
+
+
 export const searchPeople = (queryString, pageNo, refresh) => {
     return (dispatch) => {
         if (pageNo < 2) {
@@ -127,6 +129,23 @@ export const fetchPeopleDetail = (peopleId) => {
             .then((response) => {
                 dispatch({ type: PEOPLE_DETAIL.SUCCESS, payload: response.data });
                 dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.PEOPLE_DETAIL }));
+                dispatch(setDataFetching(false));
+                return response;
+            }).catch((error) => {
+                console.log(error)
+                dispatch(setDataFetching(false));
+                return error;
+            })
+    }
+}
+
+
+export const fetchCombinedCredits = (peopleId) => {
+    return (dispatch) => {
+        dispatch(setDataFetching(true));
+        return fetchPeopleApis.fetchCombinedCredits(peopleId)
+            .then((response) => {
+                dispatch({ type: PEOPLE_COMBINED_DETAIL, payload: response.data });
                 dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {

@@ -40,6 +40,7 @@ class ImageLightbox extends React.Component {
     render() {
         let { images } = this.props;
         let { visible, index } = this.state;
+        console.log("Images light box....",images);
         return (
             <Modal
                 visible={visible}

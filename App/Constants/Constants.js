@@ -12,6 +12,7 @@ export default {
     MOVIE: 'MOVIE',
     PEOPLE: 'PEOPLE',
     TVSHOWS: 'TVSHOWS',
+    GENDER: ['Male', 'Female'],
     TITLE: {
         POPULAR: 'Popular',
         TOP_RATED: 'Top Rated',
@@ -32,7 +33,8 @@ export default {
     },
     IMAGE_TYPE: {
         BACKDROPS: 'BACKDROPS',
-        POSTERS: 'POSTERS'
+        POSTERS: 'POSTERS',
+        PEOPLE: 'PEOPLE'
     },
     MONTH_NAME: ["Jan", "Feb", "Mar", "April", "May", "June",
         "July", "Aug", "Sept", "Oct", "Nov", "Dec"

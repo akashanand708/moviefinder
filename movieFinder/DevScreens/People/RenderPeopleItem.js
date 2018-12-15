@@ -75,6 +75,8 @@ class RenderPeopleItem extends React.Component {
     return <People
       people={item}
       type="people"
+      isOpenLightBox={false}
+      showName={true}
       navigation={this.props.navigation}
     />
   }

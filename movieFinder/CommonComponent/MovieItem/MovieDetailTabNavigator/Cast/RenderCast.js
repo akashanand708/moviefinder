@@ -17,6 +17,8 @@ class RenderCast extends React.Component {
         return <People
             people={item}
             type="cast_crew" 
+            isOpenLightBox={false}
+            showName={true}
             castCrewType={castCrewType}
             navigation={this.props.navigation}
         />

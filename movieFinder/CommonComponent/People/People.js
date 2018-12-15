@@ -27,7 +27,7 @@ class People extends Component {
     //     }
     // }
     navigateToMovieDetails = (people) => {
-        let { connectionType, type } = this.props;
+        let { connectionType, type, isOpenLightBox } = this.props;
         if (['none', 'unknown'].includes(connectionType)) {
             this.props.navigation.navigate('NetworkError');
         } else {
@@ -37,7 +37,7 @@ class People extends Component {
                 params: { peopleId: people.id, peopleName: people.name }
             })
         }
-        if (type === 'image') {
+        if (type === 'image' || isOpenLightBox) {
             this.openLightBox();
         }
     }
@@ -54,7 +54,7 @@ class People extends Component {
     }
     render() {
         console.log("Render People item.........");
-        let { people, type, castCrewType, imageType, images } = this.props,
+        let { people, type, castCrewType, imageType, images, showName } = this.props,
             character = people.character,
             profilepath = DEFAULT_PROFILE_PIC,
             profileImageStyle = {},
@@ -77,6 +77,8 @@ class People extends Component {
             profileImageContainer = profileImageStyle;
             if (imageType === Constants.IMAGE_TYPE.BACKDROPS) {
                 imageSize = Constants.IMAGE_SIZE.IMG_TAB_BACKDROP_SIZE;
+            } else if (imageType === Constants.IMAGE_TYPE.PEOPLE) {
+                imageSize = Constants.IMAGE_SIZE.PROFILE_IMAGE_SIZE;
             } else {
                 imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
             }
@@ -95,7 +97,7 @@ class People extends Component {
                     >
 
                         {
-                            ["people", "cast_crew"].includes(type) &&
+                            ["people", "cast_crew"].includes(type) && showName &&
                             <View style={{ width: '100%' }}>
                                 <Text style={style.name}>{people.name}</Text>
                                 {character !== '' && <Text style={style.character} numberOfLines={1}>{character}</Text>}
