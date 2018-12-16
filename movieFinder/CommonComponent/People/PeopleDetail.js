@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, ActivityIndicator, ScrollView } from 'react-native'
+import { View, Text, ActivityIndicator, ScrollView, Linking } from 'react-native'
+import ViewMoreText from 'react-native-view-more-text';
 import style from './style'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchPeoplesActions from '../../../App/Actions/fetchPeopleActions'
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Poster from '../MovieItem/Poster';
 import RenderMovieItem from '../MovieItem/RenderTrailer/RenderMovieItem';
 import SuperGridSectionListCustom from '../SuperGridSectionListCustom';
@@ -18,7 +20,6 @@ class PeopleDetail extends Component {
     componentDidMount() {
         let { peopleId } = this.props.navigation.state.params;
         this.props.actions.fetchPeopleDetail(peopleId);
-        this.props.actions.fetchCombinedCredits(peopleId);
     }
     componentWillUnmount() {
         this.props.actions.resetPeopleDetailState();
@@ -66,21 +67,32 @@ class PeopleDetail extends Component {
             navigation={this.props.navigation}
         />
     }
-    render() {
-        let { peopleDetail, peopleDetailFetching, combinedCredit } = this.props;
-        let { peopleId, peopleName } = this.props.navigation.state.params;
 
-        let moviesList = _.get(this.props, 'combinedCredit.cast', []);
-        let profilePics = _.get(this.props, 'peopleDetail.images.profiles', [])
+    renderViewMore = (onPress) => {
+        return (
+            <Text style={style.readMoreLess} onPress={onPress}>Read more</Text>
+        )
+    }
+    renderViewLess = (onPress) => {
+        return (
+            <Text style={style.readMoreLess} onPress={onPress}>Read less</Text>
+        )
+    }
+    render() {
+        let { peopleDetail, peopleDetailFetching } = this.props;
+
+        let moviesList = _.get(peopleDetail, 'combined_credits.cast', []);
+        let profilePics = _.get(this.props, 'peopleDetail.images.profiles', []);
+        let { instagram_id, facebook_id, twitter_id } = _.get(peopleDetail, 'external_ids', {})
         let staticDimension = 110,
             gridHeight = { height: 185 },
             spacing = 1;
-        console.log("People detail...", peopleDetail, combinedCredit);
+        console.log("People detail...", peopleDetail);
         return (
             <React.Fragment>
                 {
                     !_.isEmpty(peopleDetail) ?
-                        (<ScrollView style={style.mainContainer}>
+                        (<ScrollView style={[style.mainContainer, style.peopleDetailMain]}>
                             <View style={style.peopleImageMain}>
                                 <People
                                     people={peopleDetail}
@@ -90,14 +102,38 @@ class PeopleDetail extends Component {
                                     imageType={Constants.IMAGE_TYPE.BACKDROPS}
                                     images={[]}
                                     navigation={this.props.navigation}
-                                />
+                                >
+                                    <View style={[style.socialMedia]}>
+                                        {
+                                            instagram_id &&
+                                            <Icon name="instagram" size={30} style={style.socialMediaIcon} onPress={() => Linking.openURL(`https://www.instagram.com/${instagram_id}`)} />
+                                        }
+                                        {
+                                            facebook_id &&
+                                            <Icon name="facebook-square" size={30} style={style.socialMediaIcon} onPress={() => Linking.openURL(`https://www.facebook.com/${facebook_id}`)} />
+                                        }
+                                        {
+                                            twitter_id &&
+                                            <Icon name="twitter" size={30} style={style.socialMediaIcon} onPress={() => Linking.openURL(`https://twitter.com/${twitter_id}`)} />
+                                        }
+                                    </View>
+                                </People>
                             </View>
                             <View style={[style.biography]}>
                                 <Text style={[style.profilePic, style.infoTitle]}>Biography</Text>
-                                <Text style={[style.infoSubtitle]}>
-                                    {peopleDetail.biography}
-                                </Text>
+                                <ViewMoreText
+                                    numberOfLines={3}
+                                    renderViewMore={this.renderViewMore}
+                                    renderViewLess={this.renderViewLess}
+                                >
+                                    <Text style={[style.infoSubtitle]}>
+                                        {peopleDetail.biography ? peopleDetail.biography : '-'}
+                                    </Text>
+                                </ViewMoreText>
                             </View>
+
+
+
                             <View style={[style.commonMargin]}>
                                 <Text style={[style.infoTitle]}>Known For</Text>
                                 <SuperGridSectionListCustom
@@ -108,7 +144,7 @@ class PeopleDetail extends Component {
                                     staticDimension={staticDimension}
                                     handleEnd={() => { }}
                                     renderItem={this.renderItem}
-                                    navigation={this.props.navigation}
+                                    //navigation={this.props.navigation}
                                     refreshList={() => { }}
                                     moviesFetching={false}
                                 />
@@ -123,11 +159,11 @@ class PeopleDetail extends Component {
                                     staticDimension={staticDimension}
                                     handleEnd={() => { }}
                                     renderItem={this.renderProfileItem}
-                                    navigation={this.props.navigation}
+                                    //navigation={this.props.navigation}
                                     moviesFetching={false}
                                 />
                             </View>
-                            <View style={style.alignColumnLeft}>
+                            <View style={[style.alignColumnLeft, style.personalInfoMain]}>
                                 <Text style={[style.title]}>Personal Info</Text>
                                 <View style={[style.commonMargin]}>
                                     <Text style={[style.infoTitle]}>Known For</Text>
@@ -159,8 +195,19 @@ class PeopleDetail extends Component {
 
                                 <View style={[style.commonMargin]}>
                                     <Text style={[style.infoTitle]}>Official Site</Text>
+                                    {peopleDetail.homepage ?
+                                        <Text style={[style.infoSubtitle, style.underLine]} onPress={() => Linking.openURL(peopleDetail.homepage)}>{peopleDetail.homepage}</Text>
+                                        :
+                                        <Text style={[style.infoSubtitle]}>
+                                            {'-'}
+                                        </Text>
+                                    }
+
+                                </View>
+                                <View style={[style.commonMargin]}>
+                                    <Text style={[style.infoTitle]}></Text>
                                     <Text style={[style.infoSubtitle]}>
-                                        {peopleDetail.homepage ? peopleDetail.homepage : '-'}
+
                                     </Text>
                                 </View>
                             </View>
@@ -181,8 +228,7 @@ const mapDispatch = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         peopleDetailFetching: state.data.peopleDetail.peopleDetailFetching,
-        peopleDetail: state.data.peopleDetail.peopleDetail,
-        combinedCredit: state.data.peopleDetail.combinedCredit
+        peopleDetail: state.data.peopleDetail.peopleDetail
     };
 };
 

@@ -14,12 +14,31 @@ export default StyleSheet.create({
   name:{
     textAlign:"center"
   },
+  peopleDetailMain:{
+    padding: 10
+  },
   character:{
     textAlign:"center"
   },
   peopleImage:{
     width: 100, 
     height: 150,
+  },
+  readMoreLess:{
+    color: Colors.linkColor,
+    marginBottom: 10
+  },
+  personalInfoMain:{
+    marginTop: -27
+  },
+  socialMedia:{
+    display: 'flex',
+    flexDirection: 'row',
+    margin: 4,
+    width: 'auto'
+  },
+  socialMediaIcon:{
+    margin: 4
   },
   peopleImageMain:{
     width: Metrics.screenWidth, 
@@ -28,7 +47,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   profilePic:{
-    marginBottom: 20
+    marginBottom: 10
   },
   biography:{
     marginTop: 30

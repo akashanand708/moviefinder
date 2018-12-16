@@ -25,7 +25,8 @@ const colors = {
   buttonIcon: 'rgba(0,0,0,0.7)',
   youtubeButton: 'rgba(255,0,0,1)',
   borderColor:'rgba(0,0,0,0.3)',
-  closeButtonColor: 'rgba(255,255,255,1)'
+  closeButtonColor: 'rgba(255,255,255,1)',
+  linkColor: '#3585ee'
 }
 
 export default colors

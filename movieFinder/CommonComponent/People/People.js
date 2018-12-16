@@ -28,17 +28,18 @@ class People extends Component {
     // }
     navigateToMovieDetails = (people) => {
         let { connectionType, type, isOpenLightBox } = this.props;
-        if (['none', 'unknown'].includes(connectionType)) {
-            this.props.navigation.navigate('NetworkError');
-        } else {
-            this.props.navigation.navigate({
-                key: 'PeopleDetail',
-                routeName: 'PeopleDetail',
-                params: { peopleId: people.id, peopleName: people.name }
-            })
-        }
         if (type === 'image' || isOpenLightBox) {
             this.openLightBox();
+        }else{
+            if (['none', 'unknown'].includes(connectionType)) {
+                this.props.navigation.navigate('NetworkError');
+            } else {
+                this.props.navigation.navigate({
+                    key: 'PeopleDetail',
+                    routeName: 'PeopleDetail',
+                    params: { peopleId: people.id, peopleName: people.name }
+                })
+            }
         }
     }
     openLightBox = () => {
@@ -54,7 +55,7 @@ class People extends Component {
     }
     render() {
         console.log("Render People item.........");
-        let { people, type, castCrewType, imageType, images, showName } = this.props,
+        let { people, type, castCrewType, imageType, images, showName, isOpenLightBox } = this.props,
             character = people.character,
             profilepath = DEFAULT_PROFILE_PIC,
             profileImageStyle = {},
@@ -87,7 +88,7 @@ class People extends Component {
             profilepath = PROFILE_PIC_URL + `/${imageSize}${people.profile_path || people.file_path}`;
         }
         return (
-            <TouchableOpacity onPress={() => this.navigateToMovieDetails(people)}>
+            <TouchableOpacity onPress={() => {this.navigateToMovieDetails(people)}}>
                 <View style={profileImageContainer}>
 
                     <Poster
@@ -103,6 +104,7 @@ class People extends Component {
                                 {character !== '' && <Text style={style.character} numberOfLines={1}>{character}</Text>}
                             </View>
                         }
+                        {this.props.children}
                     </Poster>
 
                 </View>

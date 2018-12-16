@@ -42,7 +42,6 @@ export const PEOPLE = asyncActionType('PEOPLE');
 export const RESET_PEOPLE = 'RESET_PEOPLE';
 
 export const PEOPLE_DETAIL = asyncActionType('PEOPLE_DETAIL');
-export const PEOPLE_COMBINED_DETAIL = 'PEOPLE_COMBINED_DETAIL';
 
 export const RESET_PEOPLE_DETAIL = 'RESET_PEOPLE_DETAIL';
 

@@ -14,7 +14,7 @@ const ApplicationStyles = {
     mainContainer: {
       flex: 1,
       backgroundColor: Colors.background,
-      padding: 10
+      //padding: 10
     },
     mainHorizontalContainer: {
       //marginBottom:20,

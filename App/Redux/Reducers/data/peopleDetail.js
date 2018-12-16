@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { PEOPLE_DETAIL, RESET_PEOPLE_DETAIL, PEOPLE_COMBINED_DETAIL } from '../../../ActionTypes/moviesActionTypes';
+import { PEOPLE_DETAIL, RESET_PEOPLE_DETAIL } from '../../../ActionTypes/moviesActionTypes';
 
 const peopleDetailReducer = handleActions({
     [PEOPLE_DETAIL.PENDING]: (state, action) => {
@@ -16,13 +16,6 @@ const peopleDetailReducer = handleActions({
             peopleDetailFetching: false,
         };
     },
-    [PEOPLE_COMBINED_DETAIL]: (state, action) => {
-        let results = action.payload;
-        return {
-            ...state,
-            combinedCredit: results,
-        };
-    },
     [PEOPLE_DETAIL.ERROR]: (state, action) => {
         return {
             ...state,
@@ -33,16 +26,13 @@ const peopleDetailReducer = handleActions({
         return {
             ...state,
             peopleDetail: {},
-            combinedCredit: {}
             //peopleDetailFetching: false
         };
     }
 },
     {
         peopleDetail: {},
-        peopleDetailFetching: false,
-        combinedCredit: {}
-
+        peopleDetailFetching: false
     });
 
 export {
