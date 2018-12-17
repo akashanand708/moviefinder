@@ -1,6 +1,5 @@
 
 import axiosInstance from 'axios';
-import Config from 'react-native-config'
 import _ from 'lodash';
 
 const authHeaders = [

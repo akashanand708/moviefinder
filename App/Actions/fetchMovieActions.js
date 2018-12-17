@@ -10,7 +10,6 @@ import {
     RESET_NOW_PLAYING_MOVIES, SET_COUNTRY, DATA_FETCHING
 } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
-import RNFS from 'react-native-fs';
 import Constants from '../Constants/Constants';
 
 const path = '/Users/dhruva/Desktop/popular.json';

@@ -5,14 +5,9 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.horcrux.svg.SvgPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.microsoft.codepush.react.CodePush;
-import com.rnfs.RNFSPackage;
-import com.airship.customwebview.CustomWebViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
-import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -38,11 +33,10 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(), new SplashScreenReactPackage(),
-          new ReactNativeYouTube(), new SvgPackage(), new LinearGradientPackage(),
+          new ReactNativeYouTube(), new LinearGradientPackage(),
           new CodePush("_W82jdg5DFwUBqQ7WDKFT6fsldOkad00311d-31e3-4726-8eb6-d7e6901776d6", MainApplication.this,
               BuildConfig.DEBUG),
-          new RNFSPackage(), new CustomWebViewPackage(), new VectorIconsPackage(), new RNDeviceInfo(),
-          new ReactNativeConfigPackage());
+          new VectorIconsPackage());
     }
 
     @Override
