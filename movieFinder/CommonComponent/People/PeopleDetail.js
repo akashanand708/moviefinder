@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, ActivityIndicator, ScrollView, Linking } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Linking } from 'react-native'
 import ViewMoreText from 'react-native-view-more-text';
 import style from './style'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as fetchPeoplesActions from '../../../App/Actions/fetchPeopleActions'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import Poster from '../MovieItem/Poster';
-import RenderMovieItem from '../MovieItem/RenderTrailer/RenderMovieItem';
 import SuperGridSectionListCustom from '../SuperGridSectionListCustom';
 import MovieItem from '../MovieItem/MovieItem';
 import Constants from '../../../App/Constants/Constants';
@@ -105,16 +103,22 @@ class PeopleDetail extends Component {
                                 >
                                     <View style={[style.socialMedia]}>
                                         {
-                                            instagram_id &&
-                                            <Icon name="instagram" size={30} style={style.socialMediaIcon} onPress={() => Linking.openURL(`https://www.instagram.com/${instagram_id}`)} />
+                                            !_.isEmpty(instagram_id) &&
+                                            <TouchableOpacity onPress={() => Linking.openURL(`https://www.instagram.com/${instagram_id}`)}>
+                                                <Icon name="instagram" size={30} style={style.socialMediaIcon} />
+                                            </TouchableOpacity>
                                         }
                                         {
-                                            facebook_id &&
-                                            <Icon name="facebook-square" size={30} style={style.socialMediaIcon} onPress={() => Linking.openURL(`https://www.facebook.com/${facebook_id}`)} />
+                                            !_.isEmpty(facebook_id) &&
+                                            <TouchableOpacity onPress={() => Linking.openURL(`https://www.facebook.com/${facebook_id}`)}>
+                                                <Icon name="facebook-square" size={30} style={style.socialMediaIcon} />
+                                            </TouchableOpacity>
                                         }
                                         {
-                                            twitter_id &&
-                                            <Icon name="twitter" size={30} style={style.socialMediaIcon} onPress={() => Linking.openURL(`https://twitter.com/${twitter_id}`)} />
+                                            !_.isEmpty(twitter_id) &&
+                                            <TouchableOpacity onPress={() => Linking.openURL(`https://twitter.com/${twitter_id}`)}>
+                                                <Icon name="twitter" size={30} style={style.socialMediaIcon} />
+                                            </TouchableOpacity>
                                         }
                                     </View>
                                 </People>

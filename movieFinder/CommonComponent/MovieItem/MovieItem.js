@@ -25,9 +25,10 @@ const MovieItem = (props) => {
     return (
         <View style={{ borderRadius: 5 }}>
             <TouchableOpacity onPress={() => navigateToMovieDetails(movieItem)}>
-                <Poster
+                <Poster 
                     posterUrl={movieItem.poster_path}
                     posterStyle={MovieItemStyle.image}
+                    movieName = {movieItem.original_title}
                 />
             </TouchableOpacity>
         </View>

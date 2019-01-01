@@ -12,7 +12,7 @@ export default {
     MOVIE: 'MOVIE',
     PEOPLE: 'PEOPLE',
     TVSHOWS: 'TVSHOWS',
-    GENDER: ['Male', 'Female'],
+    GENDER: ['', 'Female','Male'],
     TITLE: {
         POPULAR: 'Popular',
         TOP_RATED: 'Top Rated',

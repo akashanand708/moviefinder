@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Animated, Image } from 'react-native'
+import { View, Animated, Image, Text } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import Styles from './PosterStyle'
 import Constants from '../../../App/Constants/Constants';
@@ -57,7 +57,7 @@ class Poster extends Component {
     }
 
     render() {
-        let { posterUrl, posterType, posterStyle } = this.props;
+        let { posterUrl, posterType, posterStyle, movieName } = this.props;
         let { imageError, opacity, errorImageUrl, errorOpacity, imageLoading, placeholderImage } = this.state,
             imageSize = Constants.IMAGE_SIZE.POSTER_IMAGE_SIZE;
         if (posterType === 'detail') {
@@ -68,17 +68,17 @@ class Poster extends Component {
             errorImageUrl = Images.people_placeholder;
             placeholderImage = Images.people_placeholder;
         }
-        // console.log("IMAGE ERROR....", movieItemPosterUrl);
+        // console.log("IMAGE ERROR....", posterUrl);
 
         return (
-            <React.Fragment>
+            <View style={[Styles.itemContainer,
+            (posterType === 'cast_crew') ? { borderRadius: 50, height: 200 } : { borderRadius: 5 },
+            (posterType === 'people') ? { height: '100%', borderRadius: 0 } : {},
+            (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
+                {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
                 {
-                    posterUrl ? (
-                        <View style={[Styles.itemContainer,
-                        (posterType === 'cast_crew') ? { borderRadius: 50, height: 200 } : { borderRadius: 5 },
-                        (posterType === 'people') ? { height: '100%', borderRadius: 0 } : {},
-                        (posterType === 'detail') ? { margin: 0 } : ({ margin: 5, height: '100%' }, Styles.addElevation)]}>
-                            {/* <Shimmer autoRun={true} style={posterStyle} visible={!imageError && imageLoading}> */}
+                    !_.isEmpty(posterUrl) ?
+                        (<React.Fragment>
 
                             {
                                 !imageError &&
@@ -141,13 +141,19 @@ class Poster extends Component {
                                 />
                             }
                             {/* </Shimmer> */}
-                        </View>) :
-                        ( <Image
-                            style={{ position: 'absolute', width: '100%', height: '100%' }}
-                            source={placeholderImage}
-                        />)
+                        </React.Fragment>) :
+                        (
+                            <React.Fragment>
+                                <Image
+                                    style={posterStyle}
+                                    source={placeholderImage}
+                                />
+                                <Text style={{ position: 'absolute', width: '100%',top: 50, left: 0, textAlign: 'center' }}>{movieName}</Text>
+                            </React.Fragment>
+                        )
                 }
-            </React.Fragment>
+            </View>
+
         )
     }
 }
