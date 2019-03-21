@@ -113,7 +113,7 @@ export const fetchTvshows = (pageNo, TvshowsType, refresh) => {
                     default:
                         break;
                 }
-                dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[TvshowsType] }));
+                // dispatch(NavigationActions.push(ROUTE_NAME[TvshowsType]));
                 if (pageNo < 2) {
                     dispatch(setDataFetching(false));
                 }
@@ -168,17 +168,17 @@ export const resetTvairingTvshowsState = () => {
 
 export const fetchTvshowsDetail = (TvshowsId) => {
     return (dispatch) => {
-        // dispatch(setDataFetching(true));
+        dispatch(setDataFetching(true));
         dispatch({ type: TVSHOWS_DETAIL.PENDING })
         return fetchTvshowsApis.fetchTvshowsDetail(movieId)
             .then((response) => {
                 dispatch({ type: TVSHOWS_DETAIL.SUCCESS, payload: response.data });
-                dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.TVSHOWS_DETAIL }));
-                // dispatch(setDataFetching(false));
+                // dispatch(NavigationActions.push(ROUTE_NAME.TVSHOWS_DETAIL));
+                dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {
                 console.log(error)
-                // dispatch(setDataFetching(false));
+                dispatch(setDataFetching(false));
                 dispatch({ type: TVSHOWS_DETAIL.ERROR })
                 return error;
             })

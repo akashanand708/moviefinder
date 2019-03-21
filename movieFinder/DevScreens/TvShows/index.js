@@ -13,15 +13,12 @@ const TvShows = (props) => {
     let refreshing = false;
     let apiCounter = 0;
     navigate = (tvshowType, title) => {
-        // props.navigation.navigate('NetworkError');
         let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            props.navigation.navigate('NetworkError');
+            props.navigation.push('NetworkError');
         } else {
-            props.navigation.navigate({
-                key: tvshowType,
-                routeName: 'VerticalTvshowList',
-                params: { tvshowType: tvshowType, title: title }
+            props.navigation.push('VerticalTvshowList', {
+                tvshowType: tvshowType, title: title
             })
 
         }

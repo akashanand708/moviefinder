@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash';
 import { View, ActivityIndicator } from 'react-native'
 import Styles from './MovieDetailTabNavigator/style'
 import { connect } from 'react-redux'
@@ -9,15 +10,21 @@ import MovieDetailTabNavigator from './MovieDetailTabNavigator/MovieDetailTabNav
 import MovieDetailHeader from './MovieDetailHeader';
 class MovieDetail extends Component {
 
+    componentWillMount() {
+        this.props.actions.resetMovieDetailState();
+    }
     componentDidMount() {
-        let { movieId, movieOrTvshow } = this.props.navigation.state.params;
-        this.props.actions.fetchMovieDetail(movieId, movieOrTvshow);
+        this.props.navigation.addListener("didFocus", () => {
+            let { movieId, movieOrTvshow } = this.props.navigation.state.params;
+            console.log("Movie detail......", movieId);
+            this.props.actions.fetchMovieDetail(movieId, movieOrTvshow);
+        });
     }
     componentWillUnmount() {
         this.props.actions.resetMovieDetailState();
     }
     goBack = () => {
-        this.props.navigation.goBack();
+        this.props.navigation.pop();
         this.props.actions.backAction();
     }
 
@@ -29,24 +36,30 @@ class MovieDetail extends Component {
     render() {
         let { movieDetail, movieDetailFetching } = this.props;
         let { movieId, movieOrTvshow } = this.props.navigation.state.params;
+        console.log("MOVIE DETAIL....", movieDetail);
         return (
-            <View style={Styles.mainContainer}>
+            <React.Fragment>
                 {
-                    movieDetail && !movieDetailFetching &&
-                    <MovieDetailHeader
-                        goBack={this.goBack}
-                        navigation={this.props.navigation}
-                        movieOrTvshow={movieOrTvshow}
-                    />
+                    !_.isEmpty(movieDetail) ?
+                        (<View style={Styles.mainContainer}>
+                            {
+                                movieDetail && !movieDetailFetching &&
+                                <MovieDetailHeader
+                                    goBack={this.goBack}
+                                    navigation={this.props.navigation}
+                                    movieOrTvshow={movieOrTvshow}
+                                />
+                            }
+                            {
+                                movieDetail && !movieDetailFetching &&
+                                <MovieDetailTabNavigator
+                                    screenProps={{ movieOrTvshow, navigation: this.props.navigation }}
+                                />
+                            }
+                            <ActivityIndicator animating={movieDetailFetching} size="large" />
+                        </View>) : null
                 }
-                {
-                    movieDetail && !movieDetailFetching &&
-                    <MovieDetailTabNavigator
-                        screenProps={{ movieOrTvshow, navigation: this.props.navigation }}
-                    />
-                }
-                <ActivityIndicator animating={movieDetailFetching} size="large" />
-            </View>
+            </React.Fragment>
         )
     }
 }

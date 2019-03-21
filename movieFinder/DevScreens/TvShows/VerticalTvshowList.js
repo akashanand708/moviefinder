@@ -11,7 +11,7 @@ import RenderTvshowItem from '../../CommonComponent/TvshowItem/RenderTvshowItem'
 class VerticalTvshowList extends React.Component {
 
   goBack = () => {
-    this.props.navigation.goBack();
+    this.props.navigation.pop();
     this.props.actions.backAction();
   }
   static navigationOptions = ({ navigation }) => {

@@ -30,14 +30,12 @@ class People extends Component {
         let { connectionType, type, isOpenLightBox } = this.props;
         if (type === 'image' || isOpenLightBox) {
             this.openLightBox();
-        }else{
+        } else {
             if (['none', 'unknown'].includes(connectionType)) {
-                this.props.navigation.navigate('NetworkError');
+                this.props.navigation.push('NetworkError');
             } else {
-                this.props.navigation.navigate({
-                    key: 'PeopleDetail',
-                    routeName: 'PeopleDetail',
-                    params: { peopleId: people.id, peopleName: people.name }
+                this.props.navigation.push('PeopleDetail', {
+                    peopleId: people.id, peopleName: people.name
                 })
             }
         }
@@ -88,7 +86,7 @@ class People extends Component {
             profilepath = PROFILE_PIC_URL + `/${imageSize}${people.profile_path || people.file_path}`;
         }
         return (
-            <TouchableOpacity onPress={() => {this.navigateToMovieDetails(people)}}>
+            <TouchableOpacity onPress={() => { this.navigateToMovieDetails(people) }}>
                 <View style={profileImageContainer}>
 
                     <Poster

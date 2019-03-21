@@ -11,7 +11,7 @@ import BackButton from '../../BackButton';
 class MovieDetailHeader extends React.Component {
 
   openTrailer = () => {
-    this.props.navigation.navigate("Trailers");
+    this.props.navigation.push("Trailers");
   }
   render() {
     let { movieDetail, headerHeight } = this.props;

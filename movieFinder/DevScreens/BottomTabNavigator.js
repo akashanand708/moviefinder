@@ -30,7 +30,7 @@ class TopBarNavigatorComponent extends Component {
 }
 
 const tempMovie = (props) => (<Movies navigation={props.screenProps.navigation} />);
-const tempPeople = (props) => (<People navigation={props.screenProps.navigation} />);
+const tempPeople = (props) => (<People navigation={props.screenProps.navigation} />); 
 const tempTvShows = (props) => (<TvShows navigation={props.screenProps.navigation} />);
 const TopBarNavigator = createMaterialTopTabNavigator(
   {
@@ -82,7 +82,7 @@ const TopBarNavigator = createMaterialTopTabNavigator(
 export default StackNavigator(
   {
     TopBarNavigator: { screen: TopBarNavigatorComponent },
-    MovieDetailTabNavigator: { screen: MovieDetailTabNavigator },
+    // MovieDetailTabNavigator: { screen: MovieDetailTabNavigator },
     VerticalMovieList: { screen: VerticalMovieList },
     MovieDetail: { screen: MovieDetail },
     ReviewDetail: { screen: ReviewDetail },

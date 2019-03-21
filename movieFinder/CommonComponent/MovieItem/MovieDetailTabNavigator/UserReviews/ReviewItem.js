@@ -6,10 +6,8 @@ import style from './style';
 class ReviewItem extends React.Component {
 
     navigateToMovieDetails = (reviewItem) => {
-        this.props.navigation.navigate({
-            key: 'ReviewDetail',
-            routeName: 'ReviewDetail',
-            params: { reviewItem: reviewItem }
+        this.props.navigation.push('ReviewDetail', {
+            reviewItem: reviewItem
         })
     }
     static navigationOptions = {

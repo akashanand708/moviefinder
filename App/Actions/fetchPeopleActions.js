@@ -85,7 +85,7 @@ export const fetchPeople = (pageNo, peopleType, horizontal, refresh) => {
                 } else {
                     dispatch({ type: PEOPLE.SUCCESS, payload: { peopleList: response.data, refresh } });
                 }
-                dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME[peopleType] }));
+                //dispatch(NavigationActions.push(ROUTE_NAME[peopleType]));
                 if (pageNo < 2) {
                     dispatch(setDataFetching(false));
                 }
@@ -125,10 +125,10 @@ export const resetPeopleState = () => {
 export const fetchPeopleDetail = (peopleId) => {
     return (dispatch) => {
         dispatch(setDataFetching(true));
-        return fetchPeopleApis.fetchPeopleDetail(peopleId) 
+        return fetchPeopleApis.fetchPeopleDetail(peopleId)
             .then((response) => {
                 dispatch({ type: PEOPLE_DETAIL.SUCCESS, payload: response.data });
-                dispatch(NavigationActions.navigate({ routeName: ROUTE_NAME.PEOPLE_DETAIL }));
+                // dispatch(NavigationActions.push(ROUTE_NAME.PEOPLE_DETAIL));
                 dispatch(setDataFetching(false));
                 return response;
             }).catch((error) => {

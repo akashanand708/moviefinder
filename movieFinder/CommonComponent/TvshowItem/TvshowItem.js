@@ -10,12 +10,10 @@ const TvshowItem = (props) => {
     let navigateToMovieDetails = (tvshowItem) => {
         let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            props.navigation.navigate('NetworkError');
+            props.navigation.push('NetworkError');
         } else {
-            props.navigation.navigate({
-                key: 'MovieDetail',
-                routeName: 'MovieDetail',
-                params: { movieId: tvshowItem.id, movieName: tvshowItem.name, movieOrTvshow: Constants.TVSHOWS }
+            props.navigation.push('MovieDetail', {
+                movieId: tvshowItem.id, movieName: tvshowItem.name, movieOrTvshow: Constants.TVSHOWS
             })
         }
     }

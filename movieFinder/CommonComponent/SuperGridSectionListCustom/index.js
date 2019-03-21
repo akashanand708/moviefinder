@@ -26,7 +26,6 @@ class SuperGridSectionListCustom extends React.Component {
     }
     render() {
         let { itemList, gridHeight, fixed, spacing, horizontal, staticDimension, moviesFetching, itemDimension } = this.props;
-        console.log("Item detail...", itemList);
         return (
             <SuperGridSectionList
                 itemDimension={itemDimension}

@@ -20,7 +20,7 @@ class RenderTvshowItem extends React.Component {
     }
 
     componentWillUnmount() {
-        // this.props.actions.resetPopularTvshowsState();
+        this.props.actions.resetPopularTvshowsState();
     }
     fetchTvshows = (pageNo, refresh) => {
         let { tvshowType } = this.props;

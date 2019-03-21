@@ -15,15 +15,22 @@ import People from './People';
 const PROFILE_PIC_URL = Constants.POSTER_BASE_URL;
 class PeopleDetail extends Component {
 
-    componentDidMount() {
-        let { peopleId } = this.props.navigation.state.params;
-        this.props.actions.fetchPeopleDetail(peopleId);
+    componentWillMount() {
+        this.props.actions.resetPeopleDetailState();
     }
+    componentDidMount() {
+        this.props.navigation.addListener("didFocus", () => {
+            let { peopleId } = this.props.navigation.state.params;
+            console.log("OLD ID...", peopleId);
+            this.props.actions.fetchPeopleDetail(peopleId);
+        });
+    }
+
     componentWillUnmount() {
         this.props.actions.resetPeopleDetailState();
     }
     goBack = () => {
-        this.props.navigation.goBack();
+        this.props.navigation.pop();
         this.props.actions.backAction();
     }
 

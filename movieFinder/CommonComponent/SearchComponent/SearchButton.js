@@ -10,10 +10,8 @@ import FilterComponent from './FilterComponent';
 
 const SearchButton = (props) => {
   navigateToSearch = (searchType) => {
-    props.navigation.navigate({
-      key: searchType,
-      routeName: 'SearchComponent',
-      params: { searchType: searchType }
+    props.navigation.push('SearchComponent', {
+      searchType: searchType
     })
   }
 

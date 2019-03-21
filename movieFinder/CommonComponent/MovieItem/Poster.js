@@ -67,8 +67,8 @@ class Poster extends Component {
         if (['people', 'cast_crew'].includes(posterType)) {
             errorImageUrl = Images.people_placeholder;
             placeholderImage = Images.people_placeholder;
+            // console.log("IMAGE ERROR....", peopleName,posterType,movieItemPosterUrl);
         }
-        // console.log("IMAGE ERROR....", posterUrl);
 
         return (
             <View style={[Styles.itemContainer,

@@ -13,15 +13,12 @@ const Movies = (props) => {
     let refreshing = false;
     let apiCounter = 0;
     navigate = (movieType, title) => {
-        // props.navigation.navigate('NetworkError');
         let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            props.navigation.navigate('NetworkError');
+            props.navigation.push('NetworkError');
         } else {
-            props.navigation.navigate({
-                key: movieType,
-                routeName: 'VerticalMovieList',
-                params: { movieType: movieType, title: title }
+            props.navigation.push('VerticalMovieList', {
+                movieType: movieType, title: title
             })
 
         }

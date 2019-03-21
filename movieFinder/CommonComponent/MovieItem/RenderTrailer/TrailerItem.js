@@ -17,10 +17,8 @@ class TrailerItem extends Component {
     }
     openYouTubeVideo = (trailerItem) => {
         let trailerUrl = `${Constants.YOUTUBE_BASE_URL}/watch?v=${trailerItem.key}`;
-        this.props.navigation.navigate({
-            key: 'YoutubeVideo',
-            routeName: 'YoutubeVideo',
-            params: { videoId: trailerItem.key, trailerName: trailerItem.name, trailerUrl }
+        this.props.navigation.push('YoutubeVideo', {
+            videoId: trailerItem.key, trailerName: trailerItem.name, trailerUrl
         })
     }
     render() {

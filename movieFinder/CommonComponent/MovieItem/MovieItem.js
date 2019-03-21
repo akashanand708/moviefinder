@@ -5,30 +5,30 @@ import MovieItemStyle from './MovieItemStyle'
 import Poster from './Poster';
 import { connect } from 'react-redux'
 import Constants from '../../../App/Constants/Constants';
+import MovieDetail from './MovieDetail';
 
 const MovieItem = (props) => {
 
     let navigateToMovieDetails = (movieItem) => {
         let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            props.navigation.navigate('NetworkError');
+            props.navigation.push('NetworkError');
         } else {
-            props.navigation.navigate({
-                key: 'MovieDetail',
-                routeName: 'MovieDetail',
-                params: { movieId: movieItem.id, movieName: movieItem.original_title, movieOrTvshow: Constants.MOVIE }
-            })
+            props.navigation.push(
+                'MovieDetail',
+                {
+                    movieId: movieItem.id, movieName: movieItem.original_title, movieOrTvshow: Constants.MOVIE
+                })
         }
     }
     let { movieItem } = props;
-    console.log("Render movie item.........");
     return (
         <View style={{ borderRadius: 5 }}>
             <TouchableOpacity onPress={() => navigateToMovieDetails(movieItem)}>
-                <Poster 
+                <Poster
                     posterUrl={movieItem.poster_path}
                     posterStyle={MovieItemStyle.image}
-                    movieName = {movieItem.original_title}
+                    movieName={movieItem.original_title}
                 />
             </TouchableOpacity>
         </View>
