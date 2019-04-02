@@ -12,6 +12,7 @@ import CommonLoader from '../../movieFinder/CommonComponent/CommonLoader/CommonL
 
 class LaunchScreen extends Component {
   handleFirstConnectivityChange = (connectionInfo) => {
+    let { networkInfo } = this.props;
     this.props.actions.updateNetworkInfo(connectionInfo.type);
     if (['none', 'unknown'].includes(connectionInfo.type)) {
       CustomToast.showToast("No connection");
@@ -55,7 +56,7 @@ class LaunchScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    connectionType: state.ui.networkInfo.connectionType,
+    networkInfo: state.ui.networkInfo,
     dataFetching: state.ui.filterCountry.data_fetching
   };
 };

@@ -1,15 +1,80 @@
 
 export default {
-  COUNTRY_CODE: [
-    { text: "India", country_id: "IN", country_icon: "" },
-    { text: "Pakistan", country_id: "PK", country_icon: "" },
-    { text: "Australia", country_id: "AU", country_icon: "" },
-    { text: "Japan", country_id: "JP", country_icon: "" },
-    { text: "China", country_id: "CN", country_icon: "" },
-    { text: "United States of America", country_id: "US", country_icon: "" },
-    { text: "Nepal", country_id: "NP", country_icon: "" },
-    { text: "Spain", country_id: "ES", country_icon: "" },
-    { text: "Portugal", country_id: "PT", country_icon: "" },
-    { text: "Russia", country_id: "RU", country_icon: "" }
-  ]
+  COUNTRY_CODE: [{
+    "text": "Argentina",
+    "country_id": "AR",
+    "country_icon": ""
+  }, {
+    "text": "Australia",
+    "country_id": "AU",
+    "country_icon": ""
+  }, {
+    "text": "Brazil",
+    "country_id": "BR",
+    "country_icon": ""
+  }, {
+    "text": "Canada",
+    "country_id": "CA",
+    "country_icon": ""
+  }, {
+    "text": "China",
+    "country_id": "CN",
+    "country_icon": ""
+  }, {
+    "text": "Denmark",
+    "country_id": "DK",
+    "country_icon": ""
+  }, {
+    "text": "France",
+    "country_id": "FR",
+    "country_icon": ""
+  }, {
+    "text": "India",
+    "country_id": "IN",
+    "country_icon": ""
+  }, {
+    "text": "Italy",
+    "country_id": "IT",
+    "country_icon": ""
+  }, {
+    "text": "Japan",
+    "country_id": "JP",
+    "country_icon": ""
+  }, {
+    "text": "Mexico",
+    "country_id": "MX",
+    "country_icon": ""
+  }, {
+    "text": "Nigeria",
+    "country_id": "NG",
+    "country_icon": ""
+  }, {
+    "text": "Russia",
+    "country_id": "RU",
+    "country_icon": ""
+  }, {
+    "text": "South Korea",
+    "country_id": "KR",
+    "country_icon": ""
+  }, {
+    "text": "Spain",
+    "country_id": "ES",
+    "country_icon": ""
+  }, {
+    "text": "Sweden",
+    "country_id": "SE",
+    "country_icon": ""
+  }, {
+    "text": "Turkey",
+    "country_id": "TR",
+    "country_icon": ""
+  }, {
+    "text": "United Kingdom",
+    "country_id": "GB",
+    "country_icon": ""
+  }, {
+    "text": "United States of America",
+    "country_id": "US",
+    "country_icon": ""
+  },]
 }

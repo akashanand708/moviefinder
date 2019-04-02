@@ -5,12 +5,14 @@ const networkInfoReducer = handleActions({
     [UPDATE_NETWORK_INFO]: (state, action) => {
         return {
             ...state,
+            start: false,
             connectionType: action.payload,
         };
     }
 },
     {
-        connectionType: 'none'
+        connectionType: 'none',
+        start: true
 
     });
 

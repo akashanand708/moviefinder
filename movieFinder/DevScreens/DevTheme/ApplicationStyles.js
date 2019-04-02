@@ -144,7 +144,7 @@ const ApplicationStyles = {
     },
     backArrow: {
       position: 'absolute',
-      top: 15,
+      top: 13,
       left: 10
     },
     closeButton: {

@@ -4,6 +4,7 @@ import ViewMoreText from 'react-native-view-more-text';
 import style from './style'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import * as fetchMoviesActions from '../../../App/Actions/fetchMovieActions'
 import * as fetchPeoplesActions from '../../../App/Actions/fetchPeopleActions'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import SuperGridSectionListCustom from '../SuperGridSectionListCustom';
@@ -21,8 +22,11 @@ class PeopleDetail extends Component {
     componentDidMount() {
         this.props.navigation.addListener("didFocus", () => {
             let { peopleId } = this.props.navigation.state.params;
+            let { peopleDetail } = this.props;
             console.log("OLD ID...", peopleId);
-            this.props.actions.fetchPeopleDetail(peopleId);
+            if (peopleId !== peopleDetail.id) {
+                this.props.actions.fetchPeopleDetail(peopleId);
+            }
         });
     }
 
@@ -233,6 +237,7 @@ class PeopleDetail extends Component {
 const mapDispatch = (dispatch) => {
     return {
         actions: bindActionCreators(fetchPeoplesActions, dispatch),
+        movieActions: bindActionCreators(fetchMoviesActions, dispatch),
     };
 };
 

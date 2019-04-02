@@ -89,7 +89,7 @@ class People extends Component {
             <TouchableOpacity onPress={() => { this.navigateToMovieDetails(people) }}>
                 <View style={profileImageContainer}>
 
-                    <Poster
+                    <Poster 
                         posterUrl={people.profile_path || people.file_path}
                         posterStyle={profileImageStyle}
                         posterType={type}

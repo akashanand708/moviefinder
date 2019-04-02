@@ -23,8 +23,11 @@ const Movies = (props) => {
 
         }
     }
-    _onRefresh = () => {
+    _onRefresh = (countryCodeTemp, onchange) => {
         let { countryCode } = props;
+        if (onchange) {
+            countryCode = countryCodeTemp;
+        }
         refreshing = true;
         props.actions.fetchMovies(1, Constants.POPULAR_MOVIES, countryCode, Constants.REFRESH)
             .then(() => {
@@ -59,6 +62,7 @@ const Movies = (props) => {
                 searchType={Constants.MOVIE}
                 navigation={props.navigation}
                 horizontal={true}
+                onRefresh={this._onRefresh}
             />
             <ScrollView
                 style={style.listScroll}

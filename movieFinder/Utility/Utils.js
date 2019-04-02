@@ -19,12 +19,19 @@ export default Utils = {
         }
         return dateString;
     },
+    getYear: function (date) {
+        if (!_.isEmpty(date)) {
+            let dateNumber = new Date(date);
+            return dateNumber.getFullYear();
+        }
+        return '';
+    },
     getProductionCountryString: function (CountryArray) {
         let productionCountryString = '';
         if (_.isArray(CountryArray) && CountryArray.length > 0) {
             CountryArray.forEach((country, index) => {
-                let tempCountry = _.filter(Country.COUNTRY,{"iso_3166_1":(country.iso_3166_1 || country)});
-                productionCountryString += (tempCountry[0].english_name+ ' | ');
+                let tempCountry = _.filter(Country.COUNTRY, { "iso_3166_1": (country.iso_3166_1 || country) });
+                productionCountryString += (tempCountry[0].english_name + ' | ');
             })
         }
         return productionCountryString.substring(0, (productionCountryString.length - 2));

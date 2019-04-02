@@ -69,7 +69,6 @@ class Poster extends Component {
             placeholderImage = Images.people_placeholder;
             // console.log("IMAGE ERROR....", peopleName,posterType,movieItemPosterUrl);
         }
-
         return (
             <View style={[Styles.itemContainer,
             (posterType === 'cast_crew') ? { borderRadius: 50, height: 200 } : { borderRadius: 5 },

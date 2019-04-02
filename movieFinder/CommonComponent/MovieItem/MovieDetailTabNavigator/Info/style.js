@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../../../DevScreens/DevTheme'
+import { Metrics, ApplicationStyles, Colors } from '../../../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
     ...ApplicationStyles.screen,
     container: {
         width: '100%',
         height: '100%',
-        justifyContent: 'flex-start',
-        flexDirection: 'column',
         marginTop: Metrics.baseMargin,
-        marginBottom: Metrics.baseMargin,
         paddingLeft: Metrics.basePadding,
         paddingRight: Metrics.basePadding
-    }
+    },
+    readMoreLess: {
+        color: Colors.linkColor,
+        marginBottom: 10
+    },
 })

@@ -14,7 +14,7 @@ class FilterComponent extends React.PureComponent {
 
   onValueChange = (itemValue, itemIndex) => {
     this.props.actions.setFilterCountry(itemValue);
-    CustomToast.showToast("Please, refresh after selecting country.", 'info');
+    this.props.onRefresh(itemValue, 'onchange');
   }
   renderPicketItem = () => {
     return CountryCode.COUNTRY_CODE.map((item, index) => {
@@ -30,7 +30,8 @@ class FilterComponent extends React.PureComponent {
           mode='dialog'
           selectedValue={selectedCountry}
           style={{ width: '100%' }}
-          onValueChange={(itemValue, itemIndex) => { setTimeout(() => { this.onValueChange(itemValue, itemIndex) }, 10) }}>
+          // TODO onValueChange={(itemValue, itemIndex) => { setTimeout(() => { this.onValueChange(itemValue, itemIndex) }, 10) }}>
+          onValueChange={(itemValue, itemIndex) => this.onValueChange(itemValue, itemIndex)}>
           {
             this.renderPicketItem()
           }

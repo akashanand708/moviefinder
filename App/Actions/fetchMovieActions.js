@@ -7,12 +7,19 @@ import {
     TOP_RATED_MOVIES, UPCOMING_MOVIES, NOW_PLAYING_MOVIES_PAGENO,
     POPULAR_MOVIES_PAGENO, TOP_RATED_MOVIES_PAGENO, SEARCHED_MOVIES_PAGENO,
     UPCOMING_MOVIES_PAGENO, RESET_UPCOMING_MOVIES, RESET_TOP_RATED_MOVIES,
-    RESET_NOW_PLAYING_MOVIES, SET_COUNTRY, DATA_FETCHING
+    RESET_NOW_PLAYING_MOVIES, SET_COUNTRY, DATA_FETCHING, SET_TAB
 } from '../ActionTypes/moviesActionTypes';
 import { ROUTE_NAME } from '../Constants/RouteNameConstant';
 import Constants from '../Constants/Constants';
 
 const path = '/Users/dhruva/Desktop/popular.json';
+
+export const setTab = (tabName) => {
+    return (dispatch) => {
+        dispatch({ type: SET_TAB, payload: tabName});
+    }
+}
+
 export const backAction = () => {
     return (dispatch) => {
         dispatch({ type: NavigationActions.BACK });

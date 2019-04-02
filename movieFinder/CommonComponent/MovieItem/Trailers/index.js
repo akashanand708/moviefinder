@@ -5,7 +5,7 @@ import style from './style';
 import RenderTrailerItem from '../RenderTrailer/RenderTrailerItem';
 
 class Trailers extends React.Component {
-
+  
   render() {
     let { movieDetail } = this.props;
 

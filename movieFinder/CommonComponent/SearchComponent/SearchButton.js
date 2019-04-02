@@ -33,7 +33,9 @@ const SearchButton = (props) => {
         <Body>
           {
             searchType === Constants.MOVIE &&
-            <FilterComponent />
+            <FilterComponent
+              onRefresh={props.onRefresh}
+            />
           }
         </Body>
         <Right>

@@ -1,11 +1,25 @@
 import React from 'react';
 import { Text, View, ScrollView, Linking } from 'react-native';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as fetchMoviesActions from '../../../../../App/Actions/fetchMovieActions'
 import style from './style';
 import Utils from '../../../../Utility/Utils';
 import Constants from '../../../../../App/Constants/Constants';
+import ViewMoreText from 'react-native-view-more-text';
 
 class Info extends React.Component {
+
+    renderViewMore = (onPress) => {
+        return (
+            <Text style={style.readMoreLess} onPress={onPress}>Read more</Text>
+        )
+    }
+    renderViewLess = (onPress) => {
+        return (
+            <Text style={style.readMoreLess} onPress={onPress}>Read less</Text>
+        )
+    }
 
     renderInfo = () => {
         let { movieDetail, movieOrTvshow } = this.props,
@@ -20,7 +34,15 @@ class Info extends React.Component {
                 languages = Utils.ConcatArrayString(movieDetail.spoken_languages),
                 importantPeople = Utils.getImportantPeople(movieDetail.casts && movieDetail.casts.crew);
             return <View>
-                <View style={style.commonMargin}><Text style={style.infoSubtitle}>{movieDetail.overview}</Text></View>
+                <ViewMoreText
+                    style={style.commonMargin}
+                    numberOfLines={3}
+                    renderViewMore={this.renderViewMore}
+                    renderViewLess={this.renderViewLess}>
+                    <Text style={[style.infoSubtitle]}>
+                        {movieDetail.overview}
+                    </Text>
+                </ViewMoreText>
                 {dateString !== '' && <View style={style.commonMargin}><Text style={[style.infoTitle]}>Release date</Text><Text style={[style.infoSubtitle]}>{dateString}</Text></View>}
                 {movieDetail.status !== '' && <View style={style.commonMargin}><Text style={[style.infoTitle]}>Status</Text><Text style={[style.infoSubtitle]}>{movieDetail.status}</Text></View>}
                 {genre !== '' && <View style={style.commonMargin}><Text style={[style.infoTitle]}>Genre</Text><Text style={[style.infoSubtitle]}>{genre}</Text></View>}
@@ -36,7 +58,16 @@ class Info extends React.Component {
         } else {
             let createdBy = Utils.ConcatArrayString(movieDetail.created_by);
             return <View>
-                <View style={style.commonMargin}><Text style={style.infoSubtitle}>{movieDetail.overview}</Text></View>
+                <ViewMoreText
+                    style={style.commonMargin}
+                    numberOfLines={3}
+                    renderViewMore={this.renderViewMore}
+                    renderViewLess={this.renderViewLess}
+                >
+                    <Text style={[style.infoSubtitle]}>
+                        {movieDetail.overview}
+                    </Text>
+                </ViewMoreText>
                 {dateString !== '' && <View style={style.commonMargin}><Text style={[style.infoTitle]}>First air date</Text><Text style={[style.infoSubtitle]}>{dateString}</Text></View>}
                 {genre !== '' && <View style={style.commonMargin}><Text style={[style.infoTitle]}>Genre</Text><Text style={[style.infoSubtitle]}>{genre}</Text></View>}
                 {country !== '' && <View style={style.commonMargin}><Text style={[style.infoTitle]}>Country</Text><Text style={[style.infoSubtitle]}>{country}</Text></View>}
@@ -50,16 +81,19 @@ class Info extends React.Component {
 
     render() {
         return (
-            <ScrollView>
-                <View style={style.container}>
-                    {
-                        this.renderInfo()
-                    }
-                </View>
-            </ScrollView>
+            <View style={style.container}>
+                {
+                    this.renderInfo()
+                }
+            </View>
         );
     }
 }
+const mapDispatch = (dispatch) => {
+    return {
+        actions: bindActionCreators(fetchMoviesActions, dispatch),
+    };
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -67,4 +101,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(Info);
+export default connect(mapStateToProps, mapDispatch)(Info);

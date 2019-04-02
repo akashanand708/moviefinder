@@ -7,7 +7,7 @@ import UserReviews from './UserReviews/index'
 import Images from './Images/index'
 import style from './style';
 
-const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow} />);
+const tempInfo = (props) => (<Info movieOrTvshow={props.screenProps.movieOrTvshow}/>);
 const tempCast = (props) => (<Cast navigation={props.screenProps.navigation} />);
 const tempReview = (props) => (<UserReviews navigation={props.screenProps.navigation} />);
 
@@ -19,7 +19,8 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
     Images: { screen: Images },
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    swipeEnabled: false,
+    navigationOptions: ({ navigation, screenProps }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -36,6 +37,10 @@ const MovieDetailTabNavigator = createMaterialTopTabNavigator(
         // You can return any component that you like here! We usually use an
         // icon component from react-native-vector-icons
         return <Icon name={iconName} size={25} color={tintColor} />;
+      },
+      tabBarOnPress: ({ navigation, defaultHandler }) => {
+        screenProps.setTabAction(navigation.state.routeName);
+        defaultHandler();
       }
     }),
     tabBarPosition: 'top',

@@ -16,7 +16,7 @@ class RenderCast extends React.Component {
         let { castCrewType } = this.props;
         return <People
             people={item}
-            type="cast_crew" 
+            type="cast_crew"
             isOpenLightBox={false}
             showName={true}
             castCrewType={castCrewType}
@@ -73,7 +73,10 @@ class RenderCast extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        castCrewObject :_.get(state, 'data.movieDetail.movieDetail.casts', { cast: [], crew: [] })
+        castCrewObject: _.get(
+            state,
+            'data.movieDetail.movieDetail.casts',
+           _.get(state,'data.movieDetail.movieDetail.credits', { cast: [], crew: [] }))
     };
 };
 export default connect(mapStateToProps, null)(RenderCast);
