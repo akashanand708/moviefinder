@@ -1,6 +1,5 @@
 
 import axiosInstance from 'axios';
-import Config from 'react-native-config'
 import _ from 'lodash';
 
 const authHeaders = [
@@ -12,7 +11,7 @@ const authHeaders = [
 ];
 
 
-const API_ENDPOINT = 'https://api.themoviedb.org/3/movie'
+const API_ENDPOINT = 'https://api.themoviedb.org/3'
 
 
 /**
@@ -20,7 +19,7 @@ const API_ENDPOINT = 'https://api.themoviedb.org/3/movie'
  */
 const axios = axiosInstance.create({
     baseURL: API_ENDPOINT,
-    timeout: 7000
+    //timeout: 7000
 });
 
 function mergeAuthHeaders(config) {

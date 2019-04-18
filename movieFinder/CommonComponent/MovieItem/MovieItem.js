@@ -1,40 +1,38 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import MovieItemStyle from './MovieItemStyle'
 import Poster from './Poster';
 import { connect } from 'react-redux'
+import Constants from '../../../App/Constants/Constants';
+import MovieDetail from './MovieDetail';
 
-class MovieItem extends Component {
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.movieItem.title !== nextProps.movieItem.title) {
-            return true;
-        }
-        return false;
-    }
-    navigateToMovieDetails = (movieItem) => {
-        let { connectionType } = this.props;
+const MovieItem = (props) => {
+
+    let navigateToMovieDetails = (movieItem) => {
+        let { connectionType } = props;
         if (['none', 'unknown'].includes(connectionType)) {
-            this.props.navigation.navigate('NetworkError');
+            props.navigation.push('NetworkError');
         } else {
-            this.props.navigation.navigate({
-                key: 'MovieDetail',
-                routeName: 'MovieDetail',
-                params: { movieId: movieItem.id, movieName: movieItem.original_title }
-            })
+            props.navigation.push(
+                'MovieDetail',
+                {
+                    movieId: movieItem.id, movieName: movieItem.original_title, movieOrTvshow: Constants.MOVIE
+                })
         }
     }
-    render() {
-        let { movieItem } = this.props;
-        return (
-            <TouchableOpacity onPress={() => this.navigateToMovieDetails(movieItem)}>
+    let { movieItem } = props;
+    return (
+        <View style={{ borderRadius: 5 }}>
+            <TouchableOpacity onPress={() => navigateToMovieDetails(movieItem)}>
                 <Poster
                     posterUrl={movieItem.poster_path}
                     posterStyle={MovieItemStyle.image}
+                    movieName={movieItem.original_title}
                 />
             </TouchableOpacity>
-        )
-    }
+        </View>
+    )
 }
 MovieItem.propTypes = {
     movieItem: PropTypes.object

@@ -22,13 +22,19 @@ export default class AdvertisementBanner extends Component {
         return (
             <View>
                 {/* <AdMobBanner
-                    adSize="fullBanner"
-                    adUnitID={authUnitID}
+                    bannerSize="fullBanner"
+                    adUnitID="ca-app-pub-3940256099942544/6300978111"
                     // example to test adUnitID="ca-app-pub-3940256099942544/6300978111"
                     onAdFailedToLoad={this.bannerErrorHandler}
                     ref={el => (this._basicExample = el)}
-                    testDevices={[AdMobBanner.simulatorId]}
+                    testDeviceID="EMULATOR"
+                //style={style.adContainer}
                 /> */}
+                {/* <AdMobBanner
+                    bannerSize="fullBanner"
+                    adUnitID="ca-app-pub-7021272264047080/8588748681"
+                    testDeviceID="EMULATOR"
+                    didFailToReceiveAdWithError={this.bannerErrorHandler} /> */}
             </View>
         )
     }

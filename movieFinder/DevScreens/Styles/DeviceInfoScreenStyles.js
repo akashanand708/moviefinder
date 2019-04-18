@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { Colors, Metrics, Fonts, ApplicationStyles } from '../DevTheme'
+import colors from '../DevTheme/Colors';
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -58,19 +59,31 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular,
     margin: Metrics.baseMargin
   },
-  errorMian:{
-    flex:1,
+  errorMian: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  errorImage:{
+  errorImage: {
 
   },
-  errorText:{
+  errorText: {
 
   },
-  errorIcon:{
+  errorIcon: {
     width: 200,
     height: 200
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 7,
+    paddingRight: 7,
+    // marginBottom: -16,
+    // zIndex: 2
+  },
+  headerText:{
+    color: colors.movieHeaderText
   }
 })

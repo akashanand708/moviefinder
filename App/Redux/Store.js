@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import Config from '../Config/DebugConfig'
 import { Platform } from 'react-native';
 import thunk from 'redux-thunk';
 import ScreenTracking from './ScreenTrackingMiddleware'
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
 import rootReducer from './Reducers/index'
-import devTools from 'remote-redux-devtools'
+import devTools from 'remote-redux-devtools-sp'
 
 
 /* ------------- Redux Configuration ------------- */

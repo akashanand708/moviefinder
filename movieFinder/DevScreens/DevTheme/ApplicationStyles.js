@@ -2,14 +2,28 @@ import Fonts from './Fonts'
 import Metrics from './Metrics'
 import Colors from './Colors'
 
-// This file is for a reusable grouping of Theme items.
-// Similar to an XML fragment layout in Android
 
 const ApplicationStyles = {
   screen: {
+    listScroll: {
+      height: (Metrics.screenHeight - 110),
+    },
+    fill: {
+      flex: 1
+    },
     mainContainer: {
       flex: 1,
+      backgroundColor: Colors.background,
+      //padding: 10
+    },
+    mainHorizontalContainer: {
+      //marginBottom:20,
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
       backgroundColor: Colors.transparent
+    },
+    linearGradient: {
+
     },
     backgroundImage: {
       position: 'absolute',
@@ -34,21 +48,122 @@ const ApplicationStyles = {
       marginVertical: Metrics.smallMargin,
       textAlign: 'center'
     },
-    subtitle: {
-      color: Colors.snow,
-      padding: Metrics.smallMargin,
+
+
+    commonMargin: {
+      marginTop: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
-      marginHorizontal: Metrics.smallMargin
     },
-    titleText: {
-      ...Fonts.style.h2,
-      fontSize: 14,
-      color: Colors.text
+    runtime: {
+      fontFamily: Fonts.type.bold
     },
-    movieListContainer:{
-      //marginTop: 75
+    underLine: {
+      textDecorationLine: "underline",
+      textDecorationStyle: "solid",
+      textDecorationColor: Colors.subTitleColor
+    },
+    alignRowLeft: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    alignRowCenter: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    alignRowRight: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+    },
+    alignColumnLeft: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+    },
+    alignColumnCenter: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    alignColumnRight: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+    },
+    subtitle: {
+      ...Fonts.style.subtitleFont,
+      color: Colors.subTitleColor,
+    },
+    title: {
+      ...Fonts.style.titleFont,
+      color: Colors.titleColor
+    },
+    infoSubtitle: {
+      ...Fonts.style.infoSubtitleFont,
+      color: Colors.subTitleColor
+    },
+    infoTitle: {
+      ...Fonts.style.infoTitleFont,
+      color: Colors.titleColor
+    },
+    taglineFontSize: {
+      ...Fonts.style.tagline
+    },
+    verticalListContainer: {
+      //paddingTop: 10
+      // height: Metrics.screenHeight
+    },
+    addElevation: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.34,
+      shadowRadius: 6.27,
+      elevation: 10,
+      backgroundColor: Colors.background
+    },
+    commonBoxShadow: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.34,
+      shadowRadius: 6.27,
+      elevation: 10,
+    },
+    backArrow: {
+      position: 'absolute',
+      top: 13,
+      left: 10
+    },
+    closeButton: {
+      position: 'absolute',
+      top: 15,
+      right: 10,
+      zIndex: 2
+    },
+    playButton: {
+      position: 'absolute',
+      top: '25%',
+      left: '50%'
+    },
+    searchButton: {
+      alignSelf: "flex-end",
+      height: 35
     }
   },
+
   darkLabelContainer: {
     padding: Metrics.smallMargin,
     paddingBottom: Metrics.doubleBaseMargin,

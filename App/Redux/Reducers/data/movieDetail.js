@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { MOVIE_DETAIL, RESET_MOVIE_DETAIL } from '../../../ActionTypes/moviesActionTypes';
+import { MOVIE_DETAIL, RESET_MOVIE_DETAIL,SET_TAB } from '../../../ActionTypes/moviesActionTypes';
 
 const movieDetailReducer = handleActions({
     [MOVIE_DETAIL.PENDING]: (state, action) => {
@@ -28,11 +28,18 @@ const movieDetailReducer = handleActions({
             movieDetail: {},
             movieDetailFetching: false
         };
-    }
+    },
+    [SET_TAB]: (state, action) => {
+        return {
+            ...state,
+            curretnTab: action.payload,
+        };
+    },
 },
     {
         movieDetail: {},
         movieDetailFetching: false,
+        curretnTab: 'Info'
 
     });
 

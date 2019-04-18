@@ -1,19 +1,20 @@
 import { StyleSheet } from 'react-native'
-import { Metrics, Fonts } from '../../DevScreens/DevTheme'
-import { Colors } from '../../../App/Themes';
+import { Metrics } from '../../DevScreens/DevTheme'
 
 export default StyleSheet.create({
   itemContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
-    margin: 10
+    margin: 10,
+  },
+  dimension:{
+    width: Metrics.screenWidth,
   },
   image: {
-    width: Metrics.screenWidth / 2 - 10,
-    height: Metrics.screenWidth / 2 + 60,
+    width: 100,
+    height: 150,
     resizeMode: 'contain',
-    //margin: Metrics.baseMargin
-    backgroundColor: Colors.banner
+    borderRadius: 5
   }
 })
