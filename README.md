@@ -1,7 +1,16 @@
 #  MovieFinder
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
-* Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
+## QR code to install this app
+![MovieFinderPlayStoreLink](https://user-images.githubusercontent.com/6744343/92301398-3b201780-ef81-11ea-8cdd-4be5932fd198.png)
+
+## Play store location
+* You can find this app in playstore here [MovieFinder](https://play.google.com/store/apps/details?id=com.moviefinder)
+
+## Images
+<img width="360" alt="Screenshot 2020-09-05 at 1 06 56 PM" src="https://user-images.githubusercontent.com/6744343/92300745-f1343300-ef7a-11ea-92e5-2eb0d13d8caa.png"> <img width="361" alt="Screenshot 2020-09-05 at 1 07 11 PM" src="https://user-images.githubusercontent.com/6744343/92300746-f6917d80-ef7a-11ea-9c3e-17d646424888.png"><img width="359" alt="Screenshot 2020-09-05 at 1 07 23 PM" src="https://user-images.githubusercontent.com/6744343/92300747-f7c2aa80-ef7a-11ea-813b-b1bec5611047.png"><img width="361" alt="Screenshot 2020-09-05 at 1 07 31 PM" src="https://user-images.githubusercontent.com/6744343/92300750-01e4a900-ef7b-11ea-94aa-ff1aeb23621b.png"><img width="360" alt="Screenshot 2020-09-05 at 1 07 40 PM" src="https://user-images.githubusercontent.com/6744343/92300752-04470300-ef7b-11ea-8c7d-2772bb81b2eb.png"><img width="359" alt="Screenshot 2020-09-05 at 1 07 50 PM" src="https://user-images.githubusercontent.com/6744343/92300754-05783000-ef7b-11ea-99ba-361ec5ca7e83.png"><img width="363" alt="Screenshot 2020-09-05 at 1 08 18 PM" src="https://user-images.githubusercontent.com/6744343/92300756-06a95d00-ef7b-11ea-81e5-5dfd3c4ed4d7.png">
+
+
 
 ## :arrow_up: How to Setup
 
@@ -22,22 +31,6 @@
     * Run Genymotion
     * run `react-native run-android`
 
-## :no_entry_sign: Standard Compliant
-
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-This project adheres to Standard.  Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
-
-**To Lint on Commit**
-
-This is implemented using [husky](https://github.com/typicode/husky). There is no additional setup needed.
-
-**Bypass Lint**
-
-If you have to bypass lint for a special commit that you will come back and clean (pushing something to a branch etc.) then you can bypass git hooks with adding `--no-verify` to your commit command.
-
-**Understanding Linting Errors**
-
-The linting rules are from JS Standard and React-Standard.  [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
 
 ## :closed_lock_with_key: Secrets
 
